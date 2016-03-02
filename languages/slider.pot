@@ -1,0 +1,49 @@
+# Copyright (C) 2015 Automattic
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Slider\n"
+"Report-Msgid-Bugs-To: info@artcom-venture.de\n"
+"POT-Creation-Date: 2015-01-06 02:24:02+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2015-04-14 14:53+0100\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Last-Translator: artcom venture GmbH <info@artcom-venture.de>\n"
+"Language-Team: artcom venture GmbH <info@artcom-venture.de>\n"
+"Language: de_DE\n"
+"X-Generator: Poedit 1.7.5\n"
+
+msgid "Slider settings"
+msgstr ""
+
+msgid "Display as slider"
+msgstr ""
+
+msgid "Show pager at the"
+msgstr ""
+
+msgid "top"
+msgstr ""
+
+msgid "right"
+msgstr ""
+
+msgid "bottom"
+msgstr ""
+
+msgid "left"
+msgstr ""
+
+msgid "nowhere"
+msgstr ""
+
+msgid "Auto-slide in milliseconds"
+msgstr ""
+
+msgid "Animation"
+msgstr ""
+
+msgid "Duration in milliseconds"
+msgstr ""

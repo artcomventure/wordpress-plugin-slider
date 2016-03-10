@@ -1,20 +1,21 @@
 <?php
 
 /**
- * Plugin Name: Slider
+ * Plugin Name: Gallery Slider
  * Plugin URI: https://github.com/artcomventure/wordpress-plugin-slider
- * Description: Extends WP's gallery with a slider option.
- * Version: 1.0.0
+ * Description: Extends WP's gallery (media popup) with a slider option.
+ * Version: 1.0.1
+ * Text Domain: slider
  * Author: artcom venture GmbH
  * Author URI: http://www.artcom-venture.de/
  */
 
 if ( ! defined( 'SLIDER_PLUGIN_URL' ) ) {
-	define( 'SLIDER_PLUGIN_URL', WP_PLUGIN_URL . '/slider/' );
+	define( 'SLIDER_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 }
 
 if ( ! defined( 'SLIDER_PLUGIN_DIR' ) ) {
-	define( 'SLIDER_PLUGIN_DIR', WP_PLUGIN_DIR . '/slider/' );
+	define( 'SLIDER_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 }
 
 /**
@@ -133,34 +134,41 @@ function slider__print_media_templates() {
  */
 add_action( 'wp_enqueue_scripts', 'slider_scripts' );
 function slider_scripts() {
-	wp_enqueue_style( 'slider-style', SLIDER_PLUGIN_URL . 'css/slider.css' );
-	wp_enqueue_script( 'slider-script', SLIDER_PLUGIN_URL . 'js/slider.js', array(), '20160324', TRUE );
+	wp_enqueue_style( 'slider', SLIDER_PLUGIN_URL . 'css/slider.css', array(), '20160209' );
+	wp_enqueue_script( 'slider', SLIDER_PLUGIN_URL . 'js/slider.js', array(), '20160120', TRUE );
 }
 
 /**
- * i18n.
+ * t9n.
  */
 add_action( 'after_setup_theme', 'slider__after_setup_theme' );
 function slider__after_setup_theme() {
 	load_theme_textdomain( 'slider', SLIDER_PLUGIN_DIR . 'languages' );
 }
 
-// due to 'update conflicts' with other slider plugin
-// remove update notification
+/**
+ * Remove update notification
+ * ... due to 'update conflicts' with an other slider plugin
+ */
 add_filter( 'site_transient_update_plugins', 'slider__site_transient_update_plugins' );
 function slider__site_transient_update_plugins( $value ) {
-	if ( isset( $value->response[ plugin_basename( __FILE__ ) ] ) ) {
-		unset( $value->response[ plugin_basename( __FILE__ ) ] );
+	$plugin_file = plugin_basename( __FILE__ );
+
+	foreach ( array( 'response', 'no_update' ) as $group ) {
+		if ( isset( $value->{$group}[ $plugin_file ] ) ) {
+			unset( $value->{$group}[ $plugin_file ] );
+			break;
+		}
 	}
 
 	return $value;
 }
 
 // auto include shortcodes
-foreach ( scandir( SLIDER_PLUGIN_DIR . '/inc' ) as $file ) {
+foreach ( scandir( SLIDER_PLUGIN_DIR . 'inc' ) as $file ) {
 	if ( ! preg_match( '/shortcode\..+\.php/', $file ) ) {
 		continue;
 	}
 
-	require SLIDER_PLUGIN_DIR . '/inc/' . $file;
+	require SLIDER_PLUGIN_DIR . 'inc/' . $file;
 }

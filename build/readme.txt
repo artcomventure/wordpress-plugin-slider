@@ -1,8 +1,21 @@
-# WordPress Gallery Slider
+=== Gallery Slider ===
+
+Contributors:
+Donate link:
+Tags: gallery, slider
+Requires at least:
+Tested up to:
+Stable tag:
+License: GPLv3 or later
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
+
+Extends WP's gallery (media popup) with a slider option.
+
+== Description ==
 
 Extends the WordPress gallery section in the media popup with slider options.
 
-## Installation
+== Installation ==
 
 1. Upload files to the `/wp-content/plugins/` directory of your WordPress installation.
   * Either [download the latest files](https://github.com/artcomventure/wordpress-plugin-slider/archive/master.zip) and extract zip (optionally rename folder)
@@ -18,7 +31,7 @@ Extends the WordPress gallery section in the media popup with slider options.
 2. Activate the plugin through the 'Plugins' screen in WordPress.
 3. **Enjoy**
 
-## Usage
+== Usage ==
 
 1. Go to the post and select in the editor the position you want to insert a slider.
 2. Click on 'Add media' right above the editor.
@@ -26,9 +39,9 @@ Extends the WordPress gallery section in the media popup with slider options.
 4. Activate slider by checking 'Display as slider'.
 5. Configure slider (an images) to fit your needs.
 
-To change an existing slider click on the slider (gallery), click on the _edit pencil_ and repeat #5.
+To change an existing slider click on the slider (gallery), click on the _edit pencil_ and repeat == Description ==
 
-## Plugin Updates
+== Plugin Updates ==
 
 Although the plugin is not _yet_ listed on https://wordpress.org/plugins/, you can use WordPress' update functionality to keep it in sync with the files from [GitHub](https://github.com/artcomventure/wordpress-plugin-slider).
 
@@ -40,3 +53,26 @@ Please use for this our [WordPress Repository Updater](https://github.com/artcom
 * Subfolder (optionally, if you don't want/need the development files in your environment): build
 
 _We test our plugin through its paces, but we advise you to take all safety precautions before the update. Just in case of the unexpected._
+
+== Changelog ==
+
+= Unreleased =
+
+* backend preview
+* more slide animations
+
+= 1.0.2 - 2016-03-10 =
+**Added**
+
+* build/
+
+= 1.0.1 - 2016-03-10 =
+**Added**
+
+* README.md
+* CHANGELOG.md
+
+= 1.0.0 - 2016-03-02 =
+**Added**
+
+* Inititial file commit

@@ -1,0 +1,47 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Gallery Slider\n"
+"Report-Msgid-Bugs-To: info@artcom-venture.de\n"
+"POT-Creation-Date: 2015-07-11 15:23+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Last-Translator: Stefan Käsche <stefan.kaesche@artcom-venture.de>\n"
+"Language-Team: artcom venture GmbH <info@artcom-venture.de>\n"
+"X-Generator: Poedit 1.8.7\n"
+"Language: de\n"
+
+msgid "Slider settings"
+msgstr "Slider-Einstellungen"
+
+msgid "Display as slider"
+msgstr "Als Slider anzeigen"
+
+msgid "Show pager at the"
+msgstr "Navigations-Position"
+
+msgid "top"
+msgstr "oben"
+
+msgid "right"
+msgstr "rechts"
+
+msgid "bottom"
+msgstr "unten"
+
+msgid "left"
+msgstr "links"
+
+msgid "nowhere"
+msgstr "nirgends"
+
+msgid "Auto-slide in milliseconds"
+msgstr "Auto-Wechsel in Millisekunden"
+
+msgid "Animation"
+msgstr "Animation"
+
+msgid "Duration in milliseconds"
+msgstr "Animationsdauer in Millisekunden"

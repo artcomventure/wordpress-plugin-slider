@@ -47,3 +47,9 @@ msgstr ""
 
 msgid "Duration in milliseconds"
 msgstr ""
+
+msgid "previous"
+msgstr ""
+
+msgid "next"
+msgstr ""

@@ -45,3 +45,9 @@ msgstr "Animation"
 
 msgid "Duration in milliseconds"
 msgstr "Animationsdauer in Millisekunden"
+
+msgid "previous"
+msgstr "zurück"
+
+msgid "next"
+msgstr "weiter"

@@ -1,22 +1,40 @@
 <?php
 
 /**
- * 'Override' (in this case: extend) WP's gallery shortcode.
+ * Wrapper for gallery slider.
  */
-remove_shortcode( 'gallery' );
-add_shortcode( 'gallery', 'slider__gallery_shortcode' );
-function slider__gallery_shortcode( $atts ) {
-	$gallery = gallery_shortcode( $atts );
-
-	// no slider ... use WP's gallery
-	if ( empty( $atts['slider'] ) ) {
-		return $gallery;
+add_shortcode( 'slider', 'slider_shortcode' );
+function slider_shortcode( $attr ) {
+	if ( empty( $attr['slider'] ) ) {
+		return '';
 	}
 
-	$slider = $gallery;
-	unset( $gallery );
+	return gallery_shortcode( $attr );
+}
 
-	$atts += array(
+/**
+ * Change gallery to slider markup.
+ */
+add_filter( 'post_gallery', 'slider__post_gallery', 10, 3 );
+function slider__post_gallery( $output, $attr, $instance ) {
+	// no slider ... nothing to do
+	if ( empty( $attr['slider'] ) ) {
+		return FALSE;
+	}
+
+	// remove slider attributes to get standard gallery output
+	$gallery_attr = $attr;
+	foreach ( $gallery_attr as $key => $value ) {
+		if ( preg_match( '/^slider/', $key ) ) {
+			unset( $gallery_attr[$key] );
+		}
+	}
+
+	// get gallery output
+	$slider = gallery_shortcode( $gallery_attr );
+
+	// merge defaults
+	$attr += array(
 		'slider' => '',
 		'slider__navigation' => '',
 		'slider__pager' => 'none',
@@ -25,8 +43,9 @@ function slider__gallery_shortcode( $atts ) {
 		'slider__duration' => '',
 	);
 
-	// dimension
-	if ( preg_match( '/((\d+)(px|%)?)((:|x)?((\d+)(px|%)?))?/', $atts['slider__dimension'], $dimension ) ) {
+	// calculate dimension
+	// height always in % of width to be responsive
+	if ( preg_match( '/((\d+)(px|%)?)((:|x)?((\d+)(px|%)?))?/', $attr['slider__dimension'], $dimension ) ) {
 		$width = $dimension[2];
 		$wUnit = $dimension[3];
 		$height = $dimension[7];
@@ -65,18 +84,14 @@ function slider__gallery_shortcode( $atts ) {
 		}
 	}
 
-	// ...
-	if ( ! preg_match( '/data-src="([^"]*?)"/', $slider ) ) {
-		// image src to background
-		$slider = preg_replace( '/src="([^"]*?)"/', 'src="' . includes_url( '/images/blank.gif' ) . '" style="background-image:url($1)"', $slider );
-	}
-	// 'gallery' to 'slider'
-	$slider = preg_replace( '/gallery(?![\w])/', 'slider', $slider );
 	// remove unneeded stuff
 	$slider = preg_replace( array(
-		'/slider-columns-\d/',
-		'/slider-size-(\w)+/',
+		'/gallery-columns-\d/',
+		'/gallery-size-\w+/',
 	), '', $slider );
+
+	// 'gallery' to 'slider'
+	$slider = preg_replace( '/gallery(?![\w])/', 'slider', $slider );
 
 	// ...
 	preg_match( '/<div([^>]*)>(.*)<\/div>/s', $slider, $slider );
@@ -90,11 +105,11 @@ function slider__gallery_shortcode( $atts ) {
 
 	// slider attributes
 	$slider[1] = array_filter( array(
-			'data-navigation' => $atts['slider__navigation'],
-			'data-pager' => $atts['slider__pager'],
+			'data-navigation' => $attr['slider__navigation'],
+			'data-pager' => $attr['slider__pager'],
 			'data-slides' => $slides,
-			'data-slideshow' => $atts['slider__slideshow'],
-			'data-duration' => $atts['slider__duration'],
+			'data-slideshow' => $attr['slider__slideshow'],
+			'data-duration' => $attr['slider__duration'],
 		) ) + $slider[1];
 
 	foreach ( $slider[1] as $attribute => &$value ) {
@@ -104,7 +119,14 @@ function slider__gallery_shortcode( $atts ) {
 	$slider[1][] = isset( $width ) ? $width : '';
 	$slider[1] = implode( ' ', array_filter( $slider[1] ) );
 
-	return '<div ' . $slider[1] . '><div class="slides" style="left:0;' . ( isset( $height ) ? $height : '' ) . '">'
-	       . $slider[2] . '</div><ul class="slider__pager"><li>' . implode( '</li><li>', range( 1, $slides ) ) . '</li></ul>'
-	       . '<ul class="slider__navigation"><li>' . __( 'previous' ) . '</li><li>' . __( 'next' ) . '</li></ul></div>';
+	// markup
+	$output = '<div ' . $slider[1] . '>';
+	$output .= '<div class="slides" style="left:0;' . ( isset( $height ) ? $height : '' ) . '">';
+	$output .= $slider[2];
+	$output .= '</div>';
+	$output .= '<ul class="slider__pager"><li>' . implode( '</li><li>', range( 1, $slides ) ) . '</li></ul>';
+	$output .= '<ul class="slider__navigation"><li>' . __( 'previous', 'slider' ) . '</li><li>' . __( 'next', 'slider' ) . '</li></ul>';
+	$output .= '</div><!-- .slider -->';
+
+	return $output;
 }

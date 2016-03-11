@@ -58,8 +58,15 @@ _We test our plugin through its paces, but we advise you to take all safety prec
 
 = Unreleased =
 
+* show image description
 * backend preview
 * more slide animations
+
+= 1.0.4 - 2016-03-11 =
+**Changed**
+
+* Use post_gallery filter instead of overriding gallery shortcode
+* Images not as background-image anymore
 
 = 1.0.3 - 2016-03-10 =
 **Added**

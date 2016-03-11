@@ -15,6 +15,12 @@ msgstr ""
 "Language: de_DE\n"
 "X-Generator: Poedit 1.7.5\n"
 
+msgid "Gallery Slider"
+msgstr ""
+
+msgid "Extends WP's gallery (media popup) with a slider option."
+msgstr ""
+
 msgid "Slider settings"
 msgstr ""
 

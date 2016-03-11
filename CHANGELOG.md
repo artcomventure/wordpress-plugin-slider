@@ -6,6 +6,16 @@
 * backend preview
 * more slide animations
 
+## 1.0.5 - 2016-03-11
+**Added**
+
+* .csscomb.json
+* German translations
+ 
+**Fixed**
+
+* CSS for portrait ratio
+
 ## 1.0.4 - 2016-03-11
 **Changed**
 

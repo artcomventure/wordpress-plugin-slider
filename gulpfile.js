@@ -116,6 +116,7 @@ gulp.task( 'build', ['css', 'js'], function() {
         '!readme.txt',
         '!gulpfile.js',
         '!package.json',
+        '!.csscomb.json',
         '!.gitignore',
         '!node_modules{,/**}',
         '!build{,/**}'

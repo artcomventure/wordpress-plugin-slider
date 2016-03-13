@@ -37,7 +37,8 @@ function slider__post_gallery( $output, $attr, $instance ) {
 	$attr += array(
 		'slider' => '',
 		'slider__navigation' => '',
-		'slider__pager' => 'none',
+		'slider__pager' => 'bottom',
+		'slider__captions' => '',
 		'slider__dimension' => '',
 		'slider__slideshow' => '',
 		'slider__duration' => '',
@@ -107,6 +108,7 @@ function slider__post_gallery( $output, $attr, $instance ) {
 	$slider[1] = array_filter( array(
 			'data-navigation' => $attr['slider__navigation'],
 			'data-pager' => $attr['slider__pager'],
+			'data-captions' => $attr['slider__captions'],
 			'data-slides' => $slides,
 			'data-slideshow' => $attr['slider__slideshow'],
 			'data-duration' => $attr['slider__duration'],
@@ -121,9 +123,10 @@ function slider__post_gallery( $output, $attr, $instance ) {
 
 	// markup
 	$output = '<div ' . $slider[1] . '>';
+	$output .= '<div class="slider__canvas">';
 	$output .= '<div class="slides" style="left:0;' . ( isset( $height ) ? $height : '' ) . '">';
 	$output .= $slider[2];
-	$output .= '</div>';
+	$output .= '</div></div>';
 	$output .= '<ul class="slider__pager"><li>' . implode( '</li><li>', range( 1, $slides ) ) . '</li></ul>';
 	$output .= '<ul class="slider__navigation"><li>' . __( 'previous', 'slider' ) . '</li><li>' . __( 'next', 'slider' ) . '</li></ul>';
 	$output .= '</div><!-- .slider -->';

@@ -2,9 +2,22 @@
 
 ## Unreleased
 
-* show image description
+* make slider js _accessible_  
 * backend preview
 * more slide animations
+
+## 1.1.0 - 2016-03-13
+**Added**
+
+* Captions display
+
+**Changed**
+
+* Pager position outside of slider
+
+**Removed**
+
+* CSS sourceMaps
 
 ## 1.0.5 - 2016-03-11
 **Added**

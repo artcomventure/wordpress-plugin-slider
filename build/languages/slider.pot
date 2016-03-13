@@ -27,7 +27,13 @@ msgstr ""
 msgid "Display as slider"
 msgstr ""
 
-msgid "Show pager at the"
+msgid "Show Navigation"
+msgstr ""
+
+msgid "next and previous button"
+msgstr ""
+
+msgid "Show pager at"
 msgstr ""
 
 msgid "top"
@@ -43,6 +49,12 @@ msgid "left"
 msgstr ""
 
 msgid "nowhere"
+msgstr ""
+
+msgid "Show Captions"
+msgstr ""
+
+msgid "Slideshow"
 msgstr ""
 
 msgid "Auto-slide in milliseconds"

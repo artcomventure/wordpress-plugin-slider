@@ -4,7 +4,7 @@
  * Plugin Name: Gallery Slider
  * Plugin URI: https://github.com/artcomventure/wordpress-plugin-slider
  * Description: Extends WP's gallery (media popup) with a slider option.
- * Version: 1.0.5
+ * Version: 1.1.0
  * Text Domain: slider
  * Author: artcom venture GmbH
  * Author URI: http://www.artcom-venture.de/
@@ -33,12 +33,12 @@ function slider__print_media_templates() {
 			<span><?php _e( 'Display as slider', 'slider' ) ?></span>
 			<input data-setting="slider" type="checkbox"/>
 		</label>
-		<label class="setting">
-			<span><?php _e( 'Show navigation', 'slider' ) ?></span>
+		<label class="setting" title="<?php _e( 'next and previous button', 'slider' ); ?>">
+			<span><?php _e( 'Show Navigation', 'slider' ) ?></span>
 			<input data-setting="slider__navigation" type="checkbox"/>
 		</label>
 		<label class="setting">
-			<span><?php _e( 'Show pager at the', 'slider' ); ?></span>
+			<span><?php _e( 'Show pager at', 'slider' ); ?></span>
 			<select data-setting="slider__pager">
 				<option value="bottom"><?php _e( 'bottom', 'slider' ); ?></option>
 				<option value="top"><?php _e( 'top', 'slider' ); ?></option>
@@ -46,6 +46,10 @@ function slider__print_media_templates() {
 				<option value="right"><?php _e( 'right', 'slider' ); ?></option>
 				<option value="none"><?php _e( 'nowhere', 'slider' ); ?></option>
 			</select>
+		</label>
+		<label class="setting">
+			<span><?php _e( 'Show Captions', 'slider' ) ?></span>
+			<input data-setting="slider__captions" type="checkbox"/>
 		</label>
 		<label class="setting">
 			<span><?php _e( 'Slideshow', 'slider' ) ?></span>
@@ -74,7 +78,8 @@ function slider__print_media_templates() {
 				_.extend(wp.media.gallery.defaults, {
 					slider: false,
 					slider__navigation: false,
-					slider__pager: 'none',
+					slider__pager: 'bottom',
+					slider__captions: false,
 					slider__dimension: '',
 					slider__slideshow: '',
 					slider__duration: ''
@@ -98,6 +103,7 @@ function slider__print_media_templates() {
 							$slider = this.$('input[data-setting="slider"]'),
 							$sliderNavigation = this.$('input[data-setting="slider__navigation"]'),
 							$sliderPager = this.$('select[data-setting="slider__pager"]'),
+							$sliderCaptions = this.$('input[data-setting="slider__captions"]'),
 							$sliderDimension = this.$('input[data-setting="slider__dimension"]'),
 							$sliderDuration = this.$('input[data-setting="slider__duration"]'),
 							$sliderSlideshow = this.$('input[data-setting="slider__slideshow"]');
@@ -109,6 +115,7 @@ function slider__print_media_templates() {
 							$columns.prop('disabled', bIsSlider);
 							$sliderNavigation.prop('disabled', !bIsSlider);
 							$sliderPager.prop('disabled', !bIsSlider);
+							$sliderCaptions.prop('disabled', !bIsSlider);
 							$sliderDimension.prop('disabled', !bIsSlider);
 							$sliderDuration.prop('disabled', !bIsSlider);
 							$sliderSlideshow.prop('disabled', !bIsSlider);
@@ -134,8 +141,8 @@ function slider__print_media_templates() {
  */
 add_action( 'wp_enqueue_scripts', 'slider_scripts' );
 function slider_scripts() {
-	wp_enqueue_style( 'slider', SLIDER_PLUGIN_URL . 'css/slider.css', array(), '20160209' );
-	wp_enqueue_script( 'slider', SLIDER_PLUGIN_URL . 'js/slider.js', array(), '20160120', TRUE );
+	wp_enqueue_style( 'slider', SLIDER_PLUGIN_URL . 'css/slider.min.css', array(), '20160313' );
+	wp_enqueue_script( 'slider', SLIDER_PLUGIN_URL . 'js/slider.min.js', array(), '20160120', TRUE );
 }
 
 /**

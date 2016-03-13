@@ -25,8 +25,14 @@ msgstr "Slider-Einstellungen"
 msgid "Display as slider"
 msgstr "Als Slider anzeigen"
 
-msgid "Show pager at the"
-msgstr "Navigations-Position"
+msgid "Show Navigation"
+msgstr "Navigation anzeigen"
+
+msgid "next and previous button"
+msgstr "Vor- und Zurück-Button"
+
+msgid "Show pager at"
+msgstr "Pager-Position"
 
 msgid "top"
 msgstr "oben"
@@ -42,6 +48,9 @@ msgstr "links"
 
 msgid "nowhere"
 msgstr "nirgends"
+
+msgid "Show Captions"
+msgstr "Bildunterschriften anzeigen"
 
 msgid "Auto-slide in milliseconds"
 msgstr "Auto-Wechsel in Millisekunden"

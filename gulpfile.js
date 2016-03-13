@@ -14,6 +14,8 @@ var gulp = require( 'gulp' ),
     // beautify css
     csscomb = require( 'gulp-csscomb' ),
     replace = require( 'gulp-replace' ),
+    // deletion
+    del = require( 'del' ),
     // concat files
     concat = require( 'gulp-concat' ),
 
@@ -103,14 +105,20 @@ gulp.task( 'js', function() {
 } );
 
 /**
- * Create build.
+ * Clear build/ folder.
  */
-gulp.task( 'build', ['css', 'js'], function() {
+gulp.task( 'clear:build', function() {
+    del.sync( 'build/**/*' );
+} );
+
+gulp.task( 'build', ['clear:build', 'css', 'js'], function() {
     // collect all needed files
     gulp.src( [
         '**/*',
         // ... but:
         '!**/*.scss',
+        '!**/*.css.map',
+        '!**/*.css', // will be collected see next function
         '!*.md',
         '!LICENSE',
         '!readme.txt',
@@ -121,6 +129,12 @@ gulp.task( 'build', ['css', 'js'], function() {
         '!node_modules{,/**}',
         '!build{,/**}'
     ] ).pipe( gulp.dest( 'build/' ) );
+
+    // collect css files
+    gulp.src( [ '**/*.css' ] )
+        // ... and remove '/*# sourceMappingURL=FILENAME.css.map */'
+        .pipe( replace( /\n*\/\*# sourceMappingURL=.*\.css\.map \*\/\n*$/g, '' ) )
+        .pipe( gulp.dest( 'build/' ) );
 
     // concat files for WP's readme.txt
     // manually validate output with https://wordpress.org/plugins/about/validator/

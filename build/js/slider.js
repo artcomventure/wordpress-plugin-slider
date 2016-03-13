@@ -16,8 +16,8 @@
                 if ( $slider.slides.length <= 1 ) return;
 
                 // navigation action
-                var $navigation = $sliders[i].getElementsByClassName( 'slider__navigation' )[0];
-                $navigation = $navigation.getElementsByTagName( 'li' );
+                var $navigation = $sliders[i].getElementsByClassName( 'slider__navigation' );
+                $navigation = $navigation[0].getElementsByTagName( 'li' );
 
                 for ( var j = 0; j < $navigation.length; j++ ) {
                     $navigation[j].addEventListener( 'click', function() {

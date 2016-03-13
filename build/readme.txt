@@ -37,7 +37,7 @@ Extends the WordPress gallery section in the media popup with slider options.
 2. Click on 'Add media' right above the editor.
 3. Switch to 'Create Gallery', choose the images you want to display and click the 'Create a new gallery' button in the lower right corner.
 4. Activate slider by checking 'Display as slider'.
-5. Configure slider (an images) to fit your needs.
+5. Configure slider (and images) to fit your needs.
 
 To change an existing slider click on the slider (gallery), click on the _edit pencil_ and repeat == Description ==
 
@@ -45,22 +45,37 @@ To change an existing slider click on the slider (gallery), click on the _edit p
 
 Although the plugin is not _yet_ listed on https://wordpress.org/plugins/, you can use WordPress' update functionality to keep it in sync with the files from [GitHub](https://github.com/artcomventure/wordpress-plugin-slider).
 
-Please use for this our [WordPress Repository Updater](https://github.com/artcomventure/wordpress-plugin-repoUpdater).
-
-**_WordPress Repository Updater_ Settings**
+**Please use for this our [WordPress Repository Updater](https://github.com/artcomventure/wordpress-plugin-repoUpdater)** with the settings:
 
 * Repository URL: https://github.com/artcomventure/wordpress-plugin-repoUpdater/
 * Subfolder (optionally, if you don't want/need the development files in your environment): build
 
 _We test our plugin through its paces, but we advise you to take all safety precautions before the update. Just in case of the unexpected._
 
+== Questions, concerns, needs, suggestions? ==
+
+Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-slider/issues) welcome.
+
 == Changelog ==
 
 = Unreleased =
 
-* show image description
+* make slider js _accessible_  
 * backend preview
 * more slide animations
+
+= 1.1.0 - 2016-03-13 =
+**Added**
+
+* Captions display
+
+**Changed**
+
+* Pager position outside of slider
+
+**Removed**
+
+* CSS sourceMaps
 
 = 1.0.5 - 2016-03-11 =
 **Added**

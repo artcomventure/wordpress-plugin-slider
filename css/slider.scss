@@ -1,7 +1,7 @@
 .slider {
   position: relative;
-  overflow: hidden;
-  margin: 0 auto;
+  margin-right: auto;
+  margin-left: auto;
   max-width: 100%;
 
   .slides,
@@ -12,20 +12,9 @@
     position: relative;
   }
 
+  .slider__canvas,
   .slides > * > div {
     overflow: hidden;
-  }
-
-  .slides > * img[class*="attachment-"] {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: auto;
-    min-width: 100%;
-    max-width: none;
-    height: auto;
-    min-height: 100%;
   }
 
   .slides {
@@ -33,18 +22,24 @@
     padding: 0;
     list-style: none;
     transition: transform .5s;
-    overflow: hidden;
     padding-top: 56.25%;
 
     > * {
       position: absolute;
       top: 0;
       margin: 0;
+    }
 
-      img {
-        background: none no-repeat scroll center center transparent;
-        background-size: cover;
-      }
+    img[class*="attachment-"] {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: auto;
+      min-width: 100%;
+      max-width: none;
+      height: auto;
+      min-height: 100%;
     }
   }
 
@@ -66,13 +61,31 @@
     }
   }
 
+  figcaption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(#000,.1);
+    color: #fff;
+    font-size: .8125em;
+    padding: .5em 1em;
+  }
+
+  // hide captions
+  &[data-captions="false"],
+  &:not([data-captions]) {
+    figcaption {
+      display: none;
+    }
+  }
+
   .slider__pager,
   .slider__navigation {
     position: absolute;
-    width: 100%;
-    text-align: center;
     margin: 0;
     padding: 0;
+    width: 100%;
+    text-align: center;
     list-style: none;
     pointer-events: none;
 
@@ -84,35 +97,57 @@
   }
 
   .slider__pager {
-    bottom: 15px;
     z-index: 1;
     line-height: 0;
+    padding: 10px 0;
 
     li {
       display: inline-block;
+      margin: 0 2px;
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      border: 2px solid #fff;
-      margin: 0 2px;
-      box-shadow: 0 0 3px rgba(#000, .65);
+      background-color: rgba(#000, .15);
 
       &:hover,
       &.active {
-        background-color: rgba(#fff, .65);
+        background-color: rgba(#000, .65);
       }
     }
   }
 
   .slider__navigation {
-    top: 0;
-    height: 100%;
+    top: 50%;
+    height: 60px;
+    transform: translate(0, -50%);
 
     li {
       width: 10%;
       height: 100%;
       float: left;
       position: relative;
+      opacity: .8;
+      transition: opacity .2s;
+
+      &:before,
+      &:after {
+        content: "";
+        width: 3px;
+        height: 33px;
+        position: absolute;
+        top: calc(50% - 12px);
+        left: 50%;
+        background-color: #fff;
+        box-shadow: 0 0 2px rgba(#000,.35);
+      }
+
+      &:after {
+        top: calc(50% + 12px);
+      }
+
+      &:hover {
+        opacity: 1;
+      }
 
       // prev
       &:first-child {
@@ -136,25 +171,6 @@
         &:after {
           transform: translate(0,-50%) rotate(36deg);
         }
-      }
-
-      &:before,
-      &:after {
-        content: "";
-        width: 3px;
-        height: 33px;
-        background-color: #fff;
-        position: absolute;
-        top: calc(50% - 12px);
-        left: 50%;
-      }
-
-      &:after {
-        top: calc(50% + 12px);
-      }
-
-      &:hover {
-        background-color: rgba(#000,.1);
       }
     }
   }
@@ -183,21 +199,37 @@
     }
   }
 
-  &[data-pager="top"],
-  &[data-pager="right"],
-  &[data-pager="left"] {
+  // pager on top
+  &[data-pager="top"] {
+    .slides {
+      margin-top: 30px;
+    }
+
+    .slider__navigation {
+      margin-top: 15px;
+    }
+
     .slider__pager {
-      bottom: inherit;
+      top: 0;
     }
   }
 
-  &[data-pager="top"] .slider__pager {
-    top: 15px;
+  // pager bottom
+  &[data-pager="bottom"] {
+    .slider__navigation {
+      margin-top: -15px;
+    }
+
+    .slider__pager {
+      position: relative;
+    }
   }
 
+  // pager on the right/left
   &[data-pager="right"],
   &[data-pager="left"] {
     .slider__pager {
+      padding: 0 10px;
       width: auto;
       top: 50%;
       transform: translate(0, -50%);
@@ -209,11 +241,13 @@
     }
   }
 
+  // pager on the right
   &[data-pager="right"] .slider__pager {
-    right: 15px;
+    right: -30px;
   }
 
+  // pager on the left
   &[data-pager="left"] .slider__pager {
-    left: 15px;
+    left: -30px;
   }
 }

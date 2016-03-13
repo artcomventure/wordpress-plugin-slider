@@ -131,7 +131,7 @@ gulp.task( 'build', ['clear:build', 'css', 'js'], function() {
     ] ).pipe( gulp.dest( 'build/' ) );
 
     // collect css files
-    gulp.src( [ '**/*.css' ] )
+    gulp.src( [ '**/*.css', '!node_modules{,/**}' ] )
         // ... and remove '/*# sourceMappingURL=FILENAME.css.map */'
         .pipe( replace( /\n*\/\*# sourceMappingURL=.*\.css\.map \*\/\n*$/g, '' ) )
         .pipe( gulp.dest( 'build/' ) );

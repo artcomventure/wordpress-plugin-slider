@@ -6,6 +6,11 @@
 * backend preview
 * more slide animations
 
+## 1.2.0 - 2016-03-14
+**Added**
+
+* Slider columns
+
 ## 1.1.0 - 2016-03-13
 **Added**
 

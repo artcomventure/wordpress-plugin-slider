@@ -9,6 +9,7 @@
 
             ( function() {
                 var $slider = $sliders[i],
+                    iColumns = parseInt( $slider.getAttribute( 'data-columns' ) ) || 1,
                     $slides = $slider.getElementsByClassName( 'slides' )[0];
 
                 $slider.slides = $slider.getElementsByTagName( 'figure' );
@@ -30,11 +31,10 @@
                 $pager = $pager.getElementsByTagName( 'li' );
 
                 for ( j = 0; j < $pager.length; j++ ) {
-                    if ( !j ) {
-                        $pager[j].className += ' active';
-                        $slider.currentSlide = j;
-                    }
+                    if ( !j ) $slider.currentSlide = j;
+
                     $pager[j].addEventListener( 'click', slide );
+                    slide( $slider.currentSlide + 1 );
                 }
 
                 function slide( nb ) {
@@ -43,29 +43,39 @@
                     else {
                         if ( isNaN( parseFloat( nb ) ) || !isFinite( nb ) ) {
                             nb = parseInt( nb.target.innerHTML );
+
+                            if ( nb > $pager.length - iColumns ) {
+                                nb = $pager.length - iColumns + 1;
+                            }
                         }
 
                         nb--;
                     }
 
                     // loop
-                    if ( nb < 0 ) nb = $pager.length - 1;
-                    else if ( nb > $pager.length - 1 ) nb = 0;
+                    if ( nb < 0 ) nb = $pager.length - iColumns;
+                    else if ( nb > $pager.length - iColumns ) nb = 0;
 
                     $slider.currentSlide = nb;
 
                     for ( var k = 0; k < $pager.length; k++ ) {
                         if ( k == nb ) {
                             if ( $pager[k].className.indexOf( 'active' ) === -1 ) {
-                                var sTransform = 'translate(' + -100 / $slider.slides.length * nb + '%,0)';
-                                $slides.style.msTransform = sTransform;
-                                $slides.style.mozTransform = sTransform;
-                                $slides.style.transform = sTransform;
-
                                 $pager[k].className += ' active';
                             }
+
+                            var sTransform = 'translate(' + -100 / $slider.slides.length * nb + '%,0)';
+                            $slides.style.msTransform = sTransform;
+                            $slides.style.mozTransform = sTransform;
+                            $slides.style.transform = sTransform;
                         }
                         else $pager[k].className = $pager[k].className.replace( ' active', '' );
+                    }
+
+                    for ( k = 0; k < iColumns; k++ ) {
+                        if ( $pager[nb + k].className.indexOf( 'active' ) === -1 ) {
+                            $pager[nb + k].className += ' active';
+                        }
                     }
                 }
 

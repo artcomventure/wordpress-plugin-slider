@@ -43,17 +43,38 @@
     }
   }
 
-  @for $i from 1 through 99 {
-    &[data-slides="#{$i}"] .slides {
-      width: #{100% * $i} !important;
+  @for $i from 1 through 30 {
+    &[data-slides="#{$i}"] {
+      .slides {
+        width: #{100% * $i};
 
-      > * {
-        width: #{100% / $i};
+        > * {
+          width: #{100% / $i};
 
-        @for $j from 1 through 9 {
-          @if $j <= $i {
-            &:nth-child(#{$j}) {
-              left: #{100% / $i * ($j - 1)};
+          @for $j from 2 through $i {
+            @if $j <= $i {
+              &:nth-child(#{$j}) {
+                left: #{100% / $i * ($j - 1)};
+              }
+            }
+          }
+        }
+      }
+
+      @for $d from 2 through 9 {
+        &[data-columns="#{$d}"] .slides {
+          width: #{100% * $i/$d};
+          padding-top: #{56.25% / $d};
+
+          > * {
+            width: #{100% / $i};
+
+            @for $j from 1 through 30 {
+              @if $j <= $i {
+                &:nth-child(#{$j}) {
+                  left: #{100% / $i * ($j - 1)};
+                }
+              }
             }
           }
         }

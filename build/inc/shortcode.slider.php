@@ -112,6 +112,7 @@ function slider__post_gallery( $output, $attr, $instance ) {
 			'data-slides' => $slides,
 			'data-slideshow' => $attr['slider__slideshow'],
 			'data-duration' => $attr['slider__duration'],
+			'data-columns' => ( isset( $attr['columns'] ) ? $attr['columns'] : 3 ),
 		) ) + $slider[1];
 
 	foreach ( $slider[1] as $attribute => &$value ) {

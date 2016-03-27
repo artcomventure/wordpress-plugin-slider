@@ -41,6 +41,78 @@ Extends the WordPress gallery section in the media popup with slider options.
 
 To change an existing slider click on the slider (gallery), click on the _edit pencil_ and repeat == Description ==
 
+=== Use slider js standalone ===
+
+```javascript
+// initial call to HTMLElement, HTMLCollection, NodeList or CSS selector (e.g. '== Description ==
+// ... with possible options (and their default values)
+
+var mySlider = new Slider( ELEMENT, {
+    // slide to begin with
+    startSlide: 1,
+    // slide animation duration
+    duration: 500,
+    // loop from end to start and the other way round
+    loop: true,
+    // show ('top' or 'bottom')/hide pager
+    pager: 'bottom'
+    // show/hide navigation
+    navigation: false,
+    // dimension (ratio or exact size)
+    dimension: '16:9'
+    // number of columns
+    columns: 1
+    // show/hide captions
+    captions: false,
+    // auto slide (delay in ms)
+    slideshow: false
+    // effect to change
+    // atm only 'slide'
+    effect: 'slide'
+    
+    // translation
+    t9n: {
+        previous: 'previous',
+        next: 'next',
+        slideTo: 'slide to'
+    },
+    
+    // callbacks
+    onInit: function() {},
+    onBeforeSlide: function() {},
+    onSlide: function() {},
+    onSlideComplete: function() {}
+} );
+```
+
+=== Interaction ===
+
+Programmatically trigger slide:
+
+```javascript
+// go to next slide
+mySlider.slider( 'next' );
+
+// back to previous slide
+mySlider.slider( 'prev' );
+
+// slide to slide number 3
+mySlider.slider( 3 );
+```
+
+Change options on the fly:
+
+```javascript
+// OPTION: duration, loop, pager, navigation, dimension, columns, captions or slideshow
+document.getElementById( 'my-slider' ).slider( 'set', OPTION, VALUE );
+```
+
+Remove slider and its traces from element:
+
+```javascript
+mySlider.slider( 'destroy', 'destroy' );
+```
+
 == Plugin Updates ==
 
 Although the plugin is not _yet_ listed on https://wordpress.org/plugins/, you can use WordPress' update functionality to keep it in sync with the files from [GitHub](https://github.com/artcomventure/wordpress-plugin-slider).
@@ -60,9 +132,14 @@ Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-slide
 
 = Unreleased =
 
-* make slider js _accessible_  
+* mobile events  
 * backend preview
 * more slide animations
+
+= 1.3.0 - 2016-03-28 =
+**Changes**
+
+* Refactor js
 
 = 1.2.0 - 2016-03-14 =
 **Added**

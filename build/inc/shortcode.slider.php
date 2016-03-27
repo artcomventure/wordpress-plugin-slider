@@ -44,47 +44,6 @@ function slider__post_gallery( $output, $attr, $instance ) {
 		'slider__duration' => '',
 	);
 
-	// calculate dimension
-	// height always in % of width to be responsive
-	if ( preg_match( '/((\d+)(px|%)?)((:|x)?((\d+)(px|%)?))?/', $attr['slider__dimension'], $dimension ) ) {
-		$width = $dimension[2];
-		$wUnit = $dimension[3];
-		$height = $dimension[7];
-		$hUnit = $dimension[8];
-
-		// square
-		if ( ! $dimension[5] || ! $height ) {
-			$height = '100';
-			$hUnit = '%';
-		} // ratio
-		elseif ( $dimension[5] == ':' ) {
-			$height = $height * 100 / $width;
-			$hUnit = '%';
-
-			unset( $width, $wUnit );
-		} // 'fixed' dimension
-		else {
-			if ( $hUnit != '%' ) {
-				$height = $height * 100 / $width;
-				$hUnit = '%';
-			}
-		}
-
-		if ( ! empty( $width ) ) {
-			$width .= ( $wUnit ? $wUnit : 'px' );
-			$width = " style=\"width:$width;\"";
-		}
-
-		if ( ! empty( $height ) ) {
-			$height .= $hUnit;
-			if ( $hUnit == '%' ) {
-				$height = " padding-top:$height;";
-			} else {
-				$height = " height:$height;";
-			}
-		}
-	}
-
 	// remove unneeded stuff
 	$slider = preg_replace( array(
 		'/gallery-columns-\d/',
@@ -97,9 +56,6 @@ function slider__post_gallery( $output, $attr, $instance ) {
 	// ...
 	preg_match( '/<div([^>]*)>(.*)<\/div>/s', $slider, $slider );
 
-	// number of slides
-	$slides = substr_count( $slider[2], '</figure>' );
-
 	if ( ! $slider[1] = shortcode_parse_atts( $slider[1] ) ) {
 		$slider[1] = array();
 	}
@@ -109,9 +65,9 @@ function slider__post_gallery( $output, $attr, $instance ) {
 			'data-navigation' => $attr['slider__navigation'],
 			'data-pager' => $attr['slider__pager'],
 			'data-captions' => $attr['slider__captions'],
-			'data-slides' => $slides,
 			'data-slideshow' => $attr['slider__slideshow'],
 			'data-duration' => $attr['slider__duration'],
+			'data-dimension' => $attr['slider__dimension'],
 			'data-columns' => ( isset( $attr['columns'] ) ? $attr['columns'] : 3 ),
 		) ) + $slider[1];
 
@@ -119,17 +75,13 @@ function slider__post_gallery( $output, $attr, $instance ) {
 		$value = $attribute . '="' . $value . '"';
 	}
 
-	$slider[1][] = isset( $width ) ? $width : '';
 	$slider[1] = implode( ' ', array_filter( $slider[1] ) );
 
 	// markup
 	$output = '<div ' . $slider[1] . '>';
-	$output .= '<div class="slider__canvas">';
-	$output .= '<div class="slides" style="left:0;' . ( isset( $height ) ? $height : '' ) . '">';
+	$output .= '<div class="slides" style="left:0;">';
 	$output .= $slider[2];
-	$output .= '</div></div>';
-	$output .= '<ul class="slider__pager"><li>' . implode( '</li><li>', range( 1, $slides ) ) . '</li></ul>';
-	$output .= '<ul class="slider__navigation"><li>' . __( 'previous', 'slider' ) . '</li><li>' . __( 'next', 'slider' ) . '</li></ul>';
+	$output .= '</div>';
 	$output .= '</div><!-- .slider -->';
 
 	return $output;

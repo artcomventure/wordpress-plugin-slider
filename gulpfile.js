@@ -57,7 +57,7 @@ var gulp = require( 'gulp' ),
  * Compile scss to css and create sourcemap.
  */
 gulp.task( 'scss', function() {
-    return gulp.src( scssFiles, { base: 'wp-content' } )
+    return gulp.src( scssFiles, { base: './' } )
         .pipe( plumber( { errorHandler: onError } ) )
         .pipe( sourcemaps.init() )
         // scss to css
@@ -75,7 +75,7 @@ gulp.task( 'scss', function() {
         .pipe( replace( /;\s*\n(\s*\n)+/g, ";\n" ) )
         // write sourcemap
         .pipe( sourcemaps.write( '.' ) )
-        .pipe( gulp.dest( 'wp-content' ) );
+        .pipe( gulp.dest( './' ) );
 } );
 
 /**
@@ -95,13 +95,13 @@ gulp.task( 'css', ['scss'], function() {
  * Compress and uglify js files.
  */
 gulp.task( 'js', function() {
-    return gulp.src( jsFiles, { base: 'wp-content' } )
+    return gulp.src( jsFiles, { base: './' } )
         .pipe( plumber( { errorHandler: onError } ) )
         // rename to FILENAME.min.js
         .pipe( rename( { suffix: '.min' } ) )
         // uglify and compress
         .pipe( uglify() )
-        .pipe( gulp.dest( 'wp-content' ) );
+        .pipe( gulp.dest( './' ) );
 } );
 
 /**
@@ -142,6 +142,7 @@ gulp.task( 'build', ['clear:build', 'css', 'js'], function() {
         .pipe( concat( 'readme.txt' ) )
         // WP markup
         .pipe( replace( /#\s*(Changelog)/g, "## $1" ) )
+        .pipe( replace( /###\s*([^(\n)]+)/g, "=== $1 ===" ) )
         .pipe( replace( /##\s*([^(\n)]+)/g, "== $1 ==" ) )
         .pipe( replace( /==\s(Unreleased|[0-9\s\.-]+)\s==/g, "= $1 =" ) )
         .pipe( replace( /#\s*[^\n]+/g, "== Description ==" ) )

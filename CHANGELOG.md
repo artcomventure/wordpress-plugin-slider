@@ -2,9 +2,14 @@
 
 ## Unreleased
 
-* make slider js _accessible_  
+* mobile events  
 * backend preview
 * more slide animations
+
+## 1.3.0 - 2016-03-28
+**Changes**
+
+* Refactor js
 
 ## 1.2.0 - 2016-03-14
 **Added**

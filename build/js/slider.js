@@ -143,7 +143,7 @@
                 iNb--;
 
                 // requested slide is already visible
-                if ( $.pager.children[iNb].className.indexOf( 'active' ) > -1 )
+                if ( $.pager.children[iNb] != undefined && $.pager.children[iNb].className.indexOf( 'active' ) > -1 )
                     iNb = oSettings.iCurrentSlide;
                 else if ( iNb > iSlides - iColumns ) iNb = iSlides - iColumns;
             }

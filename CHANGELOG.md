@@ -6,6 +6,15 @@
 * backend preview
 * more slide animations
 
+## 1.3.4 - 2016-04-01
+**Added**
+
+* extend caption css to .slider__caption
+
+**Changed**
+
+* file version number to plugin's one
+
 ## 1.3.3 - 2016-04-01
 **Fixes**
 

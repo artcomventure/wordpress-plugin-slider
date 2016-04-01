@@ -19074,6 +19074,7 @@
     left: 96.66667%;
 }
 
+.slider-attached .slider__caption,
 .slider-attached figcaption {
     font-size: .8125em;
     position: absolute;
@@ -19084,7 +19085,9 @@
     background-color: rgba(0, 0, 0, .1);
 }
 
+.slider-attached[data-captions="false"] .slider__caption,
 .slider-attached[data-captions="false"] figcaption,
+.slider-attached:not([data-captions]) .slider__caption,
 .slider-attached:not([data-captions]) figcaption {
     display: none;
 }

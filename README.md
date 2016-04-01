@@ -35,9 +35,19 @@ To change an existing slider click on the slider (gallery), click on the _edit p
 ```html
 <div id="my-slider" data-OPTION="VALUE">
     <ul>
-        <li><img /></li>
-        <li><img /></li>
-        <li><img /></li>
+        <li>
+            <img />
+            <div class="slider__caption" />
+        </li>
+        <li>
+            <img />
+            <div class="slider__caption" />
+        </li>
+        <li>
+            <img />
+            <div class="slider__caption" />
+        </li>
+        <!-- ... and so on -->
     </ul>
 </div>
 ```

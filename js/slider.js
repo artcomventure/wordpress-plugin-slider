@@ -244,7 +244,7 @@
          * @param {integer} delay
          */
         setSlideshow: function( delay ) {
-            delay = parseInt( validateType( delay, oDefaultSettings.slideshow.regexp, this.slider( 'get', 'slideshow' ) ) );
+            delay = validateType( delay, oDefaultSettings.slideshow.regexp, this.slider( 'get', 'slideshow' ) );
             this.setAttribute( 'data-slideshow', delay );
 
             // clear 'old' slideshow

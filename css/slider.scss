@@ -146,15 +146,15 @@
   }
 
   .slider__navigation {
-    top: 50%;
-    height: 60px;
-    transform: translate(0, -50%);
+    top: 0;
+    height: 100%;
 
     li {
       width: 10%;
       height: 100%;
       float: left;
       position: relative;
+      top: 0;
       opacity: .8;
       transition: opacity .2s;
 
@@ -239,7 +239,7 @@
     }
 
     .slider__navigation {
-      margin-top: 15px;
+      padding-top: 30px;
     }
 
     .slider__pager {
@@ -250,7 +250,7 @@
   // pager bottom
   &[data-pager="bottom"] {
     .slider__navigation {
-      margin-top: -15px;
+      padding-bottom: 30px;
     }
 
     .slider__pager {

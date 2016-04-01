@@ -30,47 +30,44 @@ To change an existing slider click on the slider (gallery), click on the _edit p
 
 ### Use slider js standalone
 
-```javascript
-// initial call to HTMLElement, HTMLCollection, NodeList or CSS selector (e.g. '#my-slider')
-// ... with possible options (and their default values)
+**Markup example.** You don't necessarily use an `ul`. It also could be interleaved `div`s. But it must be 3 levels to the _content_.
 
-var mySlider = new Slider( ELEMENT, {
-    // slide to begin with
-    startSlide: 1,
-    // slide animation duration
-    duration: 500,
-    // loop from end to start and the other way round
-    loop: true,
-    // show ('top' or 'bottom')/hide pager
-    pager: 'bottom'
-    // show/hide navigation
-    navigation: false,
-    // dimension (ratio or exact size)
-    dimension: '16:9'
-    // number of columns
-    columns: 1
-    // show/hide captions
-    captions: false,
-    // auto slide (delay in ms)
-    slideshow: false
-    // effect to change
-    // atm only 'slide'
-    effect: 'slide'
-    
-    // translation
-    t9n: {
-        previous: 'previous',
-        next: 'next',
-        slideTo: 'slide to'
-    },
-    
-    // callbacks
-    onInit: function() {},
-    onBeforeSlide: function() {},
-    onSlide: function() {},
-    onSlideComplete: function() {}
-} );
+```html
+<div id="my-slider" data-OPTION="VALUE">
+    <ul>
+        <li><img /></li>
+        <li><img /></li>
+        <li><img /></li>
+    </ul>
+</div>
 ```
+
+Initial call to HTMLElement, HTMLCollection, NodeList or CSS selector (e.g. `'#my-slider'`)
+
+```javascript
+var mySlider = new Slider( ELEMENT, OPTIONS );
+```
+
+**Possible options.** These options could be passed via HTML `data-`attributes or set as `object` on the js call.
+
+|Option|Type|Value|Default|
+|------|----|-----|-------|
+|startSlide|integer|Slide to begin with.|1|
+|duration|integer|Slide animation duration im ms.|500|
+|loop|boolean|Loop from end to start and the other way round.|true|
+|pager|string or boolean|Position of the pager. Possible values: 'top', 'bottom' or `false` (to hide pager).|bottom|
+|navigation|boolean|Show/hide next and previous buttons.|false|
+|dimension|string|Dimension of the slider. Could be a ratio (e.g. '16:9') or an excact size (e.g. '600px x 400px').|16:9|
+|columns|integer|Number of slides to show at once.|1|
+|slideshow|integer or boolean|Delay of auto slide in ms.|false|
+
+**Additional js options.**
+
+|Option|Type|Value|Default|
+|------|----|-----|-------|
+|onInit|function|Callback after slider is initialized.|`function() {}`|
+|onBeforeSlide|function|Callback before slide begins.|`function() {}`|
+|onAfterSlide|function|Callback on slide's completed.|`function() {}`|
 
 ### Interaction
 

@@ -6,6 +6,15 @@
 * backend preview
 * more slide animations
 
+## 1.3.1 - 2016-04-01
+**Fixes**
+
+* set slideshow data bug fix
+
+**Changes**
+
+* navigation css
+
 ## 1.3.0 - 2016-03-28
 **Changes**
 

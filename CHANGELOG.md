@@ -6,6 +6,11 @@
 * backend preview
 * more slide animations
 
+## 1.3.2 - 2016-04-01
+**Fixes**
+
+* setter/getter value type bug fix
+
 ## 1.3.1 - 2016-04-01
 **Fixes**
 

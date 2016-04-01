@@ -214,7 +214,8 @@
 
             var oSettings = window.Sliders.settings[this.id];
 
-            return validateType( this.getAttribute( 'data-' + attribute ), oDefaultSettings[attribute],
+            return validateType( this.getAttribute( 'data-' + attribute ),
+                ( oDefaultSettings[attribute].regexp != undefined ? oDefaultSettings[attribute].regexp : oDefaultSettings[attribute] ),
                 ( oSettings[attribute].value != undefined ? oSettings[attribute].value : oSettings[attribute] ) );
         },
 
@@ -224,7 +225,7 @@
          * @param {integer} columns
          */
         setColumns: function( columns ) {
-            if ( !validateType( columns, oDefaultSettings.columns, false ) ) return this;
+            if ( !validateType( columns, oDefaultSettings.columns.regexp, false ) ) return this;
 
             this.setAttribute( 'data-columns', columns );
 

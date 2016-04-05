@@ -6,6 +6,11 @@
 * backend preview
 * more slide animations
 
+## 1.3.5 - 2016-04-05
+**Fixed**
+
+* slides <= columns behaviour
+
 ## 1.3.4 - 2016-04-01
 **Added**
 

@@ -165,11 +165,19 @@
                 }.bind( this ), oSettings.duration );
             }
 
+            // calculate position
+            var sTransform = -100 / $.slides.children.length * iNb,
+                left = 0;
+
+            if ( $.slides.children.length <= oSettings.columns ) sTransform = 0;
+            if ( $.slides.children.length < oSettings.columns ) left = 50 / oSettings.columns * ( oSettings.columns - $.slides.children.length );
+
             // do the slide
-            var sTransform = 'translate(' + -100 / $.slides.children.length * iNb + '%,0)';
+            sTransform = 'translate(' + sTransform + '%,0)';
             $.slides.style.msTransform = sTransform;
             $.slides.style.mozTransform = sTransform;
             $.slides.style.transform = sTransform;
+            $.slides.style.left = left + '%';
 
             // pager
             for ( var k = 0; k < $.pager.children.length; k++ ) {
@@ -282,7 +290,13 @@
             loop = validateType( loop, oDefaultSettings.loop, this.slider( 'get', 'loop' ) );
             this.setAttribute( 'data-loop', loop );
 
-            if ( loop ) {
+            // nothing to loop/slide
+            if ( $.slides.children.length <= oSettings.columns ) {
+                // hide navigation buttons
+                Sliders.helper.addClass.call( $.navigation.children[0], 'disabled' );
+                Sliders.helper.addClass.call( $.navigation.children[1], 'disabled' );
+            }
+            else if ( loop ) {
                 // show navigation buttons
                 Sliders.helper.removeClass.call( $.navigation.children[0], 'disabled' );
                 Sliders.helper.removeClass.call( $.navigation.children[1], 'disabled' );

@@ -16,7 +16,7 @@
 
         while ( $slider = $sliders[i++] ) {
             // ... calculate whether the slider image has to cover width or height
-            $slider.slider( 'reset', 'dimension' );
+            $slider.slider( 'set', 'dimension', $slider.slider( 'get', 'dimension' ) );
         }
 
     } );
@@ -169,8 +169,8 @@
             var sTransform = -100 / $.slides.children.length * iNb,
                 left = 0;
 
-            if ( $.slides.children.length <= oSettings.columns ) sTransform = 0;
-            if ( $.slides.children.length < oSettings.columns ) left = 50 / oSettings.columns * ( oSettings.columns - $.slides.children.length );
+            if ( $.slides.children.length <= iColumns ) sTransform = 0;
+            if ( $.slides.children.length < iColumns ) left = 50 / iColumns * ( iColumns - $.slides.children.length );
 
             // do the slide
             sTransform = 'translate(' + sTransform + '%,0)';
@@ -243,6 +243,9 @@
             // re-slide to current slide
             window.Sliders.slide.call( this, window.Sliders.settings[this.id].iCurrentSlide + 1 );
 
+            // in this case check for navigation button visibility
+            this.slider( 'setLoop' );
+
             return this;
         },
 
@@ -285,13 +288,14 @@
          */
         setLoop: function( loop ) {
             var oSettings = window.Sliders.settings[this.id],
-                $ = oSettings.$;
+                $ = oSettings.$,
+                iColumns = this.slider( 'get', 'columns' );
 
             loop = validateType( loop, oDefaultSettings.loop, this.slider( 'get', 'loop' ) );
             this.setAttribute( 'data-loop', loop );
 
             // nothing to loop/slide
-            if ( $.slides.children.length <= oSettings.columns ) {
+            if ( $.slides.children.length <= iColumns ) {
                 // hide navigation buttons
                 Sliders.helper.addClass.call( $.navigation.children[0], 'disabled' );
                 Sliders.helper.addClass.call( $.navigation.children[1], 'disabled' );
@@ -303,13 +307,10 @@
             }
             // show/hide navigation buttons
             else {
-                var iColumns = this.slider( 'get', 'columns' ),
-                    iSlides = $.slides.children.length;
-
                 if ( oSettings.iCurrentSlide == 0 ) Sliders.helper.addClass.call( $.navigation.children[0], 'disabled' );
                 else Sliders.helper.removeClass.call( $.navigation.children[0], 'disabled' );
 
-                if ( oSettings.iCurrentSlide == iSlides - iColumns ) Sliders.helper.addClass.call( $.navigation.children[1], 'disabled' );
+                if ( oSettings.iCurrentSlide == $.slides.children.length - iColumns ) Sliders.helper.addClass.call( $.navigation.children[1], 'disabled' );
                 else Sliders.helper.removeClass.call( $.navigation.children[1], 'disabled' );
             }
 

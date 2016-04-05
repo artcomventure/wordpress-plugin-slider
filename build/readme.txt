@@ -143,6 +143,11 @@ Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-slide
 * backend preview
 * more slide animations
 
+= 1.3.6 - 2016-04-05 =
+**Fixed**
+
+* columns navigation connection
+
 = 1.3.5 - 2016-04-05 =
 **Fixed**
 

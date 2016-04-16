@@ -2,6 +2,8 @@
 
 Extends the WordPress gallery section in the media popup with slider options.
 
+![image](assets/screenshot-1.png)
+
 ## Installation
 
 1. Upload files to the `/wp-content/plugins/` directory of your WordPress installation.
@@ -25,6 +27,8 @@ Extends the WordPress gallery section in the media popup with slider options.
 3. Switch to 'Create Gallery', choose the images you want to display and click the 'Create a new gallery' button in the lower right corner.
 4. Activate slider by checking 'Display as slider'.
 5. Configure slider (and images) to fit your needs.
+
+![image](assets/screenshot-2.png)
 
 To change an existing slider click on the slider (gallery), click on the _edit pencil_ and repeat #5.
 

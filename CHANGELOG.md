@@ -2,9 +2,13 @@
 
 ## Unreleased
 
-* mobile events  
 * backend preview
 * more slide animations
+
+## 1.4.0 - 2016-04-26
+**Added**
+
+* Swipe events.
 
 ## 1.3.6 - 2016-04-05
 **Fixed**

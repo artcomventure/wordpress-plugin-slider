@@ -743,6 +743,25 @@
             }.bind( $element ) );
 
             /**
+             * Swipe.
+             */
+
+            var iTouchstart = 0;
+
+            $element.addEventListener( 'touchstart', function( e ) {
+                e.preventDefault();
+
+                iTouchstart = parseInt( e.changedTouches[0].clientX );
+            } );
+
+            $element.addEventListener( 'touchend', function( e ) {
+                e.preventDefault();
+
+                if ( parseInt( e.changedTouches[0].clientX ) - iTouchstart < 0 ) this.slider( 'next' );
+                else this.slider( 'prev' );
+            }.bind( $element ) );
+
+            /**
              * Slider's settings/data.
              */
 

@@ -5,10 +5,15 @@
 * backend preview
 * more slide animations
 
+## 1.4.1 - 2016-04-26
+**Fixed**
+
+* Add swipe threshold.
+
 ## 1.4.0 - 2016-04-26
 **Added**
 
-* Swipe events.
+* Swipe (left/right) events.
 
 ## 1.3.6 - 2016-04-05
 **Fixed**

@@ -757,7 +757,12 @@
             $element.addEventListener( 'touchend', function( e ) {
                 e.preventDefault();
 
-                if ( parseInt( e.changedTouches[0].clientX ) - iTouchstart < 0 ) this.slider( 'next' );
+                var iTouchDistance = parseInt( e.changedTouches[0].clientX ) - iTouchstart;
+
+                // threshold
+                if ( Math.abs( iTouchDistance ) < 50 ) return;
+
+                if ( iTouchDistance < 0 ) this.slider( 'next' );
                 else this.slider( 'prev' );
             }.bind( $element ) );
 

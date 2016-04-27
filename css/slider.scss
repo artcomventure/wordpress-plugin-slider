@@ -23,27 +23,7 @@
     list-style: none;
 
     > * {
-      position: absolute;
-      top: 0;
       margin: 0;
-    }
-
-    img[class*="attachment-"] {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      max-width: none;
-    }
-
-    .cover-height img[class*="attachment-"] {
-      width: auto;
-      height: 100%;
-    }
-
-    .cover-width img[class*="attachment-"] {
-      width: 100%;
-      height: auto;
     }
   }
 
@@ -54,7 +34,53 @@
 
         > * {
           width: #{100% / $i};
+        }
+      }
 
+      @for $d from 2 through 9 {
+        &[data-columns="#{$d}"] .slides {
+          width: #{100% * $i/$d};
+
+          > * {
+            width: #{100% / $i};
+          }
+        }
+      }
+    }
+  }
+
+  &[data-dimension] .slides {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  &:not([data-dimension]) {
+    .slides > * {
+      position: absolute;
+      top: 0;
+    }
+
+    .cover-height img {
+      width: auto;
+      height: 100%;
+    }
+
+    .cover-width img {
+      width: 100%;
+      height: auto;
+    }
+
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: none;
+    }
+
+    @for $i from 1 through 30 {
+      &[data-slides="#{$i}"] {
+        .slides > * {
           @for $j from 2 through $i {
             @if $j <= $i {
               &:nth-child(#{$j}) {
@@ -63,20 +89,20 @@
             }
           }
         }
-      }
 
-      @for $d from 2 through 9 {
-        &[data-columns="#{$d}"] .slides {
-          width: #{100% * $i/$d};
-          padding-top: #{56.25% / $d};
+        @for $d from 2 through 9 {
+          &[data-columns="#{$d}"] .slides {
+            width: #{100% * $i/$d};
+            padding-top: #{56.25% / $d};
 
-          > * {
-            width: #{100% / $i};
+            > * {
+              width: #{100% / $i};
 
-            @for $j from 1 through 30 {
-              @if $j <= $i {
-                &:nth-child(#{$j}) {
-                  left: #{100% / $i * ($j - 1)};
+              @for $j from 1 through 30 {
+                @if $j <= $i {
+                  &:nth-child(#{$j}) {
+                    left: #{100% / $i * ($j - 1)};
+                  }
                 }
               }
             }

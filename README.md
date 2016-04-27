@@ -71,7 +71,7 @@ var mySlider = new Slider( ELEMENT, OPTIONS );
 |loop|boolean|Loop from end to start and the other way round.|true|
 |pager|string or boolean|Position of the pager. Possible values: 'top', 'bottom' or `false` (to hide pager).|bottom|
 |navigation|boolean|Show/hide next and previous buttons.|false|
-|dimension|string|Dimension of the slider. Could be a ratio (e.g. '16:9') or an excact size (e.g. '600px x 400px').|16:9|
+|dimension|string|Dimension of the slider. Could be 'auto', a ratio (e.g. '16:9') or an excact size (e.g. '600px x 400px').|16:9|
 |columns|integer|Number of slides to show at once.|1|
 |slideshow|integer or boolean|Delay of auto slide in ms.|false|
 

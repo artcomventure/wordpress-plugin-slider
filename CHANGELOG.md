@@ -5,6 +5,11 @@
 * backend preview
 * more slide animations
 
+## 1.5.0 - 2016-04-27
+**Added**
+
+* Add 'auto' dimension.
+
 ## 1.4.1 - 2016-04-26
 **Fixed**
 

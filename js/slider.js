@@ -39,7 +39,7 @@
             navigation: false,
             // dimension (ratio or exact size)
             dimension: {
-                regexp: new RegExp( '^((\\d+)(px|%)?)(\\s*(:|x)\\s*((\\d+)(px|%)?))?$' ),
+                regexp: new RegExp( '^(auto|((\\d+)(px|%)?)(\\s*(:|x)\\s*((\\d+)(px|%)?))?)$' ),
                 value: '16:9'
             },
             // number of columns
@@ -238,7 +238,8 @@
             this.setAttribute( 'data-columns', columns );
 
             // re-calculate dimensions
-            window.Sliders.setDimension.call( this );
+            var dimension = this.slider( 'get', 'dimension' );
+            window.Sliders.setDimension.call( this, ( dimension == 'auto' ? dimension : undefined ) );
 
             // re-slide to current slide
             window.Sliders.slide.call( this, window.Sliders.settings[this.id].iCurrentSlide + 1 );
@@ -326,60 +327,71 @@
             var $slides = window.Sliders.settings[this.id].$.slides,
                 i, image, format;
 
-            if ( typeof dimension != 'undefined' ) {
-                // get format values
-                var aDimensions = dimension.match( oDefaultSettings.dimension.regexp );
+            // reset image positioning
+            for ( i = 0; i < $slides.children.length; i++ ) {
+                window.Sliders.helper.removeClass.call($slides.children[i], ['cover-height', 'cover-width']);
+            }
 
-                var width = aDimensions[2],
-                    wUnit = aDimensions[3],
+            if ( dimension == 'auto' ) {
+                this.setAttribute( 'data-dimension', dimension );
+                $slides.style.paddingTop = '';
+            }
+            else {
+                this.removeAttribute( 'data-dimension' );
 
-                    height = aDimensions[7],
-                    hUnit = aDimensions[8];
+                if ( typeof dimension != 'undefined' ) {
+                    // get format values
+                    var aDimensions = dimension.match( oDefaultSettings.dimension.regexp );
 
-                // square
-                if ( !aDimensions[5] || !height ) {
-                    height = '100';
-                    hUnit = '%';
-                }
-                // ratio
-                else if ( aDimensions[5] == ':' ) {
-                    height = height * 100 / width;
-                    hUnit = '%';
+                    var width = aDimensions[2],
+                        wUnit = aDimensions[3],
 
-                    width = false;
-                    wUnit = false;
-                }
-                // 'fixed' dimension
-                // ... but always in % to keep it responsive
-                else {
-                    if ( hUnit != '%' ) {
+                        height = aDimensions[7],
+                        hUnit = aDimensions[8];
+
+                    // square
+                    if ( !aDimensions[5] || !height ) {
+                        height = '100';
+                        hUnit = '%';
+                    }
+                    // ratio
+                    else if ( aDimensions[5] == ':' ) {
                         height = height * 100 / width;
                         hUnit = '%';
+
+                        width = false;
+                        wUnit = false;
+                    }
+                    // 'fixed' dimension
+                    // ... but always in % to keep it responsive
+                    else {
+                        if ( hUnit != '%' ) {
+                            height = height * 100 / width;
+                            hUnit = '%';
+                        }
+                    }
+
+                    // set width
+                    if ( !!width ) this.style.width = width + ( wUnit ? wUnit : 'px' );
+
+                    // set height
+                    if ( !!height ) {
+                        if ( hUnit == '%' ) $slides.style.paddingTop = height + hUnit;
+                        else $slides.style.height = height + hUnit;
                     }
                 }
 
-                // set width
-                if ( !!width ) this.style.width = width + ( wUnit ? wUnit : 'px' );
+                // class for positioning (like background-size: cover)
+                for ( i = 0; i < $slides.children.length; i++ ) {
+                    image = $slides.children[i].getElementsByTagName( 'img' );
+                    if ( !image.length ) continue;
 
-                // set height
-                if ( !!height ) {
-                    if ( hUnit == '%' ) $slides.style.paddingTop = height + hUnit;
-                    else $slides.style.height = height + hUnit;
+                    if ( image[0].offsetHeight * $slides.children[i].offsetWidth / image[0].offsetWidth < $slides.children[i].offsetHeight )
+                        format = 'height';
+                    else format = 'width';
+
+                    window.Sliders.helper.addClass.call( $slides.children[i], 'cover-' + format );
                 }
-            }
-
-            // class for positioning (like background-size: cover)
-            for ( i = 0; i < $slides.children.length; i++ ) {
-                window.Sliders.helper.removeClass.call( $slides.children[i], ['cover-height', 'cover-width'] );
-
-                image = $slides.children[i].getElementsByTagName( 'img' );
-                if ( !image.length ) continue;
-
-                if ( image[0].offsetHeight * $slides.children[i].offsetWidth / image[0].offsetWidth < $slides.children[i].offsetHeight )
-                    format = 'height';
-                else format = 'width';
-
-                window.Sliders.helper.addClass.call( $slides.children[i], 'cover-' + format );
             }
 
             return this;

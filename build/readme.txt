@@ -142,6 +142,11 @@ Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-slide
 * backend preview
 * more slide animations
 
+= 1.5.1 - 2016-04-29 =
+**Changed**
+
+* Switch swipe action from touchend to touchmove.
+
 = 1.5.0 - 2016-04-27 =
 **Added**
 

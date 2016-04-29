@@ -758,16 +758,19 @@
              * Swipe.
              */
 
-            var iTouchstart = 0;
+            var iTouchstart = null;
 
             $element.addEventListener( 'touchstart', function( e ) {
                 e.preventDefault();
 
                 iTouchstart = parseInt( e.changedTouches[0].clientX );
-            } );
+            }, false );
 
-            $element.addEventListener( 'touchend', function( e ) {
+            $element.addEventListener( 'touchmove', function( e ) {
                 e.preventDefault();
+
+                // swipe already detected
+                if ( iTouchstart == null ) return;
 
                 var iTouchDistance = parseInt( e.changedTouches[0].clientX ) - iTouchstart;
 
@@ -776,7 +779,9 @@
 
                 if ( iTouchDistance < 0 ) this.slider( 'next' );
                 else this.slider( 'prev' );
-            }.bind( $element ) );
+
+                iTouchstart = null;
+            }, false);
 
             /**
              * Slider's settings/data.

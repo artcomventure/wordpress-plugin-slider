@@ -207,7 +207,7 @@
       }
 
       // prev
-      &:first-child {
+      &[data-slide="prev"] {
         &:before {
           transform: translate(0,-50%) rotate(36deg);
         }
@@ -218,7 +218,7 @@
       }
 
       // next
-      &:last-child {
+      &[data-slide="next"] {
         float: right;
 
         &:before {

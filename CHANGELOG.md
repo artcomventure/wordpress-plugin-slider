@@ -5,6 +5,11 @@
 * backend preview
 * more slide animations
 
+## 1.5.2 - 2016-04-29
+**Changed**
+
+* Default CSS: (navigation selector) use ´data-slide´ attribute instead of :first-/last-child.
+
 ## 1.5.1 - 2016-04-29
 **Changed**
 

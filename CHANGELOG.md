@@ -9,6 +9,7 @@
 **Changed**
 
 * Default CSS: (navigation selector) use ´data-slide´ attribute instead of :first-/last-child.
+* 'Force' slides (auto-dimension) to flex-direction: row.
 
 ## 1.5.1 - 2016-04-29
 **Changed**

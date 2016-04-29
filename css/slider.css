@@ -2192,6 +2192,9 @@
     display: -webkit-flex;
     display: -ms-flexbox;
     display:         flex;
+            flex-direction: row;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
     -webkit-flex-wrap: nowrap;
         -ms-flex-wrap: nowrap;
             flex-wrap: nowrap;

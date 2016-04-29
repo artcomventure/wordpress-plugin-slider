@@ -51,6 +51,7 @@
 
   &[data-dimension] .slides {
     display: flex;
+    flex-direction: row;
     flex-wrap: nowrap;
   }
 

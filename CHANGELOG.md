@@ -5,6 +5,11 @@
 * backend preview
 * more slide animations
 
+## 1.6.0 - 2016-05-04
+**Added**
+
+* Option 'scroll': Number of slides to scroll on a slide action.
+
 ## 1.5.2 - 2016-04-29
 **Changed**
 

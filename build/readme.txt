@@ -82,6 +82,7 @@ var mySlider = new Slider( ELEMENT, OPTIONS );
 |navigation|boolean|Show/hide next and previous buttons.|false|
 |dimension|string|Dimension of the slider. Could be 'auto', a ratio (e.g. '16:9') or an exact size (e.g. '600px x 400px').|16:9|
 |columns|integer|Number of slides to show at once.|1|
+|scroll|string or integer|Number of slides to scroll on a slide action. Integers should be between 1 and the value of the _columns_ option (see above), otherwise it's calculated to its min./max. possible value. |'columns' (_dynamic_ option value of the _columns_ option (see above))|
 |slideshow|integer or boolean|Delay of auto slide in ms.|false|
 
 **Additional js options.**
@@ -110,7 +111,7 @@ mySlider.slider( 3 );
 Change options on the fly:
 
 ```javascript
-// OPTION: duration, loop, pager, navigation, dimension, columns, captions or slideshow
+// OPTION: duration, loop, pager, navigation, dimension, columns, scroll, captions or slideshow
 document.getElementById( 'my-slider' ).slider( 'set', OPTION, VALUE );
 ```
 
@@ -141,6 +142,11 @@ Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-slide
 
 * backend preview
 * more slide animations
+
+= 1.6.0 - 2016-05-04 =
+**Added**
+
+* Option 'scroll': Number of slides to scroll on a slide action.
 
 = 1.5.2 - 2016-04-29 =
 **Changed**

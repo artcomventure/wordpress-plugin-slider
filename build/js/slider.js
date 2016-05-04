@@ -47,6 +47,13 @@
                 regexp: new RegExp( '^\\d+$' ),
                 value: 1
             },
+            // number of slides to scroll on a slide action
+            // should be between 1 and columns (see above)
+            // otherwise it's calculated to its min/max possible value
+            scroll: {
+                regexp: new RegExp( '^(columns|\\d+)$' ),
+                value: 'columns'
+            },
             // show/hide captions
             captions: false,
             // auto slide
@@ -83,6 +90,7 @@
             'navigation',
             'dimension',
             'columns',
+            'scroll',
             'captions',
             'slideshow'
         ];
@@ -123,11 +131,26 @@
             // get settings
             var iColumns = this.slider( 'get', 'columns' ),
                 iSlides = $.slides.children.length,
-                bLoop = this.slider( 'get', 'loop' );
+                bLoop = this.slider( 'get', 'loop'),
+                iScroll = this.slider( 'get', 'scroll');
+
+            if ( iScroll == 'columns' || iScroll > iColumns ) iScroll = iColumns;
+            else if ( iScroll < 1 ) iScroll = 1;
+            iScroll = parseInt( iScroll );
 
             // define slide (nb) to slide to
-            if ( iNb == 'next' ) iNb = oSettings.iCurrentSlide + 1;
-            else if ( iNb == 'prev' ) iNb = oSettings.iCurrentSlide - 1;
+            if ( iNb == 'next' ) {
+                iNb = oSettings.iCurrentSlide + iScroll;
+
+                if ( iNb - iScroll >= iSlides - iColumns ) iNb = iSlides - iColumns + 1;
+                else if ( iNb - iScroll > iSlides - iColumns - iScroll ) iNb = iSlides - iColumns;
+            }
+            else if ( iNb == 'prev' ) {
+                iNb = oSettings.iCurrentSlide - iScroll;
+
+                if ( iNb + iScroll <= 0 ) iNb = -1;
+                else if ( iNb + iScroll < iScroll ) iNb = 0;
+            }
             else {
                 if ( !validateType( iNb, 'int' ) ) {
                     iNb = parseInt( iNb.target.innerHTML );
@@ -148,7 +171,7 @@
                 else if ( iNb > iSlides - iColumns ) iNb = iSlides - iColumns;
             }
 
-            // loop or not loop ... that is the question
+            // to loop or not to loop ... that is the question
             if ( iNb < 0 ) iNb = ( bLoop ? iSlides - iColumns : 0 );
             else if ( iNb > iSlides - iColumns ) iNb = ( !bLoop ? iSlides - iColumns : 0 );
 

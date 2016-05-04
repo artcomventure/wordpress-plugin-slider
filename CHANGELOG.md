@@ -5,6 +5,11 @@
 * backend preview
 * more slide animations
 
+## 1.6.1 - 2016-05-04
+**Changed**
+
+* Option 'scroll' to 'jump'.
+
 ## 1.6.0 - 2016-05-04
 **Added**
 

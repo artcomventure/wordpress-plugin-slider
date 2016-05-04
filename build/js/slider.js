@@ -50,7 +50,7 @@
             // number of slides to scroll on a slide action
             // should be between 1 and columns (see above)
             // otherwise it's calculated to its min/max possible value
-            scroll: {
+            jump: {
                 regexp: new RegExp( '^(columns|\\d+)$' ),
                 value: 'columns'
             },
@@ -90,7 +90,7 @@
             'navigation',
             'dimension',
             'columns',
-            'scroll',
+            'jump',
             'captions',
             'slideshow'
         ];
@@ -132,24 +132,24 @@
             var iColumns = this.slider( 'get', 'columns' ),
                 iSlides = $.slides.children.length,
                 bLoop = this.slider( 'get', 'loop'),
-                iScroll = this.slider( 'get', 'scroll');
+                iJump = this.slider( 'get', 'jump');
 
-            if ( iScroll == 'columns' || iScroll > iColumns ) iScroll = iColumns;
-            else if ( iScroll < 1 ) iScroll = 1;
-            iScroll = parseInt( iScroll );
+            if ( iJump == 'columns' || iJump > iColumns ) iJump = iColumns;
+            else if ( iJump < 1 ) iJump = 1;
+            iJump = parseInt( iJump );
 
             // define slide (nb) to slide to
             if ( iNb == 'next' ) {
-                iNb = oSettings.iCurrentSlide + iScroll;
+                iNb = oSettings.iCurrentSlide + iJump;
 
-                if ( iNb - iScroll >= iSlides - iColumns ) iNb = iSlides - iColumns + 1;
-                else if ( iNb - iScroll > iSlides - iColumns - iScroll ) iNb = iSlides - iColumns;
+                if ( iNb - iJump >= iSlides - iColumns ) iNb = iSlides - iColumns + 1;
+                else if ( iNb - iJump > iSlides - iColumns - iJump ) iNb = iSlides - iColumns;
             }
             else if ( iNb == 'prev' ) {
-                iNb = oSettings.iCurrentSlide - iScroll;
+                iNb = oSettings.iCurrentSlide - iJump;
 
-                if ( iNb + iScroll <= 0 ) iNb = -1;
-                else if ( iNb + iScroll < iScroll ) iNb = 0;
+                if ( iNb + iJump <= 0 ) iNb = -1;
+                else if ( iNb + iJump < iJump ) iNb = 0;
             }
             else {
                 if ( !validateType( iNb, 'int' ) ) {

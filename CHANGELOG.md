@@ -4,6 +4,11 @@
 
 * more slide animations
 
+## 1.7.2 - 2016-05-10
+**Fixed**
+
+* Slideshow.
+
 ## 1.7.1 - 2016-05-10
 **Fixed**
 

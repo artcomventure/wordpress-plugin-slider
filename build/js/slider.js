@@ -299,7 +299,7 @@
 
                 this.slideshow = setInterval( function() {
                     if ( this.className.indexOf( 'hover' ) === -1 ) this.slider( 'next' );
-                }.bind( this ), delay + duration );
+                }.bind( this ), parseInt( delay ) + duration );
             }.bind( this, delay, this.slider( 'get', 'duration' ) ), delay );
 
             return this;

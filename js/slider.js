@@ -500,6 +500,7 @@
             oSettings.$.slides.style.transform = '';
 
             // remove attributes
+            // todo: also remove 'id' and 'tabindex' IF set by slider
             this.removeAttribute( 'data-slides' );
             for ( property in oSettings ) {
                 this.removeAttribute( 'data-' + property );
@@ -805,6 +806,28 @@
 
                 iTouchstart = null;
             }, false);
+
+            /**
+             * Keyboard.
+             */
+
+            $element.setAttribute( 'tabindex', 0 );
+
+            $element.addEventListener( 'keydown', function( e ) {
+                switch( e.keyCode ) {
+                    case 38:
+                    case 40:
+                        return this;
+
+                    case 37:
+                        e.preventDefault();
+                        return this.slider( 'prev' );
+
+                    case 39:
+                        e.preventDefault();
+                        return this.slider( 'next' );
+                }
+            }.bind( $element ) );
 
             /**
              * Slider's settings/data.

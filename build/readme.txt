@@ -140,8 +140,16 @@ Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-slide
 
 = Unreleased =
 
-* backend preview
 * more slide animations
+
+= 1.7.0 - 2016-05-10 =
+**Added**
+
+* Keyboard support.
+
+**Changed**
+
+* Backend preview.
 
 = 1.6.1 - 2016-05-04 =
 **Changed**

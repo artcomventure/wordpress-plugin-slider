@@ -1,0 +1,51 @@
+div[data-wpview-type="gallery"][data-wpview-text*="slider%3D%22true"] {
+  padding: calc(56.25% - 2px) 0 0;
+  background-color: rgba(#000,0.1);
+
+  .wpview-body {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 2.2801304%;
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    dl {
+      width: auto;
+
+      img {
+        width: auto;
+        max-height: 50px;
+      }
+    }
+  }
+
+  &:before {
+    content: "\f161";
+    font-family: dashicons;
+    font-size: 10em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    opacity: .05;
+    pointer-events: none;
+  }
+
+  &:after {
+    content: "This is a slider preview in 16:9 ratio. Might differ on frontend.";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    font-size: .75em;
+    padding: .15em .5em;
+    opacity: .35;
+  }
+}

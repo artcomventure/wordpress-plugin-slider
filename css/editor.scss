@@ -14,6 +14,7 @@ div[data-wpview-type="gallery"][data-wpview-text*="slider%3D%22true"] {
 
     .gallery {
       display: flex;
+      flex-direction: row;
       flex-wrap: wrap;
     }
 
@@ -40,7 +41,7 @@ div[data-wpview-type="gallery"][data-wpview-text*="slider%3D%22true"] {
   }
 
   &:after {
-    content: "This is a slider preview in 16:9 ratio. Might differ on frontend.";
+    content: "This is a slider preview placeholder in 16:9 ratio. Might differ on frontend.";
     position: absolute;
     left: 0;
     bottom: 0;

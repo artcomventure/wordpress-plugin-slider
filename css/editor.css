@@ -18,6 +18,9 @@ div[data-wpview-type="gallery"][data-wpview-text*="slider%3D%22true"] .wpview-bo
     display: -webkit-flex;
     display: -ms-flexbox;
     display:         flex;
+            flex-direction: row;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
     -webkit-flex-wrap: wrap;
         -ms-flex-wrap: wrap;
             flex-wrap: wrap;
@@ -52,7 +55,7 @@ div[data-wpview-type="gallery"][data-wpview-text*="slider%3D%22true"]:after {
     bottom: 0;
     left: 0;
     padding: .15em .5em;
-    content: "This is a slider preview in 16:9 ratio. Might differ on frontend.";
+    content: "This is a slider preview placeholder in 16:9 ratio. Might differ on frontend.";
     opacity: .35;
 }
 

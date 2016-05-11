@@ -104,6 +104,12 @@ Change options on the fly:
 ```javascript
 // OPTION: duration, loop, pager, navigation, dimension, columns, jump, captions or slideshow
 document.getElementById( 'my-slider' ).slider( 'set', OPTION, VALUE );
+
+// ... or for multiple options at once:
+document.getElementById( 'my-slider' ).slider( 'set', {
+    OPTION: VALUE,
+    OPTION: VALUE
+} );
 ```
 
 Remove slider and its traces from element:

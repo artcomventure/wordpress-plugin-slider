@@ -113,6 +113,12 @@ Change options on the fly:
 ```javascript
 // OPTION: duration, loop, pager, navigation, dimension, columns, jump, captions or slideshow
 document.getElementById( 'my-slider' ).slider( 'set', OPTION, VALUE );
+
+// ... or for multiple options at once:
+document.getElementById( 'my-slider' ).slider( 'set', {
+    OPTION: VALUE,
+    OPTION: VALUE
+} );
 ```
 
 Remove slider and its traces from element:
@@ -141,6 +147,20 @@ Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-slide
 = Unreleased =
 
 * more slide animations
+
+= 1.7.3 - 2016-05-11 =
+**Fixed**
+
+* Type validation for objects.
+* Wrong dimension calculation.
+
+**Added**
+
+* Attribute setter method can handle attribute-value objects.
+
+**Removed**
+
+* Obsolete pager values in media popup.
 
 = 1.7.2 - 2016-05-10 =
 **Fixed**

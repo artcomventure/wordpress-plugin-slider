@@ -4,6 +4,20 @@
 
 * more slide animations
 
+## 1.7.3 - 2016-05-11
+**Fixed**
+
+* Type validation for objects.
+* Wrong dimension calculation.
+
+**Added**
+
+* Attribute setter method can handle attribute-value objects.
+
+**Removed**
+
+* Obsolete pager values in media popup.
+
 ## 1.7.2 - 2016-05-10
 **Fixed**
 

@@ -2,6 +2,8 @@
 
 Extends the WordPress gallery section in the media popup with slider options.
 
+See some [**DEMOS**](https://www.artcom-venture.de/?p=1272) on our Website.
+
 ![image](assets/screenshot-1.png)
 
 ## Installation

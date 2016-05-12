@@ -15,6 +15,8 @@ Extends WP's gallery (media popup) with a slider option.
 
 Extends the WordPress gallery section in the media popup with slider options.
 
+See some [**DEMOS**](https://www.artcom-venture.de/?p=1272) on our Website.
+
 == Installation ==
 
 1. Upload files to the `/wp-content/plugins/` directory of your WordPress installation.

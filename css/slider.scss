@@ -233,10 +233,12 @@
 
       &.disabled {
         display: none;
-//        opacity: .15;
-//        cursor: default;
       }
     }
+  }
+
+  &:focus {
+    outline: none;
   }
 
   // hide pager

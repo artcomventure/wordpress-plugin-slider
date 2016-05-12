@@ -4,6 +4,11 @@
 
 * more slide animations
 
+## 1.7.4 - 2016-05-12
+**Added**
+
+* Slide on mouse-swipe.
+
 ## 1.7.3 - 2016-05-11
 **Fixed**
 

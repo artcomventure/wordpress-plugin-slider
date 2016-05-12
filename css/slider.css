@@ -21136,6 +21136,10 @@
     display: none;
 }
 
+.slider-attached:focus {
+    outline: none;
+}
+
 .slider-attached[data-pager="none"] .slider__pager,
 .slider-attached:not([data-pager]) .slider__pager {
     display: none;

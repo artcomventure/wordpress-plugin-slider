@@ -741,8 +741,6 @@
                     this.slider( e.target.getAttribute( 'data-slide' ) );
                 }.bind( $element ) );
 
-                $item.addEventListener( 'touchstart', $item.click );
-
                 $navigation.appendChild( $item );
             }
 
@@ -764,8 +762,6 @@
                 $item.addEventListener( 'click', function ( e ) {
                     this.slider( 'slide', e.target.innerHTML );
                 }.bind( $element ) );
-
-                $item.addEventListener( 'touchstart', $item.click );
 
                 $pager.appendChild( $item )
             }
@@ -804,42 +800,66 @@
              * Swipe.
              */
 
-            var iTouchstart = null;
+            var swipe = false;
 
             function swipestart( e ) {
-                e.preventDefault();
-
-                var iClientX;
+                var iClientX, iClientY;
 
                 if ( !!e.clientX ) {
                     iClientX = e.clientX;
+                    iClientY = e.clientY;
+
                     this.focus();
                 }
-                else iClientX = e.changedTouches[0].clientX;
+                else {
+                    iClientX = e.changedTouches[0].clientX;
+                    iClientY = e.changedTouches[0].clientY;
+                }
 
-                iTouchstart = parseInt( iClientX );
+                swipe = {
+                    clientX: parseInt( iClientX ),
+                    clientY: parseInt( iClientY )
+                };
             }
 
             function swipemove( e ) {
-                e.preventDefault();
+                // not started or swipe already detected
+                if ( typeof swipe == 'boolean' ) {
+                    if ( swipe ) e.preventDefault();
 
-                // swipe already detected
-                if ( iTouchstart == null ) return;
+                    return;
+                }
 
-                var iClientX;
+                var iClientX, iClientY;
 
-                if ( !!e.clientX ) iClientX = e.clientX;
-                else iClientX = e.changedTouches[0].clientX;
+                if ( !!e.clientX ) {
+                    iClientX = e.clientX;
+                    iClientY = e.clientY;
+                }
+                else {
+                    iClientX = e.changedTouches[0].clientX;
+                    iClientY = e.changedTouches[0].clientY;
+                }
 
-                var iTouchDistance = parseInt( iClientX ) - iTouchstart;
+                var iTouchDistanceX = parseInt( iClientX ) - swipe.clientX;
+
+                // horizontal swipe
+                if ( Math.abs( iTouchDistanceX ) > Math.abs( parseInt( iClientY ) - swipe.clientY ) ) {
+                    e.preventDefault();
+                }
 
                 // threshold
-                if ( Math.abs( iTouchDistance ) < 50 ) return;
+                if ( Math.abs( iTouchDistanceX ) < 50 ) return;
 
-                if ( iTouchDistance < 0 ) this.slider( 'next' );
+                if ( iTouchDistanceX < 0 ) this.slider( 'next' );
                 else this.slider( 'prev' );
 
-                iTouchstart = null;
+                swipe = true;
+            }
+
+            // reset
+            function swipeend() {
+                swipe = false;
             }
 
             $element.addEventListener( 'touchstart', swipestart, false );
@@ -848,9 +868,8 @@
             $element.addEventListener( 'touchmove', swipemove, false );
             $element.addEventListener( 'mousemove', swipemove, false );
 
-            $element.addEventListener( 'mouseup', function () {
-                iTouchstart = null;
-            }, false );
+            $element.addEventListener( 'touchend', swipeend, false );
+            $element.addEventListener( 'mouseup', swipeend, false );
 
             /**
              * Keyboard.

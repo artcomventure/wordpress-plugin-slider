@@ -4,6 +4,11 @@
 
 * more slide animations
 
+## 1.7.6 - 2016-05-12
+**Fixed**
+
+* Swipe behaviour (and mobile navigation/pager click event).
+
 ## 1.7.5 - 2016-05-12
 **Fixed**
 

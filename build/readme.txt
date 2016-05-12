@@ -15,7 +15,7 @@ Extends WP's gallery (media popup) with a slider option.
 
 Extends the WordPress gallery section in the media popup with slider options.
 
-[See some **DEMOS** on our website](https://www.artcom-venture.de/?p=1272)
+[See some DEMOS on our website](https://www.artcom-venture.de/?p=1272)
 
 == Installation ==
 
@@ -149,6 +149,11 @@ Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-slide
 = Unreleased =
 
 * more slide animations
+
+= 1.7.6 - 2016-05-12 =
+**Fixed**
+
+* Swipe behaviour (and mobile navigation/pager click event).
 
 = 1.7.5 - 2016-05-12 =
 **Fixed**

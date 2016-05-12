@@ -741,7 +741,9 @@
                     this.slider( e.target.getAttribute( 'data-slide' ) );
                 }.bind( $element ) );
 
-                $navigation.appendChild( $item )
+                $item.addEventListener( 'touchstart', $item.click );
+
+                $navigation.appendChild( $item );
             }
 
             // eventually append
@@ -762,6 +764,8 @@
                 $item.addEventListener( 'click', function ( e ) {
                     this.slider( 'slide', e.target.innerHTML );
                 }.bind( $element ) );
+
+                $item.addEventListener( 'touchstart', $item.click );
 
                 $pager.appendChild( $item )
             }

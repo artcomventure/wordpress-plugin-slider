@@ -4,6 +4,11 @@
 
 * more slide animations
 
+## 1.7.5 - 2016-05-12
+**Fixed**
+
+* Mobile navigation/pager click event.
+
 ## 1.7.4 - 2016-05-12
 **Added**
 

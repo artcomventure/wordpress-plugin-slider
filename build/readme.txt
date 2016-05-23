@@ -150,6 +150,11 @@ Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-slide
 
 * more slide animations
 
+= 1.7.7 - 2016-05-23 =
+**Fixed**
+
+* Faulty slide target validation.
+
 = 1.7.6 - 2016-05-12 =
 **Fixed**
 

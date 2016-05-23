@@ -156,7 +156,7 @@
                 else if ( iNb + iJump < iJump ) iNb = 0;
             }
             else {
-                if ( !validateType( iNb, 'int' ) ) {
+                if ( typeof iNb.target != 'undefined' ) {
                     iNb = parseInt( iNb.target.innerHTML );
 
                     if ( iNb > iSlides - iColumns ) {

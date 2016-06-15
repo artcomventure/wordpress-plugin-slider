@@ -1,26 +1,5 @@
 (function ( window, document, undefined ) {
 
-    document.addEventListener( 'DOMContentLoaded', function () {
-
-        // initial call for sliders
-        // ... for all elements with the class 'slider'
-        new Slider( '.slider' );
-
-    } );
-
-    // wait till resource and its dependent resources have finished loading
-    document.addEventListener( 'load', function () {
-
-        var $sliders = document.getElementsByClassName( 'slider-attached' ),
-            $slider, i = 0;
-
-        while ( $slider = $sliders[i++] ) {
-            // ... calculate whether the slider image has to cover width or height
-            $slider.slider( 'set', 'dimension', $slider.slider( 'get', 'dimension' ) );
-        }
-
-    } );
-
     // default slider settings
     // ... in its expected type
     var oDefaultSettings = {

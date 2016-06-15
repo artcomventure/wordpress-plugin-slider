@@ -4,6 +4,11 @@
 
 * more slide animations
 
+## 1.7.8 - 2016-06-15
+**Changes**
+
+* Move initial Slider call out of js file.
+
 ## 1.7.7 - 2016-05-23
 **Fixed**
 

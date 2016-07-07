@@ -1,8 +1,25 @@
-(function ( window, document, undefined ) {
+;
+(function ( context, definition ) {
+    'use strict';
 
+    // AMD module
+    if ( typeof define === 'function' && define.amd ) {
+        define( 'slider', [], function () {
+            return definition();
+        } );
+    } // CommonJS module
+    else if ( typeof module === 'object' && typeof module.exports === 'object' ) {
+        module.exports = definition();
+    } else {
+        window.Slider = definition();
+    }
+})( this, function ( undefined ) {
+    'use strict';
+
+    var document = window.document,
     // default slider settings
     // ... in its expected type
-    var oDefaultSettings = {
+        oDefaultSettings = {
             // slide to begin with
             startSlide: 1,
             // slide animation duration
@@ -603,7 +620,9 @@
         }
     };
 
-    window.Slider = function ( $elements, oSettings ) {
+    return function Slider( $elements, oSettings ) {
+        if ( !( this instanceof Slider ) ) return new Slider( $elements, oSettings );
+
         var $originalElements = $elements;
 
         /**
@@ -779,67 +798,63 @@
              * Swipe.
              */
 
-            var swipe = false;
+            var swipe = false,
+                swipestart = function ( e ) {
+                    var iClientX, iClientY;
 
-            function swipestart( e ) {
-                var iClientX, iClientY;
+                    if ( !!e.clientX ) {
+                        iClientX = e.clientX;
+                        iClientY = e.clientY;
 
-                if ( !!e.clientX ) {
-                    iClientX = e.clientX;
-                    iClientY = e.clientY;
+                        this.focus();
+                    }
+                    else {
+                        iClientX = e.changedTouches[0].clientX;
+                        iClientY = e.changedTouches[0].clientY;
+                    }
 
-                    this.focus();
-                }
-                else {
-                    iClientX = e.changedTouches[0].clientX;
-                    iClientY = e.changedTouches[0].clientY;
-                }
+                    swipe = {
+                        clientX: parseInt( iClientX ),
+                        clientY: parseInt( iClientY )
+                    };
+                },
+                swipemove = function ( e ) {
+                    // not started or swipe already detected
+                    if ( typeof swipe == 'boolean' ) {
+                        if ( swipe ) e.preventDefault();
 
-                swipe = {
-                    clientX: parseInt( iClientX ),
-                    clientY: parseInt( iClientY )
+                        return;
+                    }
+
+                    var iClientX, iClientY;
+
+                    if ( !!e.clientX ) {
+                        iClientX = e.clientX;
+                        iClientY = e.clientY;
+                    }
+                    else {
+                        iClientX = e.changedTouches[0].clientX;
+                        iClientY = e.changedTouches[0].clientY;
+                    }
+
+                    var iTouchDistanceX = parseInt( iClientX ) - swipe.clientX;
+
+                    // horizontal swipe
+                    if ( Math.abs( iTouchDistanceX ) > Math.abs( parseInt( iClientY ) - swipe.clientY ) ) {
+                        e.preventDefault();
+                    }
+
+                    // threshold
+                    if ( Math.abs( iTouchDistanceX ) < 50 ) return;
+
+                    if ( iTouchDistanceX < 0 ) this.slider( 'next' );
+                    else this.slider( 'prev' );
+
+                    swipe = true;
+                }, // reset
+                swipeend = function () {
+                    swipe = false;
                 };
-            }
-
-            function swipemove( e ) {
-                // not started or swipe already detected
-                if ( typeof swipe == 'boolean' ) {
-                    if ( swipe ) e.preventDefault();
-
-                    return;
-                }
-
-                var iClientX, iClientY;
-
-                if ( !!e.clientX ) {
-                    iClientX = e.clientX;
-                    iClientY = e.clientY;
-                }
-                else {
-                    iClientX = e.changedTouches[0].clientX;
-                    iClientY = e.changedTouches[0].clientY;
-                }
-
-                var iTouchDistanceX = parseInt( iClientX ) - swipe.clientX;
-
-                // horizontal swipe
-                if ( Math.abs( iTouchDistanceX ) > Math.abs( parseInt( iClientY ) - swipe.clientY ) ) {
-                    e.preventDefault();
-                }
-
-                // threshold
-                if ( Math.abs( iTouchDistanceX ) < 50 ) return;
-
-                if ( iTouchDistanceX < 0 ) this.slider( 'next' );
-                else this.slider( 'prev' );
-
-                swipe = true;
-            }
-
-            // reset
-            function swipeend() {
-                swipe = false;
-            }
 
             $element.addEventListener( 'touchstart', swipestart, false );
             $element.addEventListener( 'mousedown', swipestart, false );
@@ -1027,4 +1042,4 @@
         else return undefined;
     }
 
-})( this, this.document );
+} );

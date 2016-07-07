@@ -150,6 +150,11 @@ Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-slide
 
 * more slide animations
 
+= 1.7.9 - 2016-07-07 =
+**Added**
+
+* CommonJS and AMD support.
+
 = 1.7.8 - 2016-06-15 =
 **Changes**
 

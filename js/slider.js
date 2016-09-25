@@ -1,3 +1,14 @@
+/**
+ * Slider v1.7.11
+ * https://github.com/artcomventure/wordpress-plugin-slider/blob/master/build/js/slider[.min].js
+ *
+ * Copyright 2016, artcom venture GmbH
+ * http://www.artcom-venture.de/
+ *
+ * Licensed under GNU GENERAL PUBLIC LICENSE Version 3
+ * https://github.com/artcomventure/wordpress-plugin-slider/blob/master/LICENSE
+ */
+
 ;
 (function ( context, definition ) {
     'use strict';
@@ -736,6 +747,7 @@
                 }
 
                 $item.addEventListener( 'click', function ( e ) {
+                    e.stopPropagation();
                     this.slider( e.target.getAttribute( 'data-slide' ) );
                 }.bind( $element ) );
 
@@ -758,6 +770,7 @@
                 $item.innerHTML = j;
 
                 $item.addEventListener( 'click', function ( e ) {
+                    e.stopPropagation();
                     this.slider( 'slide', e.target.innerHTML );
                 }.bind( $element ) );
 

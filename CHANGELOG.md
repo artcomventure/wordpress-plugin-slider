@@ -4,6 +4,16 @@
 
 * more slide animations
 
+## 1.7.11 - 2016-09-25
+**Fixed/Added**
+
+* Js' e.stopPropagination() on pager/navigation click.
+
+## 1.7.10 - 2016-09-09
+**Added**
+
+* DocBlock in js files.
+
 ## 1.7.9 - 2016-07-07
 **Added**
 

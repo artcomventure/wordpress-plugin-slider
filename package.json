@@ -1,4 +1,10 @@
 {
+  "name": "wordpress-plugin-slider",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/artcomventure/wordpress-plugin-slider.git"
+  },
+  "license": "GPL-3.0",
   "devDependencies": {
     "del": "^2.2.0",
     "gulp": "^3.9.0",
@@ -13,5 +19,21 @@
     "gulp-sass": "^2.1.1",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.1"
+  },
+  "description": "Extends the WordPress gallery section in the media popup with slider options.",
+  "bugs": {
+    "url": "https://github.com/artcomventure/wordpress-plugin-slider/issues"
+  },
+  "homepage": "https://github.com/artcomventure/wordpress-plugin-slider#readme",
+  "version": "1.7.11",
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name" : "Stefan Käsche",
+    "email" : "stefan.kaesche@artcom-venture.de",
+    "url" : "https://www.artcom-venture.de"
   }
 }

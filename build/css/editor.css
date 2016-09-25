@@ -15,15 +15,12 @@ div[data-wpview-type="gallery"][data-wpview-text*="slider%3D%22true"] .wpview-bo
 }
 
 div[data-wpview-type="gallery"][data-wpview-text*="slider%3D%22true"] .wpview-body .gallery {
-    display: -webkit-flex;
     display: -ms-flexbox;
-    display:         flex;
-            flex-direction: row;
-    -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-    -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
+    display: flex;
+        flex-direction: row;
+    -ms-flex-direction: row;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
 }
 
 div[data-wpview-type="gallery"][data-wpview-text*="slider%3D%22true"] .wpview-body dl {
@@ -42,9 +39,8 @@ div[data-wpview-type="gallery"][data-wpview-text*="slider%3D%22true"]:before {
     top: 50%;
     left: 50%;
     content: "\f161";
-    -webkit-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
     pointer-events: none;
     opacity: .05;
 }

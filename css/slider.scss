@@ -1,4 +1,6 @@
 .slider-attached {
+  backface-visibility: hidden;
+  transform: translateZ(0);
   position: relative;
   margin-right: auto;
   margin-left: auto;

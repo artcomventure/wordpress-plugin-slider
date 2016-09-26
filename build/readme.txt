@@ -150,6 +150,12 @@ Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-slide
 
 * more slide animations
 
+= 1.7.12 - 2016-09-26 =
+**Fixed**
+
+* CSS translate vs position fixed (Chrome bug).
+* Focusing without scrolling.
+
 = 1.7.11 - 2016-09-25 =
 **Fixed/Added**
 

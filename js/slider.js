@@ -1,5 +1,5 @@
 /**
- * Slider v1.7.11
+ * Slider v1.7.12
  * https://github.com/artcomventure/wordpress-plugin-slider/blob/master/build/js/slider[.min].js
  *
  * Copyright 2016, artcom venture GmbH
@@ -819,7 +819,14 @@
                         iClientX = e.clientX;
                         iClientY = e.clientY;
 
+                        // remember scroll position
+                        var windowScrollX = window.scrollX,
+                            windowScrollY = window.scrollY;
+
                         this.focus();
+
+                        // ... for focusing WITHOUT scrolling
+                        window.scrollTo(windowScrollX, windowScrollY);
                     }
                     else {
                         iClientX = e.changedTouches[0].clientX;

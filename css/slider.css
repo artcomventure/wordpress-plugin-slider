@@ -3,6 +3,9 @@
     max-width: 100%; 
     margin-right: auto;
     margin-left: auto;
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
 }
 
 .slider-attached .slides,

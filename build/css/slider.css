@@ -10,7 +10,7 @@
 
 .slider-attached .slides,
 .slider-attached .slides > *,
-.slider-attached .slides > * > div {
+.slider-attached .slides > * > div:first-child:last-child {
     position: relative;
     width: 100%;
     height: 100%;

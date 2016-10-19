@@ -4,6 +4,12 @@
 
 * more slide animations
 
+## 1.7.13 - 2016-10-19
+**Fixed**
+
+* CSS bug fix (slide content).
+* Disable mouse-swipe due to IE problems.
+
 ## 1.7.12 - 2016-09-26
 **Fixed**
 

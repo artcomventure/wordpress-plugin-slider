@@ -1,5 +1,5 @@
 /**
- * Slider v1.7.12
+ * Slider v1.7.13
  * https://github.com/artcomventure/wordpress-plugin-slider/blob/master/build/js/slider[.min].js
  *
  * Copyright 2016, artcom venture GmbH
@@ -877,13 +877,13 @@
                 };
 
             $element.addEventListener( 'touchstart', swipestart, false );
-            $element.addEventListener( 'mousedown', swipestart, false );
+            //$element.addEventListener( 'mousedown', swipestart, false );
 
             $element.addEventListener( 'touchmove', swipemove, false );
-            $element.addEventListener( 'mousemove', swipemove, false );
+            //$element.addEventListener( 'mousemove', swipemove, false );
 
             $element.addEventListener( 'touchend', swipeend, false );
-            $element.addEventListener( 'mouseup', swipeend, false );
+            //$element.addEventListener( 'mouseup', swipeend, false );
 
             /**
              * Keyboard.

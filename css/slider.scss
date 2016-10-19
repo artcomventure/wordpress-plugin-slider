@@ -8,7 +8,7 @@
 
   .slides,
   .slides > *,
-  .slides > * > div {
+  .slides > * > div:first-child:last-child {
     width: 100%;
     height: 100%;
     position: relative;

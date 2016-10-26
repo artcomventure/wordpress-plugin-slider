@@ -4,6 +4,12 @@
 
 * more slide animations
 
+## 1.7.13 - 2016-10-26
+**Added**
+
+* Jump config in media popup.
+* Set/override default slider settings.
+
 ## 1.7.14 - 2016-10-26
 **Fixed**
 

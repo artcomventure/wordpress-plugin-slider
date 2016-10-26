@@ -10,7 +10,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Last-Translator: Stefan Käsche <stefan.kaesche@artcom-venture.de>\n"
 "Language-Team: artcom venture GmbH <info@artcom-venture.de>\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 1.8.11\n"
 "Language: de\n"
 
 msgid "Gallery Slider"
@@ -54,6 +54,15 @@ msgstr "Bildunterschriften anzeigen"
 
 msgid "Auto-slide in milliseconds"
 msgstr "Auto-Wechsel in Millisekunden"
+
+msgid "Jump"
+msgstr "Sprung"
+
+msgid "number of columns"
+msgstr "Anzahl der Spalten"
+
+msgid "Number of columns that will slided on slide action"
+msgstr "Anzahl der Spalten die bei der Slide-Aktion gesprungen werden"
 
 msgid "Animation"
 msgstr "Animation"

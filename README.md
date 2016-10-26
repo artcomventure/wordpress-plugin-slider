@@ -64,9 +64,11 @@ Initial call to HTMLElement, HTMLCollection, NodeList or CSS selector (e.g. `'#m
 var mySlider = new Slider( ELEMENT, OPTIONS );
 ```
 
-**Possible options.** These options could be passed via HTML `data-`attributes or set as `object` on the js call.
+#### Possible options
 
-|Option|Type|Value|Default|
+These options could be passed via HTML `data-`attributes or set as `object` on the js call.
+
+|Option|Type|Value|Default*|
 |------|----|-----|-------|
 |startSlide|integer|Slide to begin with.|1|
 |duration|integer|Slide animation duration im ms.|500|
@@ -78,13 +80,34 @@ var mySlider = new Slider( ELEMENT, OPTIONS );
 |jump|string or integer|Number of slides to scroll on a slide action. Integers should be between 1 and the value of the _columns_ option (see above), otherwise it's calculated to its min./max. possible value. |'columns' (_dynamic_ option value of the _columns_ option (see above))|
 |slideshow|integer or boolean|Delay of auto slide in ms.|false|
 
-**Additional js options.**
+#### Additional js options
 
-|Option|Type|Value|Default|
+|Option|Type|Value|Default*|
 |------|----|-----|-------|
 |onInit|function|Callback after slider is initialized.|`function() {}`|
 |onBeforeSlide|function|Callback before slide begins.|`function() {}`|
 |onAfterSlide|function|Callback on slide's completed.|`function() {}`|
+
+#### *Override default values
+
+```javascript
+// add an array object named 'SliderDefaults' with all your desired default settings
+// BEFORE the slider js file is included
+SliderDefaults = {
+    ATTRIBUTE: VALUE,
+    ATTRIBUTE: VALUE,
+    ...
+};
+
+// if you want to change them after init
+// simply call:
+// !!! this has no effect on already attached sliders
+Sliders.setDefaults({
+    ATTRIBUTE: VALUE,
+    ATTRIBUTE: VALUE,
+    ...
+});
+```
 
 ### Interaction
 

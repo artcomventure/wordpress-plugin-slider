@@ -4,7 +4,7 @@
  * Plugin Name: Gallery Slider
  * Plugin URI: https://github.com/artcomventure/wordpress-plugin-slider
  * Description: Extends WP's gallery (media popup) with a slider option.
- * Version: 1.7.14
+ * Version: 1.8.0
  * Text Domain: slider
  * Author: artcom venture GmbH
  * Author URI: http://www.artcom-venture.de/
@@ -57,6 +57,11 @@ function slider__print_media_templates() {
 			       placeholder="<?php _e( 'Auto-slide in milliseconds', 'slider' ) ?>"
 			       title="<?php _e( 'Auto-slide in milliseconds', 'slider' ) ?>"/>
 		</label>
+        <label class="setting">
+            <span><?php _e( 'Jump', 'slider' ) ?></span>
+            <input data-setting="slider__jump" type="text" placeholder="<?php _e( 'number of columns', 'slider' ) ?>"
+                   title="<?php _e( 'Number of columns that will slided on slide action', 'slider' ) ?>"/>
+        </label>
 		<label class="setting">
 			<span><?php _e( 'Animation', 'slider' ) ?></span>
 			<input data-setting="slider__duration" type="text" placeholder="500"
@@ -81,6 +86,7 @@ function slider__print_media_templates() {
 					slider__pager: 'bottom',
 					slider__captions: false,
 					slider__dimension: '',
+					slider__jump: '',
 					slider__slideshow: '',
 					slider__duration: ''
 				});
@@ -103,7 +109,8 @@ function slider__print_media_templates() {
 							$sliderCaptions = this.$('input[data-setting="slider__captions"]'),
 							$sliderDimension = this.$('input[data-setting="slider__dimension"]'),
 							$sliderDuration = this.$('input[data-setting="slider__duration"]'),
-							$sliderSlideshow = this.$('input[data-setting="slider__slideshow"]');
+							$sliderSlideshow = this.$('input[data-setting="slider__slideshow"]'),
+							$sliderJump = this.$('input[data-setting="slider__jump"]');
 
 						// disable columns select if slider is enabled
 						function toggleColumns() {
@@ -115,6 +122,7 @@ function slider__print_media_templates() {
 							$sliderDimension.prop('disabled', !bIsSlider);
 							$sliderDuration.prop('disabled', !bIsSlider);
 							$sliderSlideshow.prop('disabled', !bIsSlider);
+							$sliderJump.prop('disabled', !bIsSlider);
 						}
 
 						toggleColumns(); // on initial popup

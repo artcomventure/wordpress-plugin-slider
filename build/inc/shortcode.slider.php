@@ -42,6 +42,7 @@ function slider__post_gallery( $output, $attr, $instance ) {
 		'slider__dimension' => '',
 		'slider__slideshow' => '',
 		'slider__duration' => '',
+		'slider__jump' => '',
 	);
 
 	// remove unneeded stuff
@@ -68,6 +69,7 @@ function slider__post_gallery( $output, $attr, $instance ) {
 			'data-slideshow' => $attr['slider__slideshow'],
 			'data-duration' => $attr['slider__duration'],
 			'data-dimension' => $attr['slider__dimension'],
+			'data-jump' => $attr['slider__jump'],
 			'data-columns' => ( isset( $attr['columns'] ) ? $attr['columns'] : 3 ),
 		) ) + $slider[1];
 

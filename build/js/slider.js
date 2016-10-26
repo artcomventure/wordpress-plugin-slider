@@ -1,5 +1,5 @@
 /**
- * Slider v1.7.14
+ * Slider v1.8.0
  * https://github.com/artcomventure/wordpress-plugin-slider/blob/master/build/js/slider[.min].js
  *
  * Copyright 2016, artcom venture GmbH
@@ -110,6 +110,24 @@
      * Slider methods and helper.
      */
     window.Sliders = {
+
+        setDefaults: function(oSettings) {
+            var newValue, property;
+
+            for ( property in oDefaultSettings ) {
+                if (!oSettings.hasOwnProperty(property)) continue;
+
+                // check type
+                newValue = validateType( oSettings[property], ( oDefaultSettings[property].regexp != undefined
+                    ? oDefaultSettings[property].regexp : oDefaultSettings[property] ) );
+
+                if ( newValue == undefined ) continue;
+
+                // override default value
+                if ( oDefaultSettings[property].value != undefined ) oDefaultSettings[property].value = newValue;
+                else oDefaultSettings[property] = newValue;
+            }
+        },
 
         /**
          * Wrapper for next slide.
@@ -665,6 +683,12 @@
 
         }
     };
+
+    // on init check for custom slider default settings
+    if (typeof window.SliderDefaults != 'undefined') {
+        // ... and override
+        window.Sliders.setDefaults(window.SliderDefaults);
+    }
 
     /**
      * Element's event callbacks.

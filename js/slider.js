@@ -1,5 +1,5 @@
 /**
- * Slider v1.7.13
+ * Slider v1.7.14
  * https://github.com/artcomventure/wordpress-plugin-slider/blob/master/build/js/slider[.min].js
  *
  * Copyright 2016, artcom venture GmbH
@@ -115,6 +115,8 @@
          * Wrapper for next slide.
          */
         next: function () {
+            if (!this.slider) return this;
+
             return this.slider( 'slide', 'next' );
         },
 
@@ -122,6 +124,8 @@
          * Wrapper for previous slide.
          */
         prev: function () {
+            if (!this.slider) return this;
+
             return this.slider( 'slide', 'prev' );
         },
 
@@ -131,6 +135,8 @@
          * @param {string|integer} iNb
          */
         slide: function ( iNb ) {
+            if (!this.slider) return this;
+
             var oSettings = window.Sliders.settings[this.id],
                 $ = oSettings.$;
 
@@ -230,6 +236,8 @@
          * @param {string|boolean|integer} value
          */
         set: function ( attribute, value ) {
+            if (!this.slider) return this;
+
             // attribute is object of attributes (shortcut)
             if ( validateType( attribute, 'object' ) ) {
                 for ( var property in attribute ) {
@@ -263,6 +271,8 @@
          * @param {string} attribute
          */
         get: function ( attribute ) {
+            if (!this.slider) return this;
+
             if ( aChangeableAttributes.indexOf( attribute ) < 0 ) return undefined;
 
             var oSettings = window.Sliders.settings[this.id];
@@ -278,6 +288,8 @@
          * @param {integer} columns
          */
         setColumns: function ( columns ) {
+            if (!this.slider) return this;
+
             if ( !validateType( columns, oDefaultSettings.columns.regexp, false ) ) return this;
 
             this.setAttribute( 'data-columns', columns );
@@ -302,6 +314,8 @@
          * @param {integer} delay
          */
         setSlideshow: function ( delay ) {
+            if (!this.slider) return this;
+
             delay = validateType( delay, oDefaultSettings.slideshow.regexp, this.slider( 'get', 'slideshow' ) );
             this.setAttribute( 'data-slideshow', delay );
 
@@ -333,6 +347,8 @@
          * @param {boolean} loop
          */
         setLoop: function ( loop ) {
+            if (!this.slider) return this;
+
             var oSettings = window.Sliders.settings[this.id],
                 $ = oSettings.$,
                 iColumns = this.slider( 'get', 'columns' );
@@ -369,6 +385,8 @@
          * @param {string} dimension
          */
         setDimension: function ( dimension ) {
+            if (!this.slider) return this;
+
             var $slides = window.Sliders.settings[this.id].$.slides,
                 i, image, format;
 
@@ -452,6 +470,8 @@
          * @param {integer} duration
          */
         setDuration: function ( duration ) {
+            if (!this.slider) return this;
+
             var oSettings = window.Sliders.settings[this.id];
 
             if ( validateType( duration, 'number', oSettings.duration ) ) {
@@ -482,6 +502,8 @@
          * @param {string|array} attributes
          */
         reset: function ( attributes ) {
+            if (!this.slider) return this;
+
             if ( attributes == undefined ) attributes = [];
             else if ( typeof attributes == 'string' ) attributes = [attributes];
 
@@ -502,10 +524,23 @@
          * @param {string} confirmation
          */
         destroy: function ( confirmation ) {
+            if (!this.slider) return this;
+
             if ( confirmation !== 'destroy' ) {
                 console.error( 'Missing confirmation "destroy" to destroy slider. Are you really sure?' );
                 return this;
             }
+
+            // remove event listeners
+            this.removeEventListener( 'mouseover', elementMouseover );
+            this.removeEventListener( 'mouseout', elementMousout );
+            this.removeEventListener( 'touchstart', elementSwipestart );
+            //this.removeEventListener( 'mousedown', elementSwipestart );
+            this.removeEventListener( 'touchmove', elementSwipemove );
+            //this.removeEventListener( 'mousemove', elementSwipemove );
+            this.removeEventListener( 'touchend', elementSwipeend );
+            //this.removeEventListener( 'mouseup', elementSwipeend );
+            this.removeEventListener( 'keydown', elementKeydown );
 
             var oSettings = window.Sliders.settings[this.id],
                 property;
@@ -525,7 +560,7 @@
             oSettings.$.slides.style.transform = '';
 
             // remove attributes
-            // todo: also remove 'id' and 'tabindex' IF set by slider
+            // todo: keep initial attributes and remove 'id' and 'tabindex' IF set by slider
             this.removeAttribute( 'data-slides' );
             for ( property in oSettings ) {
                 this.removeAttribute( 'data-' + property );
@@ -630,6 +665,118 @@
 
         }
     };
+
+    /**
+     * Element's event callbacks.
+     */
+
+    var elementMouseover = function() {
+        Sliders.helper.addClass.call( this, 'hover' );
+    };
+
+    var elementMousout = function( e ) {
+        var isChild = e.relatedTarget;
+
+        // check if mouse is 'in' slider
+        // we need this for childNodes
+        while ( isChild ) {
+            if ( isChild.tagName == 'BODY' ) isChild = false; // went tree to top
+            else if ( isChild == this ) isChild = true; // still 'in' slider
+
+            // solution found
+            if ( typeof isChild === 'boolean' ) break;
+
+            // next parent
+            isChild = isChild.parentNode;
+        }
+
+        if ( !isChild ) Sliders.helper.removeClass.call( this, 'hover' );
+    };
+
+    var elementKeydown = function ( e ) {
+        switch ( e.keyCode ) {
+            case 38:
+            case 40:
+                return this;
+
+            case 37:
+                e.preventDefault();
+                return this.slider( 'prev' );
+
+            case 39:
+                e.preventDefault();
+                return this.slider( 'next' );
+        }
+    };
+
+    var swipe = false,
+        elementSwipestart = function ( e ) {
+            var iClientX, iClientY;
+
+            if ( !!e.clientX ) {
+                iClientX = e.clientX;
+                iClientY = e.clientY;
+
+                // remember scroll position
+                var windowScrollX = window.scrollX,
+                    windowScrollY = window.scrollY;
+
+                this.focus();
+
+                // ... for focusing WITHOUT scrolling
+                window.scrollTo(windowScrollX, windowScrollY);
+            }
+            else {
+                iClientX = e.changedTouches[0].clientX;
+                iClientY = e.changedTouches[0].clientY;
+            }
+
+            swipe = {
+                clientX: parseInt( iClientX ),
+                clientY: parseInt( iClientY )
+            };
+        },
+        elementSwipemove = function ( e ) {
+            // not started or swipe already detected
+            if ( typeof swipe == 'boolean' ) {
+                if ( swipe ) e.preventDefault();
+
+                return;
+            }
+
+            var iClientX, iClientY;
+
+            if ( !!e.clientX ) {
+                iClientX = e.clientX;
+                iClientY = e.clientY;
+            }
+            else {
+                iClientX = e.changedTouches[0].clientX;
+                iClientY = e.changedTouches[0].clientY;
+            }
+
+            var iTouchDistanceX = parseInt( iClientX ) - swipe.clientX;
+
+            // horizontal swipe
+            if ( Math.abs( iTouchDistanceX ) > Math.abs( parseInt( iClientY ) - swipe.clientY ) ) {
+                e.preventDefault();
+            }
+
+            // threshold
+            if ( Math.abs( iTouchDistanceX ) < 50 ) return;
+
+            if ( iTouchDistanceX < 0 ) this.slider( 'next' );
+            else this.slider( 'prev' );
+
+            swipe = true;
+        }, // reset
+        elementSwipeend = function () {
+            swipe = false;
+        };
+
+    /**
+     * ...
+     */
 
     return function Slider( $elements, oSettings ) {
         if ( !( this instanceof Slider ) ) return new Slider( $elements, oSettings );
@@ -781,109 +928,24 @@
             $element.appendChild( $pager );
 
             /**
-             * ...
+             * Add element's events.
              */
 
-            $element.addEventListener( 'mouseover', function () {
-                Sliders.helper.addClass.call( this, 'hover' );
-            }.bind( $element ) );
-
-            $element.addEventListener( 'mouseout', function ( e ) {
-                var isChild = e.relatedTarget;
-
-                // check if mouse is 'in' slider
-                // we need this for childNodes
-                while ( isChild ) {
-                    if ( isChild.tagName == 'BODY' ) isChild = false; // went tree to top
-                    else if ( isChild == this ) isChild = true; // still 'in' slider
-
-                    // solution found
-                    if ( typeof isChild === 'boolean' ) break;
-
-                    // next parent
-                    isChild = isChild.parentNode;
-                }
-
-                if ( !isChild ) Sliders.helper.removeClass.call( this, 'hover' );
-            }.bind( $element ) );
+            $element.addEventListener( 'mouseover', elementMouseover );
+            $element.addEventListener( 'mouseout', elementMousout );
 
             /**
              * Swipe.
              */
 
-            var swipe = false,
-                swipestart = function ( e ) {
-                    var iClientX, iClientY;
+            $element.addEventListener( 'touchstart', elementSwipestart );
+            //$element.addEventListener( 'mousedown', elementSwipestart );
 
-                    if ( !!e.clientX ) {
-                        iClientX = e.clientX;
-                        iClientY = e.clientY;
+            $element.addEventListener( 'touchmove', elementSwipemove );
+            //$element.addEventListener( 'mousemove', elementSwipemove );
 
-                        // remember scroll position
-                        var windowScrollX = window.scrollX,
-                            windowScrollY = window.scrollY;
-
-                        this.focus();
-
-                        // ... for focusing WITHOUT scrolling
-                        window.scrollTo(windowScrollX, windowScrollY);
-                    }
-                    else {
-                        iClientX = e.changedTouches[0].clientX;
-                        iClientY = e.changedTouches[0].clientY;
-                    }
-
-                    swipe = {
-                        clientX: parseInt( iClientX ),
-                        clientY: parseInt( iClientY )
-                    };
-                },
-                swipemove = function ( e ) {
-                    // not started or swipe already detected
-                    if ( typeof swipe == 'boolean' ) {
-                        if ( swipe ) e.preventDefault();
-
-                        return;
-                    }
-
-                    var iClientX, iClientY;
-
-                    if ( !!e.clientX ) {
-                        iClientX = e.clientX;
-                        iClientY = e.clientY;
-                    }
-                    else {
-                        iClientX = e.changedTouches[0].clientX;
-                        iClientY = e.changedTouches[0].clientY;
-                    }
-
-                    var iTouchDistanceX = parseInt( iClientX ) - swipe.clientX;
-
-                    // horizontal swipe
-                    if ( Math.abs( iTouchDistanceX ) > Math.abs( parseInt( iClientY ) - swipe.clientY ) ) {
-                        e.preventDefault();
-                    }
-
-                    // threshold
-                    if ( Math.abs( iTouchDistanceX ) < 50 ) return;
-
-                    if ( iTouchDistanceX < 0 ) this.slider( 'next' );
-                    else this.slider( 'prev' );
-
-                    swipe = true;
-                }, // reset
-                swipeend = function () {
-                    swipe = false;
-                };
-
-            $element.addEventListener( 'touchstart', swipestart, false );
-            //$element.addEventListener( 'mousedown', swipestart, false );
-
-            $element.addEventListener( 'touchmove', swipemove, false );
-            //$element.addEventListener( 'mousemove', swipemove, false );
-
-            $element.addEventListener( 'touchend', swipeend, false );
-            //$element.addEventListener( 'mouseup', swipeend, false );
+            $element.addEventListener( 'touchend', elementSwipeend );
+            //$element.addEventListener( 'mouseup', elementSwipeend );
 
             /**
              * Keyboard.
@@ -891,21 +953,7 @@
 
             $element.setAttribute( 'tabindex', 0 );
 
-            $element.addEventListener( 'keydown', function ( e ) {
-                switch ( e.keyCode ) {
-                    case 38:
-                    case 40:
-                        return this;
-
-                    case 37:
-                        e.preventDefault();
-                        return this.slider( 'prev' );
-
-                    case 39:
-                        e.preventDefault();
-                        return this.slider( 'next' );
-                }
-            }.bind( $element ) );
+            $element.addEventListener( 'keydown', elementKeydown );
 
             /**
              * Slider's settings/data.

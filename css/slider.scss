@@ -8,10 +8,17 @@
 
   .slides,
   .slides > *,
-  .slides > * > div:first-child:last-child {
+  .slides > * > div {
     width: 100%;
-    height: 100%;
     position: relative;
+  }
+
+  &:not([data-dimension="auto"]) {
+    .slides,
+    .slides > *,
+    .slides > * > div:first-child:last-child {
+      height: 100%;
+    }
   }
 
   &,

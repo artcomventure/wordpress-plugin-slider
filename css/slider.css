@@ -10,9 +10,14 @@
 
 .slider-attached .slides,
 .slider-attached .slides > *,
-.slider-attached .slides > * > div:first-child:last-child {
+.slider-attached .slides > * > div {
     position: relative;
     width: 100%;
+}
+
+.slider-attached:not([data-dimension="auto"]) .slides,
+.slider-attached:not([data-dimension="auto"]) .slides > *,
+.slider-attached:not([data-dimension="auto"]) .slides > * > div:first-child:last-child {
     height: 100%;
 }
 

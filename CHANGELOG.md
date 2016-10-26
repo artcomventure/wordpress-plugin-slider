@@ -4,6 +4,12 @@
 
 * more slide animations
 
+## 1.7.14 - 2016-10-26
+**Fixed**
+
+* Remove CSS height (100%) for dimension auto.
+* Remove slider's event listeners on destroy.
+
 ## 1.7.13 - 2016-10-19
 **Fixed**
 

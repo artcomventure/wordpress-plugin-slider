@@ -4,7 +4,12 @@
 
 * more slide animations
 
-## 1.7.13 - 2016-10-26
+## 1.8.1 - 2016-11-04
+**Added**
+
+* Get initial value.
+
+## 1.8.0 - 2016-10-26
 **Added**
 
 * Jump config in media popup.

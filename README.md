@@ -124,6 +124,16 @@ mySlider.slider( 'prev' );
 mySlider.slider( 3 );
 ```
 
+Get values:
+
+```javascript
+// get current value
+mySlider.slider( 'get', OPTION );
+
+// get initial value
+mySlider.slider( 'get', OPTION, true );
+```
+
 Change options on the fly:
 
 ```javascript

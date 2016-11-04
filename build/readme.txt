@@ -133,6 +133,16 @@ mySlider.slider( 'prev' );
 mySlider.slider( 3 );
 ```
 
+Get values:
+
+```javascript
+// get current value
+mySlider.slider( 'get', OPTION );
+
+// get initial value
+mySlider.slider( 'get', OPTION, true );
+```
+
 Change options on the fly:
 
 ```javascript
@@ -173,7 +183,12 @@ Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-slide
 
 * more slide animations
 
-= 1.7.13 - 2016-10-26 =
+= 1.8.1 - 2016-11-04 =
+**Added**
+
+* Get initial value.
+
+= 1.8.0 - 2016-10-26 =
 **Added**
 
 * Jump config in media popup.

@@ -1,5 +1,5 @@
 /**
- * Slider v1.8.0
+ * Slider v1.8.1
  * https://github.com/artcomventure/wordpress-plugin-slider/blob/master/build/js/slider[.min].js
  *
  * Copyright 2016, artcom venture GmbH
@@ -287,17 +287,19 @@
          * Get attribute value (HTML first).
          *
          * @param {string} attribute
+         * @param {*} initial (!!true: get initial value; !!false (default): get current value)
          */
-        get: function ( attribute ) {
+        get: function ( attribute, initial ) {
             if (!this.slider) return this;
+
+            var oSettings = window.Sliders.settings[this.id];
+            if (!!initial && oSettings[attribute] != undefined) return oSettings[attribute];
 
             if ( aChangeableAttributes.indexOf( attribute ) < 0 ) return undefined;
 
-            var oSettings = window.Sliders.settings[this.id];
-
             return validateType( this.getAttribute( 'data-' + attribute ),
                 ( oDefaultSettings[attribute].regexp != undefined ? oDefaultSettings[attribute].regexp : oDefaultSettings[attribute] ),
-                ( oSettings[attribute].value != undefined ? oSettings[attribute].value : oSettings[attribute] ) );
+                oSettings[attribute] );
         },
 
         /**
@@ -761,8 +763,9 @@
             };
         },
         elementSwipemove = function ( e ) {
-            // not started or swipe already detected
+            // not started
             if ( typeof swipe == 'boolean' ) {
+                // ... or swipe already detected
                 if ( swipe ) e.preventDefault();
 
                 return;
@@ -781,13 +784,13 @@
 
             var iTouchDistanceX = parseInt( iClientX ) - swipe.clientX;
 
+            // threshold
+            if ( Math.abs( iTouchDistanceX ) < 50 ) return;
+
             // horizontal swipe
             if ( Math.abs( iTouchDistanceX ) > Math.abs( parseInt( iClientY ) - swipe.clientY ) ) {
                 e.preventDefault();
             }
-
-            // threshold
-            if ( Math.abs( iTouchDistanceX ) < 50 ) return;
 
             if ( iTouchDistanceX < 0 ) this.slider( 'next' );
             else this.slider( 'prev' );

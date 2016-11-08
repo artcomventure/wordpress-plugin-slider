@@ -1,5 +1,5 @@
 /**
- * Slider v1.8.1
+ * Slider v1.8.2
  * https://github.com/artcomventure/wordpress-plugin-slider/blob/master/build/js/slider[.min].js
  *
  * Copyright 2016, artcom venture GmbH
@@ -763,13 +763,8 @@
             };
         },
         elementSwipemove = function ( e ) {
-            // not started
-            if ( typeof swipe == 'boolean' ) {
-                // ... or swipe already detected
-                if ( swipe ) e.preventDefault();
-
-                return;
-            }
+            // not started or swipe already detected
+            if ( typeof swipe == 'boolean' ) return;
 
             var iClientX, iClientY;
 

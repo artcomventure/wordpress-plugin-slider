@@ -4,6 +4,11 @@
 
 * more slide animations
 
+## 1.8.2 - 2016-11-08
+**Fixed**
+
+* Improve mobile swipe (iOS bug).
+
 ## 1.8.1 - 2016-11-04
 **Added**
 

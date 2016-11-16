@@ -4,6 +4,11 @@
 
 * more slide animations
 
+## 1.8.3 - 2016-11-016
+**Fixed**
+
+* IE compatible window.scroll(X|Y).
+
 ## 1.8.2 - 2016-11-08
 **Fixed**
 

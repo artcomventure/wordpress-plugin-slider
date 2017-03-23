@@ -43,6 +43,10 @@ Extends the WordPress gallery section in the media popup with slider options.
 
 To change an existing slider click on the slider (gallery), click on the _edit pencil_ and repeat == Description ==
 
+=== Default configuration ===
+
+Since version `1.9.0` you can set the default configuration for all sliders in the WordPress backend and override the js defaults (see **[Possible options](== Description ==
+
 === Use slider js standalone ===
 
 **Markup example.** You don't necessarily use an `ul`. It also could be interleaved `div`s. But it must be 3 levels to the _content_.
@@ -183,7 +187,12 @@ Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-slide
 
 * more slide animations
 
-= 1.8.3 - 2016-11-016 =
+= 1.9.0 - 2017-03-23 =
+**Added**
+
+* Backend options page for slider defaults.
+
+= 1.8.3 - 2016-11-16 =
 **Fixed**
 
 * IE compatible window.scroll(X|Y).

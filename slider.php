@@ -4,7 +4,7 @@
  * Plugin Name: Gallery Slider
  * Plugin URI: https://github.com/artcomventure/wordpress-plugin-slider
  * Description: Extends WP's gallery (media popup) with a slider option.
- * Version: 1.8.3
+ * Version: 1.9.0
  * Text Domain: slider
  * Author: artcom venture GmbH
  * Author URI: http://www.artcom-venture.de/
@@ -25,51 +25,57 @@ add_action( 'print_media_templates', 'slider__print_media_templates' );
 function slider__print_media_templates() {
 	// the "tmpl-" prefix is required,
 	// and your input field should have a data-setting attribute
-	// matching the shortcode name ?>
+	// matching the shortcode name
+
+	// get slider defaults
+	$defaults = get_slider_options();  ?>
 
 	<script type="text/html" id="tmpl-slider-setting">
 		<h3 style="float:left;"><?php _e( 'Slider settings', 'slider' ); ?></h3>
 		<label class="setting">
 			<span><?php _e( 'Display as slider', 'slider' ) ?></span>
-			<input data-setting="slider" type="checkbox"/>
+			<input data-setting="slider" type="checkbox" />
 		</label>
-		<label class="setting" title="<?php _e( 'next and previous button', 'slider' ); ?>">
+		<label class="setting" title="<?php _e( 'Show next and previous buttons', 'slider' ); ?>">
 			<span><?php _e( 'Show Navigation', 'slider' ) ?></span>
-			<input data-setting="slider__navigation" type="checkbox"/>
+			<input data-setting="slider__navigation" value="true" type="checkbox"<?php checked( $defaults['navigation'], 'true' ); ?> />
 		</label>
 		<label class="setting">
 			<span><?php _e( 'Show pager at', 'slider' ); ?></span>
-			<select data-setting="slider__pager">
-				<option value="bottom"><?php _e( 'bottom', 'slider' ); ?></option>
-				<option value="top"><?php _e( 'top', 'slider' ); ?></option>
-<!--				<option value="left">--><?php //_e( 'left', 'slider' ); ?><!--</option>-->
-<!--				<option value="right">--><?php //_e( 'right', 'slider' ); ?><!--</option>-->
-				<option value="none"><?php _e( 'nowhere', 'slider' ); ?></option>
-			</select>
+			<select data-setting="slider__pager"><?php
+				foreach ( array( 'bottom', 'top', 'none' ) as $position ) : ?>
+					<option value="<?php echo $position ?>"<?php selected( $defaults['pager'], $position ); ?>>
+						<?php _e( $position == 'none' ? 'nowhere' : $position, 'slider' ) ?>
+					</option>
+				<?php endforeach; ?></select>
 		</label>
 		<label class="setting">
-			<span><?php _e( 'Show Captions', 'slider' ) ?></span>
-			<input data-setting="slider__captions" type="checkbox"/>
+			<span><?php _e( 'Animation', 'slider' ) ?></span>
+			<input data-setting="slider__duration" type="text" placeholder="<?php echo $defaults['duration'] ?>"
+			       title="<?php _e( 'Duration in milliseconds', 'slider' ) ?>"/>
+		</label>
+		<label class="setting">
+			<span><?php _e( 'Jump', 'slider' ) ?></span>
+			<input data-setting="slider__jump" type="text" placeholder="<?php echo $defaults['jump'] ?>"
+			       title="<?php _e( 'Number of columns that will slided on slide action', 'slider' ) ?>"/>
+		</label>
+		<label class="setting" title="<?php _e( 'Springe vom letzten zum ersten Slide (und umgegehrt)', 'slider' ); ?>">
+			<span><?php _e( 'Loop', 'slider' ) ?></span>
+			<input data-setting="slider__loop" value="true" type="checkbox"<?php checked( $defaults['loop'], 'true' ); ?> />
 		</label>
 		<label class="setting">
 			<span><?php _e( 'Slideshow', 'slider' ) ?></span>
 			<input data-setting="slider__slideshow" type="text"
-			       placeholder="<?php _e( 'Auto-slide in milliseconds', 'slider' ) ?>"
+			       placeholder="<?php echo ( $defaults['slideshow'] ? $defaults['slideshow'] : __( 'Auto-slide in milliseconds', 'slider' ) ); ?>"
 			       title="<?php _e( 'Auto-slide in milliseconds', 'slider' ) ?>"/>
-		</label>
-        <label class="setting">
-            <span><?php _e( 'Jump', 'slider' ) ?></span>
-            <input data-setting="slider__jump" type="text" placeholder="<?php _e( 'number of columns', 'slider' ) ?>"
-                   title="<?php _e( 'Number of columns that will slided on slide action', 'slider' ) ?>"/>
-        </label>
-		<label class="setting">
-			<span><?php _e( 'Animation', 'slider' ) ?></span>
-			<input data-setting="slider__duration" type="text" placeholder="500"
-			       title="<?php _e( 'Duration in milliseconds', 'slider' ) ?>"/>
 		</label>
 		<label class="setting">
 			<span><?php _e( 'Dimension', 'slider' ) ?></span>
-			<input data-setting="slider__dimension" type="text" placeholder="16:9"/>
+			<input data-setting="slider__dimension" type="text" placeholder="<?php echo $defaults['dimension'] ?>"/>
+		</label>
+		<label class="setting">
+			<span><?php _e( 'Show Captions', 'slider' ) ?></span>
+			<input data-setting="slider__captions" value="true" type="checkbox"<?php checked( $defaults['captions'], 'true' ); ?> />
 		</label>
 	</script>
 
@@ -79,17 +85,27 @@ function slider__print_media_templates() {
 
 			$(document).ready(function () {
 
-				// default values
-				_.extend(wp.media.gallery.defaults, {
-					slider: false,
-					slider__navigation: false,
-					slider__pager: 'bottom',
-					slider__captions: false,
-					slider__dimension: '',
-					slider__jump: '',
-					slider__slideshow: '',
-					slider__duration: ''
-				});
+				// original @see ROOT/wp-includes/js/media-editor.js line 611
+				wp.media.gallery.setDefaults = function( attrs ) {
+					var self = this, changed = ! _.isEqual( wp.media.galleryDefaults, wp.media._galleryDefaults );
+					_.each( this.defaults, function( value, key ) {
+						attrs[ key ] = self.coerce( attrs, key );
+						if ( value === attrs[ key ] && ( ! changed || value === wp.media._galleryDefaults[ key ] ) ) {
+							delete attrs[ key ];
+						}
+					} );
+
+					// slider attrs
+					_.each( <?php echo json_encode( $defaults ); ?>, function( value, key ) {
+						key = 'slider__' + key;
+						attrs[ key ] = self.coerce( attrs, key ) + '';
+						if ( !value || attrs[ key ] === 'undefined' || value === attrs[ key ] ) {
+							delete attrs[ key ];
+						}
+					} );
+
+					return attrs;
+				};
 
 				// merge default gallery settings template with yours
 				wp.media.view.Settings.Gallery = wp.media.view.Settings.Gallery.extend({
@@ -100,29 +116,40 @@ function slider__print_media_templates() {
 					render: function () {
 						wp.media.View.prototype.render.apply(this, arguments);
 
-						// Select the correct values.
+						// select the correct values
 						_(this.model.attributes).chain().keys().each(this.update, this);
 
-						var $slider = this.$('input[data-setting="slider"]'),
+						var $columns = this.$('select[data-setting="columns"]'),
+							$slider = this.$('input[data-setting="slider"]'),
 							$sliderNavigation = this.$('input[data-setting="slider__navigation"]'),
 							$sliderPager = this.$('select[data-setting="slider__pager"]'),
-							$sliderCaptions = this.$('input[data-setting="slider__captions"]'),
-							$sliderDimension = this.$('input[data-setting="slider__dimension"]'),
 							$sliderDuration = this.$('input[data-setting="slider__duration"]'),
+							$sliderJump = this.$('input[data-setting="slider__jump"]'),
+							$sliderLoop = this.$('input[data-setting="slider__loop"]'),
 							$sliderSlideshow = this.$('input[data-setting="slider__slideshow"]'),
-							$sliderJump = this.$('input[data-setting="slider__jump"]');
+							$sliderDimension = this.$('input[data-setting="slider__dimension"]'),
+							$sliderCaptions = this.$('input[data-setting="slider__captions"]' );
 
 						// disable columns select if slider is enabled
-						function toggleColumns() {
+						function toggleColumns( e ) {
 							var bIsSlider = $slider.is(':checked');
+
+							// default gallery columns vs slider columns
+							if ( !!e && !!wp.media.gallery && ( !wp.media.gallery.frame || typeof wp.media.gallery.frame._tb_remove == 'undefined' ) ) {
+								$columns.val( bIsSlider && $columns.val() == wp.media.gallery.defaults.columns
+									? <?php echo $defaults['columns']; ?>
+									: ( $columns.val() == <?php echo $defaults['columns']; ?> ? wp.media.gallery.defaults.columns : $columns.val() )
+								);
+							}
 
 							$sliderNavigation.prop('disabled', !bIsSlider);
 							$sliderPager.prop('disabled', !bIsSlider);
-							$sliderCaptions.prop('disabled', !bIsSlider);
-							$sliderDimension.prop('disabled', !bIsSlider);
 							$sliderDuration.prop('disabled', !bIsSlider);
-							$sliderSlideshow.prop('disabled', !bIsSlider);
 							$sliderJump.prop('disabled', !bIsSlider);
+							$sliderLoop.prop('disabled', !bIsSlider);
+							$sliderSlideshow.prop('disabled', !bIsSlider);
+							$sliderDimension.prop('disabled', !bIsSlider);
+							$sliderCaptions.prop('disabled', !bIsSlider);
 						}
 
 						toggleColumns(); // on initial popup
@@ -149,6 +176,14 @@ function slider_scripts() {
 
 	wp_enqueue_script( 'slider', SLIDER_PLUGIN_URL . 'js/slider.min.js', array(), '1.3.3', TRUE );
 
+	$slider_defaults = get_slider_options( true );
+	$options = get_slider_options();
+	foreach ( $slider_defaults as $option => $value ) {
+		if ( empty( $options[$option] ) || $options[$option] == $value ) {
+			unset( $slider_defaults[$option] );
+		}
+	}
+
 	wp_add_inline_script( 'slider', "(function ( window, document, undefined ) {
 
 	document.addEventListener( 'DOMContentLoaded', function () {
@@ -171,6 +206,9 @@ function slider_scripts() {
         }
 
     } );
+
+	// override js' defaults
+    SliderDefaults = " . json_encode( $slider_defaults ) . ";
 
 })( this, this.document );" );
 }
@@ -218,6 +256,11 @@ function slider__plugin_row_meta( $links, $file ) {
 	return $links;
 }
 
+/**
+ * Includes.
+ */
+
+require SLIDER_PLUGIN_DIR . 'inc/settings.php';
 // auto include shortcodes
 foreach ( scandir( SLIDER_PLUGIN_DIR . 'inc' ) as $file ) {
 	if ( ! preg_match( '/shortcode\..+\.php/', $file ) ) {

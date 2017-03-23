@@ -1,28 +1,30 @@
 var gulp = require( 'gulp' ),
 
-// gulp plugins
+    // gulp plugins
 
     sass = require( 'gulp-sass' ),
     sourcemaps = require( 'gulp-sourcemaps' ),
-// css vendor prefixes
+    // css vendor prefixes
     autoprefixer = require( 'gulp-autoprefixer' ),
     rename = require( 'gulp-rename' ),
-// minimize css
+    // minimize css
     cssnano = require( 'gulp-cssnano' ),
-// uglify (and minimize) js
+    // uglify (and minimize) js
     uglify = require( 'gulp-uglify' ),
-// beautify css
+    // beautify css
     csscomb = require( 'gulp-csscomb' ),
     replace = require( 'gulp-replace' ),
-// deletion
+    // deletion
     del = require( 'del' ),
-// concat files
+    // concat files
     concat = require( 'gulp-concat' ),
+    // po to mo
+    gettext = require( 'gulp-gettext' ),
 
-// doesn't break pipe on error
-// so we don't need to restart gulp
+    // doesn't break pipe on error
+    // so we don't need to restart gulp
     plumber = require( 'gulp-plumber' ),
-// get notification on error
+    // get notification on error
     notify = require( 'gulp-notify' ),
     onError = function( error ) {
         notify.onError( {
@@ -34,24 +36,26 @@ var gulp = require( 'gulp' ),
         this.emit( 'end' );
     },
 
-// all our scss files
+    // all our scss files
     scssFiles = [
         'css/**/*.scss'
     ],
 
-// all our css files
+    // all our css files
     cssFiles = [
         'css/**/*.css',
         // ... but already minimized ones
         '!**/*.min.css'
     ],
 
-// all our js files
+    // all our js files
     jsFiles = [
         'js/**/*.js',
         // ... but already minimized ones
         '!**/*.min.js'
-    ];
+    ],
+
+    poFiles = ['./**/languages/*.po'];
 
 /**
  * Compile scss to css and create sourcemap.
@@ -102,6 +106,15 @@ gulp.task( 'js', function() {
         // uglify and compress
         .pipe( uglify( { preserveComments: 'license' } ) )
         .pipe( gulp.dest( './' ) );
+} );
+
+/**
+ * Compile .po files to .mo
+ */
+gulp.task( 'po2mo', function() {
+    return gulp.src(poFiles)
+        .pipe( gettext() )
+        .pipe( gulp.dest( '.' ) )
 } );
 
 /**
@@ -161,4 +174,5 @@ gulp.task( 'build', ['clear:build', 'css', 'js'], function() {
 gulp.task( 'default', function() {
     gulp.watch( scssFiles, ['css'] );
     gulp.watch( jsFiles, ['js'] );
+    gulp.watch( poFiles, ['po2mo'] );
 } );

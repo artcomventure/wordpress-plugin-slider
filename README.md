@@ -34,6 +34,12 @@ Extends the WordPress gallery section in the media popup with slider options.
 
 To change an existing slider click on the slider (gallery), click on the _edit pencil_ and repeat #5.
 
+### Default configuration
+
+Since version `1.9.0` you can set the default configuration for all sliders in the WordPress backend and override the js defaults (see **[Possible options](#possible-options)**).
+
+![image](assets/screenshot-3.png)
+
 ### Use slider js standalone
 
 **Markup example.** You don't necessarily use an `ul`. It also could be interleaved `div`s. But it must be 3 levels to the _content_.

@@ -30,7 +30,7 @@ msgstr ""
 msgid "Show Navigation"
 msgstr ""
 
-msgid "next and previous button"
+msgid "Show next and previous buttons"
 msgstr ""
 
 msgid "Show pager at"
@@ -39,13 +39,7 @@ msgstr ""
 msgid "top"
 msgstr ""
 
-msgid "right"
-msgstr ""
-
 msgid "bottom"
-msgstr ""
-
-msgid "left"
 msgstr ""
 
 msgid "nowhere"
@@ -63,6 +57,12 @@ msgstr ""
 msgid "Animation"
 msgstr ""
 
+msgid "Animation duration"
+msgstr ""
+
+msgid "in milliseconds"
+msgstr ""
+
 msgid "Duration in milliseconds"
 msgstr ""
 
@@ -70,4 +70,19 @@ msgid "previous"
 msgstr ""
 
 msgid "next"
+msgstr ""
+
+msgid "Each of these settings can be individually overridden for each slider."
+msgstr ""
+
+msgid "For more information <a href=\"%1$s\" target=\"_blank\">see the possible option values at GitHub</a>."
+msgstr ""
+
+msgid "Loop"
+msgstr ""
+
+msgid "Jump from last to first slide (and vice versa)"
+msgstr ""
+
+msgid "Number of slides displayed at a time"
 msgstr ""

@@ -4,7 +4,12 @@
 
 * more slide animations
 
-## 1.8.3 - 2016-11-016
+## 1.9.0 - 2017-03-23
+**Added**
+
+* Backend options page for slider defaults.
+
+## 1.8.3 - 2016-11-16
 **Fixed**
 
 * IE compatible window.scroll(X|Y).

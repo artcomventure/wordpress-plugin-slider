@@ -28,8 +28,8 @@ msgstr "Als Slider anzeigen"
 msgid "Show Navigation"
 msgstr "Navigation anzeigen"
 
-msgid "next and previous button"
-msgstr "Vor- und Zurück-Button"
+msgid "Show next and previous buttons"
+msgstr "Vor- und Zurück-Button anzeigen"
 
 msgid "Show pager at"
 msgstr "Pager-Position"
@@ -37,14 +37,8 @@ msgstr "Pager-Position"
 msgid "top"
 msgstr "oben"
 
-msgid "right"
-msgstr "rechts"
-
 msgid "bottom"
 msgstr "unten"
-
-msgid "left"
-msgstr "links"
 
 msgid "nowhere"
 msgstr "nirgends"
@@ -64,8 +58,11 @@ msgstr "Anzahl der Spalten"
 msgid "Number of columns that will slided on slide action"
 msgstr "Anzahl der Spalten die bei der Slide-Aktion gesprungen werden"
 
-msgid "Animation"
-msgstr "Animation"
+msgid "Animation duration"
+msgstr "Animationsdauer"
+
+msgid "in milliseconds"
+msgstr "in Millisekunden"
 
 msgid "Duration in milliseconds"
 msgstr "Animationsdauer in Millisekunden"
@@ -75,3 +72,15 @@ msgstr "zurück"
 
 msgid "next"
 msgstr "weiter"
+
+msgid "Each of these settings can be individually overridden for each slider."
+msgstr "Jede dieser Einstellungen kann für jeden Slider einzeln überschrieben werden."
+
+msgid "For more information <a href=\"%1$s\" target=\"_blank\">see the possible option values at GitHub</a>."
+msgstr "Weitere Informationen findest du auf <a href=\"%1$s\" target=\"_blank\">GitHub</a>."
+
+msgid "Jump from last to first slide (and vice versa)"
+msgstr "Springe vom letzten zum ersten Slide (und umgegehrt)"
+
+msgid "Number of slides displayed at a time"
+msgstr "Anzahl der Slides, die mit einem mal angezeigt werden"

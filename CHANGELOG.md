@@ -4,6 +4,11 @@
 
 * more slide animations
 
+## 1.10.3 - 2017-03-27
+**Fixed**
+
+* Featured slider bugs.
+
 ## 1.10.2 - 2017-03-27
 **Fixed**
 

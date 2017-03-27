@@ -37,7 +37,7 @@ function slider__post_gallery( $output, $attr, $instance ) {
 	$attr += array(
 		'slider' => '',
 		'slider__navigation' => '',
-		'slider__pager' => 'bottom',
+		'slider__pager' => '',
 		'slider__captions' => '',
 		'slider__dimension' => '',
 		'slider__slideshow' => '',

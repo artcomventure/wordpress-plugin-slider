@@ -94,7 +94,7 @@ function slider_settings_scripts() {
 
 	wp_add_inline_script( 'slider', "
 // override js' defaults
-SliderDefaults = " . json_encode( $options ) . ";" );
+Sliders.setDefaults( " . json_encode( $options ) . " );" );
 }
 
 /**

@@ -47,7 +47,27 @@ To change an existing slider click on the slider (gallery), click on the _edit p
 
 Since version `1.9.0` you can set the default configuration for all sliders in the WordPress backend and override the js defaults (see **[Possible options](== Description ==
 
-=== Use slider js standalone ===
+== Featured Slider ==
+
+With version `1.10.0` comes a new _optional*_ feature within this plugin: The Featured Slider.
+
+This is similar to WordPress' Featured Image but extends it with the possibility to select multiple images.
+
+But no fear! The featured image will not disappear. The first image of the selected images will be used as the featured image _as you know it_.
+
+_* If you want to use it define the post types you want to use it for. If you don't ... just keep it as it is ;)_
+
+On single posts/pages the featured slider is automatically displayed by calling WordPress' `the_thumbnail_html()`. So you don't need to change your templates at all.
+
+If you want to use it somewhere else, here is how it's done:
+
+```php
+<?php // display the featured slider html
+the_featured_slider(); // or:
+echo get_the_featured_slider(); ?>
+```
+
+== Use slider js standalone ==
 
 **Markup example.** You don't necessarily use an `ul`. It also could be interleaved `div`s. But it must be 3 levels to the _content_.
 
@@ -77,7 +97,7 @@ Initial call to HTMLElement, HTMLCollection, NodeList or CSS selector (e.g. `'==
 var mySlider = new Slider( ELEMENT, OPTIONS );
 ```
 
-=== == Description ==
+=== Possible options ===
 
 These options could be passed via HTML `data-`attributes or set as `object` on the js call.
 
@@ -93,7 +113,7 @@ These options could be passed via HTML `data-`attributes or set as `object` on t
 |jump|string or integer|Number of slides to scroll on a slide action. Integers should be between 1 and the value of the _columns_ option (see above), otherwise it's calculated to its min./max. possible value. |'columns' (_dynamic_ option value of the _columns_ option (see above))|
 |slideshow|integer or boolean|Delay of auto slide in ms.|false|
 
-=== == Description ==
+=== Additional js options ===
 
 |Option|Type|Value|Default*|
 |------|----|-----|-------|
@@ -101,7 +121,7 @@ These options could be passed via HTML `data-`attributes or set as `object` on t
 |onBeforeSlide|function|Callback before slide begins.|`function() {}`|
 |onAfterSlide|function|Callback on slide's completed.|`function() {}`|
 
-=== == Description ==
+=== *Override default values ===
 
 ```javascript
 // add an array object named 'SliderDefaults' with all your desired default settings
@@ -122,7 +142,7 @@ Sliders.setDefaults({
 });
 ```
 
-=== Interaction ===
+== Interaction ==
 
 Programmatically trigger slide:
 
@@ -186,6 +206,11 @@ Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-slide
 = Unreleased =
 
 * more slide animations
+
+= 1.10.0 - 2017-03-27 =
+**Added**
+
+* Post's featured slider.
 
 = 1.9.0 - 2017-03-23 =
 **Added**

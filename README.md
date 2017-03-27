@@ -40,7 +40,29 @@ Since version `1.9.0` you can set the default configuration for all sliders in t
 
 ![image](assets/screenshot-3.png)
 
-### Use slider js standalone
+## Featured Slider
+
+With version `1.10.0` comes a new _optional*_ feature within this plugin: The Featured Slider.
+
+This is similar to WordPress' Featured Image but extends it with the possibility to select multiple images.
+
+But no fear! The featured image will not disappear. The first image of the selected images will be used as the featured image _as you know it_.
+
+_* If you want to use it define the post types you want to use it for. If you don't ... just keep it as it is ;)_
+
+![image](assets/screenshot-4.png)
+
+On single posts/pages the featured slider is automatically displayed by calling WordPress' `the_thumbnail_html()`. So you don't need to change your templates at all.
+
+If you want to use it somewhere else, here is how it's done:
+
+```php
+<?php // display the featured slider html
+the_featured_slider(); // or:
+echo get_the_featured_slider(); ?>
+```
+
+## Use slider js standalone
 
 **Markup example.** You don't necessarily use an `ul`. It also could be interleaved `div`s. But it must be 3 levels to the _content_.
 
@@ -70,7 +92,7 @@ Initial call to HTMLElement, HTMLCollection, NodeList or CSS selector (e.g. `'#m
 var mySlider = new Slider( ELEMENT, OPTIONS );
 ```
 
-#### Possible options
+### Possible options
 
 These options could be passed via HTML `data-`attributes or set as `object` on the js call.
 
@@ -86,7 +108,7 @@ These options could be passed via HTML `data-`attributes or set as `object` on t
 |jump|string or integer|Number of slides to scroll on a slide action. Integers should be between 1 and the value of the _columns_ option (see above), otherwise it's calculated to its min./max. possible value. |'columns' (_dynamic_ option value of the _columns_ option (see above))|
 |slideshow|integer or boolean|Delay of auto slide in ms.|false|
 
-#### Additional js options
+### Additional js options
 
 |Option|Type|Value|Default*|
 |------|----|-----|-------|
@@ -94,7 +116,7 @@ These options could be passed via HTML `data-`attributes or set as `object` on t
 |onBeforeSlide|function|Callback before slide begins.|`function() {}`|
 |onAfterSlide|function|Callback on slide's completed.|`function() {}`|
 
-#### *Override default values
+### *Override default values
 
 ```javascript
 // add an array object named 'SliderDefaults' with all your desired default settings
@@ -115,7 +137,7 @@ Sliders.setDefaults({
 });
 ```
 
-### Interaction
+## Interaction
 
 Programmatically trigger slide:
 

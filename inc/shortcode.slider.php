@@ -52,7 +52,7 @@ function slider__post_gallery( $output, $attr, $instance ) {
 	), '', $slider );
 
 	// 'gallery' to 'slider'
-	$slider = preg_replace( '/gallery(?![\w])/', 'slider', $slider );
+	$slider = preg_replace( '/gallery/', 'slider', $slider );
 
 	// ...
 	preg_match( '/<div([^>]*)>(.*)<\/div>/s', $slider, $slider );
@@ -72,6 +72,9 @@ function slider__post_gallery( $output, $attr, $instance ) {
 			'data-jump' => $attr['slider__jump'],
 			'data-columns' => ( isset( $attr['columns'] ) ? $attr['columns'] : 3 ),
 		) ) + $slider[1];
+
+	// add class 'gallery' (for css)
+	$slider[1]['class'] = trim( 'gallery ' . $slider[1]['class'] );
 
 	foreach ( $slider[1] as $attribute => &$value ) {
 		$value = $attribute . '="' . $value . '"';

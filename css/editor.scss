@@ -1,30 +1,26 @@
 div[data-wpview-type="gallery"][data-wpview-text*="slider%3D%22true"] {
   padding: calc(56.25% - 2px) 0 0;
   background-color: rgba(#000,0.1);
+  overflow: hidden;
 
-  .wpview-body {
+  .gallery {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     position: absolute;
     top: 0;
-    width: 100%;
-    height: 100%;
+    right: 0;
+    bottom: 0;
     left: 0;
-    overflow: hidden;
-    box-sizing: border-box;
     padding: 2.2801304%;
+  }
 
-    .gallery {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-    }
+  dl {
+    width: auto;
 
-    dl {
+    img {
       width: auto;
-
-      img {
-        width: auto;
-        max-height: 50px;
-      }
+      max-height: 50px;
     }
   }
 

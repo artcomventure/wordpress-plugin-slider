@@ -86,3 +86,57 @@ msgstr ""
 
 msgid "Number of slides displayed at a time"
 msgstr ""
+
+msgid "Could not set featured post slider. Please try again."
+msgstr ""
+
+msgid "Add to slider"
+msgstr ""
+
+msgid "Edit Slider"
+msgstr ""
+
+msgid "Update Slider"
+msgstr ""
+
+msgid "Set Slider"
+msgstr ""
+
+msgid "&#8592; Cancel Slider"
+msgstr ""
+
+msgid "Featured Slider"
+msgstr ""
+
+msgid "Set featured slider"
+msgstr ""
+
+msgid "The first image will be used as the featured image."
+msgstr ""
+
+msgid "Click the featured image to edit or update this and the featured slider."
+msgstr ""
+
+msgid "Remove featured slider"
+msgstr ""
+
+msgid "Don't forget to save this %s to make your changes effective."
+msgstr ""
+
+msgid "Enable/Disable featured slider for post types"
+msgstr ""
+
+msgid "Replace WordPress' featured image with a featured slider.<br /><b>But no fear!</b> The featured image will not disappear. The first image will be used as the featured image as you know it."
+msgstr ""
+
+msgid "This has nothing to do with the slider possibility in the editor."
+msgstr ""
+
+msgid "Slider Configuration"
+msgstr ""
+
+msgid "Set default values"
+msgstr ""
+
+msgid "Each of these settings can be individually overridden for each slider."
+msgstr ""

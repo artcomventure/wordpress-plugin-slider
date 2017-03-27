@@ -2,9 +2,14 @@
   backface-visibility: hidden;
   transform: translateZ(0);
   position: relative;
-  margin-right: auto;
-  margin-left: auto;
+  margin-bottom: 1.5em;
   max-width: 100%;
+
+  &,
+  &.gallery {
+    margin-right: auto;
+    margin-left: auto;
+  }
 
   .slides,
   .slides > *,

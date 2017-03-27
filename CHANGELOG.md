@@ -4,6 +4,11 @@
 
 * more slide animations
 
+## 1.10.0 - 2017-03-27
+**Added**
+
+* Post's featured slider.
+
 ## 1.9.0 - 2017-03-23
 **Added**
 

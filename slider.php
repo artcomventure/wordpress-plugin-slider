@@ -4,7 +4,7 @@
  * Plugin Name: Gallery Slider
  * Plugin URI: https://github.com/artcomventure/wordpress-plugin-slider
  * Description: Extends WP's gallery (media popup) with a slider option.
- * Version: 1.9.0
+ * Version: 1.10.0
  * Text Domain: slider
  * Author: artcom venture GmbH
  * Author URI: http://www.artcom-venture.de/
@@ -28,7 +28,7 @@ function slider__print_media_templates() {
 	// matching the shortcode name
 
 	// get slider defaults
-	$defaults = get_slider_options();  ?>
+	$defaults = get_slider_defaults();  ?>
 
 	<script type="text/html" id="tmpl-slider-setting">
 		<h3 style="float:left;"><?php _e( 'Slider settings', 'slider' ); ?></h3>
@@ -176,14 +176,6 @@ function slider_scripts() {
 
 	wp_enqueue_script( 'slider', SLIDER_PLUGIN_URL . 'js/slider.min.js', array(), '1.3.3', TRUE );
 
-	$slider_defaults = get_slider_options( true );
-	$options = get_slider_options();
-	foreach ( $slider_defaults as $option => $value ) {
-		if ( empty( $options[$option] ) || $options[$option] == $value ) {
-			unset( $slider_defaults[$option] );
-		}
-	}
-
 	wp_add_inline_script( 'slider', "(function ( window, document, undefined ) {
 
 	document.addEventListener( 'DOMContentLoaded', function () {
@@ -206,9 +198,6 @@ function slider_scripts() {
         }
 
     } );
-
-	// override js' defaults
-    SliderDefaults = " . json_encode( $slider_defaults ) . ";
 
 })( this, this.document );" );
 }
@@ -261,6 +250,7 @@ function slider__plugin_row_meta( $links, $file ) {
  */
 
 require SLIDER_PLUGIN_DIR . 'inc/settings.php';
+require SLIDER_PLUGIN_DIR . 'inc/featured-slider.php';
 // auto include shortcodes
 foreach ( scandir( SLIDER_PLUGIN_DIR . 'inc' ) as $file ) {
 	if ( ! preg_match( '/shortcode\..+\.php/', $file ) ) {

@@ -84,3 +84,54 @@ msgstr "Springe vom letzten zum ersten Slide (und umgegehrt)"
 
 msgid "Number of slides displayed at a time"
 msgstr "Anzahl der Slides, die mit einem mal angezeigt werden"
+
+msgid "Add to slider"
+msgstr "Zum Slider hinzufügen"
+
+msgid "Edit Slider"
+msgstr "Slider bearbeiten"
+
+msgid "Update Slider"
+msgstr "Slider aktualisieren"
+
+msgid "Set Slider"
+msgstr "Slider festlegen"
+
+msgid "&#8592; Cancel Slider"
+msgstr "&#8592; Slider abbrechen"
+
+msgid "Featured Slider"
+msgstr "Beitragsslider"
+
+msgid "Set featured slider"
+msgstr "Beitragsslider festlegen"
+
+msgid "The first image will be used as the featured image."
+msgstr "Das erste Bild wird als Beitragsbild verwendet."
+
+msgid "Click the featured image to edit or update this and the featured slider."
+msgstr "Klicke auf das Beitragsbild um dieses und/oder den Beitragsslider zu bearbeiten."
+
+msgid "Remove featured slider"
+msgstr "Beitragsslider entfernen"
+
+msgid "Don't forget to save this %s to make your changes effective."
+msgstr "Vergiss nicht zu Speichern um deine Änderungen anzuwenden."
+
+msgid "Enable/Disable featured slider for post types"
+msgstr "Beitragsslider für Beitragstypen de/aktivieren"
+
+msgid "Replace WordPress' featured image with a featured slider.<br /><b>But no fear!</b> The featured image will not disappear. The first image will be used as the featured image as you know it."
+msgstr "Das WordPress Beitragsbild mit einem Beitragsslider ersetzen.<br /><b>Aber keine Angst!</b> Das Beitragsbild wird nicht verschwinden. Das erste Bild wird als Beitragsbild verwendet, so wie du es gewohnt bist."
+
+msgid "This has nothing to do with the slider possibility in the editor."
+msgstr "Diese Einstellung hat nichts mit dem Slider im Editor zu tun."
+
+msgid "Slider Configuration"
+msgstr "Slider Konfiguration"
+
+msgid "Set default values"
+msgstr "Standardwerte festlegen"
+
+msgid "Each of these settings can be individually overridden for each slider."
+msgstr "Jede dieser Einstellungen kann individuell für jeden Slider überschrieben werden."

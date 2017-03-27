@@ -207,6 +207,11 @@ Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-slide
 
 * more slide animations
 
+= 1.10.1 - 2017-03-27 =
+**Added**
+
+* Featured slider: post thumbnail fallback.
+
 = 1.10.0 - 2017-03-27 =
 **Added**
 

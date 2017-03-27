@@ -24,9 +24,14 @@ function get_the_featured_slider( $post = null ) {
  */
 add_filter( 'post_thumbnail_html', 'featured_slider__post_thumbnail_html', 10, 5 );
 function featured_slider__post_thumbnail_html( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
+	$post_thumnbail = $html;
+
 	if ( is_singular() && ( $post = get_post( $post_id ) ) && ( $featured_slider_enabled_post_types = get_featured_slider_post_types() ) ) {
 		if ( array_key_exists( $post->post_type, $featured_slider_enabled_post_types ) ) {
-			$html = get_the_featured_slider( $post );
+			if ( !$html = get_the_featured_slider( $post ) ) {
+				// fallback to default post thumbnail
+				$html = $post_thumnbail;
+			}
 		}
 	}
 

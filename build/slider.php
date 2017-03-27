@@ -4,7 +4,7 @@
  * Plugin Name: Gallery Slider
  * Plugin URI: https://github.com/artcomventure/wordpress-plugin-slider
  * Description: Extends WP's gallery (media popup) with a slider option.
- * Version: 1.10.2
+ * Version: 1.10.3
  * Text Domain: slider
  * Author: artcom venture GmbH
  * Author URI: http://www.artcom-venture.de/
@@ -99,7 +99,7 @@ function slider__print_media_templates() {
 					_.each( <?php echo json_encode( $defaults ); ?>, function( value, key ) {
 						key = 'slider__' + key;
 						attrs[ key ] = self.coerce( attrs, key ) + '';
-						if ( !value || attrs[ key ] === 'undefined' || value === attrs[ key ] ) {
+						if ( !attrs[ key ] || attrs[ key ] === 'undefined' || value === attrs[ key ] ) {
 							delete attrs[ key ];
 						}
 					} );
@@ -135,7 +135,7 @@ function slider__print_media_templates() {
 							var bIsSlider = $slider.is(':checked');
 
 							// default gallery columns vs slider columns
-							if ( !!e && !!wp.media.gallery && ( !wp.media.gallery.frame || typeof wp.media.gallery.frame._tb_remove == 'undefined' ) ) {
+							if ( !wp.media.frame.options.editing ) {
 								$columns.val( bIsSlider && $columns.val() == wp.media.gallery.defaults.columns
 									? <?php echo $defaults['columns']; ?>
 									: ( $columns.val() == <?php echo $defaults['columns']; ?> ? wp.media.gallery.defaults.columns : $columns.val() )
@@ -174,7 +174,7 @@ add_action( 'wp_enqueue_scripts', 'slider_scripts' );
 function slider_scripts() {
 	wp_enqueue_style( 'slider', SLIDER_PLUGIN_URL . 'css/slider.min.css', array(), '1.10.1' );
 
-	wp_enqueue_script( 'slider', SLIDER_PLUGIN_URL . 'js/slider.min.js', array(), '1.10.2', TRUE );
+	wp_enqueue_script( 'slider', SLIDER_PLUGIN_URL . 'js/slider.min.js', array(), '1.10.3', TRUE );
 
 	wp_add_inline_script( 'slider', "(function ( window, document, undefined ) {
 

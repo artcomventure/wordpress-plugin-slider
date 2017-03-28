@@ -207,6 +207,11 @@ Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-slide
 
 * more slide animations
 
+= 1.10.4 - 2017-03-28 =
+**Added**
+
+* More featured slider display settings.
+
 = 1.10.3 - 2017-03-27 =
 **Fixed**
 

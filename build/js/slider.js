@@ -1,5 +1,5 @@
 /**
- * Slider v1.10.3
+ * Slider v1.10.4
  * https://github.com/artcomventure/wordpress-plugin-slider/blob/master/build/js/slider[.min].js
  *
  * Copyright 2016, artcom venture GmbH

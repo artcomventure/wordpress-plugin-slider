@@ -28,4 +28,9 @@
 
         } );
 
+    // ...
+    if ( !window.location.search.match( /(\?|&)tab=([^&]*)/ ) ) {
+        window.location.href = $tabs[0].href;
+    }
+
 })( jQuery );

@@ -16,10 +16,12 @@
 			<th scope="row"><?php echo $post_type->label; ?>:</th>
 			<td>
 				<label for="<?php echo $id; ?>">
-					<input type="checkbox" name="featured_slider[<?php echo $post_type->name; ?>]"
-					       value="1"<?php checked( $status, 1 ); ?>
-					       id="<?php echo $id; ?>" />
-					<?php _e( 'Activate' ); ?>
+					<select name="featured_slider[<?php echo $post_type->name; ?>]" id="<?php echo $id; ?>" >
+						<option value="0"<?php selected( $status, 0 ); ?>><?php _e( 'Deactivate' ) ?></option>
+						<option value="1"<?php selected( $status, 1 ); ?>><?php _e( 'Replace post thumbnail in single post', 'slider' ) ?></option>
+						<option value="2"<?php selected( $status, 2 ); ?>><?php _e( 'Replace all post thumbnails', 'slider' ) ?></option>
+						<option value="3"<?php selected( $status, 3 ); ?>><?php _e( "Don't auto-replace post thumbnails", 'slider' ) ?></option>
+					</select>
 				</label>
 			</td>
 		</tr>

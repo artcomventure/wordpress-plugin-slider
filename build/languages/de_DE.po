@@ -135,3 +135,12 @@ msgstr "Standardwerte festlegen"
 
 msgid "Each of these settings can be individually overridden for each slider."
 msgstr "Jede dieser Einstellungen kann individuell für jeden Slider überschrieben werden."
+
+msgid "Replace post thumbnail in single post"
+msgstr "Beitragsbild in der Detailansicht ersetzen"
+
+msgid "Replace all post thumbnails"
+msgstr "Alle Beitragsbilder ersetzen"
+
+msgid "Don't auto-replace post thumbnails"
+msgstr "Beitragsbilder nicht automatisch ersetzen"

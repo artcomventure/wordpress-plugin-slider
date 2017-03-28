@@ -140,3 +140,12 @@ msgstr ""
 
 msgid "Each of these settings can be individually overridden for each slider."
 msgstr ""
+
+msgid "Replace post thumbnail in single post"
+msgstr ""
+
+msgid "Replace all post thumbnails"
+msgstr ""
+
+msgid "Don't auto-replace post thumbnails"
+msgstr ""

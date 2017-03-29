@@ -21090,6 +21090,7 @@
     width: 10%;
     height: 100%;
     transition: opacity .2s;
+    text-indent: -99999px;
     opacity: .8;
 }
 

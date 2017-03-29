@@ -4,6 +4,15 @@
 
 * more slide animations
 
+## 1.10.5 - 2017-03-28
+**Changed**
+
+* Filter for featured slider meta box html.
+
+**Fixed**
+
+* (hidden) Navigation text not selectable anymore.
+
 ## 1.10.4 - 2017-03-28
 **Added**
 

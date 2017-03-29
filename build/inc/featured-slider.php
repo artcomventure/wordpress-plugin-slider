@@ -115,7 +115,7 @@ function _slider_featured_slider_html( $featured_slider = NULL, $post = NULL, $t
 		           . sprintf( __( "Don't forget to save this %s to make your changes effective.", 'slider' ), $post_type_object->labels->singular_name ) . '</p></div>' . $content;
 	}
 
-	return apply_filters( 'admin_post_slider_html', $content, $post->ID, $featured_slider, $thumbnail_id );
+	return apply_filters( 'admin_featured_slider_html', $content, $post->ID, $featured_slider, $thumbnail_id );
 }
 
 /**

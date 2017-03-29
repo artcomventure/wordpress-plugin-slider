@@ -1,16 +1,11 @@
 .slider-attached {
     position: relative;
     max-width: 100%; 
-    margin-bottom: 1.5em;
+    margin-right: auto;
+    margin-left: auto;
     transform: translateZ(0);
     -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
-}
-
-.slider-attached,
-.slider-attached.gallery {
-    margin-right: auto;
-    margin-left: auto;
 }
 
 .slider-attached .slides,

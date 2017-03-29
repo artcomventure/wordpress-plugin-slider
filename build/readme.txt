@@ -207,7 +207,12 @@ Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-slide
 
 * more slide animations
 
-= 1.10.5 - 2017-03-28 =
+= 1.10.6 - 2017-03-29 =
+**Changed**
+
+* Extract css meant for WP from css file to php.
+
+= 1.10.5 - 2017-03-29 =
 **Changed**
 
 * Filter for featured slider meta box html.

@@ -207,6 +207,11 @@ Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-slide
 
 * more slide animations
 
+= 1.10.7 - 2017-04-04 =
+**Fixed**
+
+* Trigger change event on auto setting the default value for slider columns.
+
 = 1.10.6 - 2017-03-29 =
 **Changed**
 

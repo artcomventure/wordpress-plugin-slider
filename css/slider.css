@@ -1,5 +1,6 @@
 .slider-attached {
     position: relative;
+    display: block !important;
     max-width: 100%; 
     margin-right: auto;
     margin-left: auto;
@@ -9,8 +10,7 @@
 }
 
 .slider-attached .slides,
-.slider-attached .slides > *,
-.slider-attached .slides > * > div {
+.slider-attached .slides > * {
     position: relative;
     width: 100%;
 }
@@ -34,6 +34,10 @@
 
 .slider-attached .slides > * {
     margin: 0;
+}
+
+.slider-attached .slides .slider-icon {
+    line-height: 0;
 }
 
 .slider-attached[data-slides="1"] .slides {

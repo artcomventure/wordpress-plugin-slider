@@ -1,4 +1,5 @@
 .slider-attached {
+  display: block !important;
   backface-visibility: hidden;
   transform: translateZ(0);
   position: relative;
@@ -7,8 +8,7 @@
   max-width: 100%;
 
   .slides,
-  .slides > *,
-  .slides > * > div {
+  .slides > * {
     width: 100%;
     position: relative;
   }
@@ -33,6 +33,10 @@
 
     > * {
       margin: 0;
+    }
+
+    .slider-icon {
+      line-height: 0;
     }
   }
 

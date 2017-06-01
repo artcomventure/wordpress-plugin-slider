@@ -4,6 +4,11 @@
 
 * more slide animations
 
+## 1.10.8 - 2017-06-01
+**Fixed**
+
+* CSS bugs (in some cases).
+
 ## 1.10.7 - 2017-04-04
 **Fixed**
 

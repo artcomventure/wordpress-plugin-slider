@@ -35,7 +35,7 @@ foreach ( ( $options = get_slider_defaults() ) as $option => $value ) {
 			<select name="slider_defaults[size]"><?php
 				foreach ( array( 'cover' => __( 'area filling' ), 'contain' => __( 'letterboxed' ) ) as $size => $label ) : ?>
 					<option value="<?php echo $size ?>"<?php selected( isset( $options['size'] ) ? $options['size'] : $defaults['size'], $size ); ?>>
-						<?php echo $label; ?>
+						<?php _e( $label ); ?>
 					</option>
 				<?php endforeach; ?></select>
 		</td>

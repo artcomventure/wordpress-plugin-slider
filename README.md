@@ -65,7 +65,7 @@ echo get_the_featured_slider(); ?>
 ## Use slider js standalone
 
 **Markup example.** You don't necessarily use an `ul`. It also could be interleaved `div`s. But it must be 3 levels to the _content_.
-For _pure_ image sliders<sup>1</sup> it's mandatory to add the class `gallery`.
+For _pure_ image sliders it's mandatory to add the class `gallery`.
 
 ```html
 <div id="my-slider" class="gallery" data-OPTION="VALUE">
@@ -104,13 +104,11 @@ These options could be passed via HTML `data-`attributes or set as `object` on t
 |loop|boolean|Loop from end to start and the other way round.|true|
 |pager|string or boolean|Position of the pager. Possible values: 'top', 'bottom' or 'none' (to hide pager).|bottom|
 |navigation|boolean|Show/hide next and previous buttons.|false|
-|dimension|string|Dimension of the slider. Could be 'auto'<sup>2</sup>, a ratio (e.g. '16:9') or an exact size (e.g. '600px x 400px').|16:9|
+|dimension|string|Dimension of the slider. Could be 'auto', a ratio (e.g. '16:9') or an exact size (e.g. '600px x 400px').|16:9|
 |columns|integer|Number of slides to show at once.|1|
 |jump|string or integer|Number of slides to scroll on a slide action. Integers should be between 1 and the value of the _columns_ option (see above), otherwise it's calculated to its min./max. possible value. |'columns' (_dynamic_ option value of the _columns_ option (see above))|
 |slideshow|integer or boolean|Delay of auto slide in ms.|false|
 |size<sup>`1.11.0`</sup>|string|Image size behaviour. Possible values: '[cover](https://developer.mozilla.org/en/docs/Web/CSS/background-size?v=control#cover)' or '[contain](https://developer.mozilla.org/en/docs/Web/CSS/background-size?v=control#contain)'|'cover'|
-
-<sup>2</sup> The display of image sliders with dimension 'auto' and size 'cover' is buggy ... and thus disabled for now. Instead it uses size 'contain' internally. :/
 
 ### Additional js options
 

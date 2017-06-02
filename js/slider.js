@@ -1,5 +1,5 @@
 /**
- * Slider v1.11.0
+ * Slider v1.11.1
  * https://github.com/artcomventure/wordpress-plugin-slider/blob/master/build/js/slider[.min].js
  *
  * Copyright 2017, artcom venture GmbH
@@ -354,22 +354,16 @@
             }
             // class for positioning (like background-size: cover)
             if ( this.className.indexOf( 'gallery' ) >= 0 ) {
-                if ( this.slider( 'get', 'size' ) == 'cover' && this.slider( 'get', 'dimension' ) == 'auto' ) {
-                    console.info( "A proper display with dimension 'auto' and size 'cover' is buggy and thus disabled. Size 'contain' is used instead." );
+                for ( i = 0; i < $slides.children.length; i++ ) {
+                    image = $slides.children[i].getElementsByTagName( 'img' );
+                    if ( !image.length ) continue;
+
+                    if ( image[0].offsetHeight * $slides.children[i].offsetWidth / image[0].offsetWidth < $slides.children[i].offsetHeight )
+                        format = 'height';
+                    else format = 'width';
+
+                    window.Sliders.helper.addClass.call( $slides.children[i], 'cover-' + format );
                 }
-                else {
-                    for ( i = 0; i < $slides.children.length; i++ ) {
-                        image = $slides.children[i].getElementsByTagName( 'img' );
-                        if ( !image.length ) continue;
-
-                        if ( image[0].offsetHeight * $slides.children[i].offsetWidth / image[0].offsetWidth < $slides.children[i].offsetHeight )
-                            format = 'height';
-                        else format = 'width';
-
-                        window.Sliders.helper.addClass.call( $slides.children[i], 'cover-' + format );
-                    }
-                }
-
             }
 
             return this;
@@ -459,18 +453,37 @@
 
             this.setAttribute( 'data-dimension', dimension );
 
+            var width, wUnit, height, hUnit;
+
             if ( dimension == 'auto' ) {
-                $slides.style.paddingTop = '';
+                if ( this.className.indexOf( 'gallery' ) < 0 ) {
+                    $slides.style.paddingTop = '';
+                }
+                // calculate slider height from image with most height
+                // and convert to % to keep it responsive
+                else {
+                    hUnit = '%';
+
+                    for ( var i = 0; i < $slides.children.length; i++ ) {
+                        var image = $slides.children[i].getElementsByTagName( 'img' );
+                        if ( !image.length ) continue;
+
+                        var autoHeight = ( image[0].naturalHeight * this.offsetWidth / image[0].naturalWidth ) * 100 / this.offsetWidth;
+
+                        if ( !!autoHeight && ( !height || autoHeight > height ) ) {
+                            height = autoHeight;
+                        }
+                    }
+                }
             }
             else if ( typeof dimension != 'undefined' ) {
                 // get format values
                 var aDimensions = dimension.match( oDefaultSettings.dimension.regexp );
 
-                var width = aDimensions[3],
-                    wUnit = aDimensions[4],
-
-                    height = aDimensions[8],
-                    hUnit = aDimensions[9];
+                width = aDimensions[3];
+                wUnit = aDimensions[4];
+                height = aDimensions[8];
+                hUnit = aDimensions[9];
 
                 // square
                 if ( !aDimensions[6] || !height ) {
@@ -482,8 +495,8 @@
                     height = height * 100 / width;
                     hUnit = '%';
 
-                    width = false;
-                    wUnit = false;
+                    width = undefined;
+                    wUnit = undefined;
                 }
                 // 'fixed' dimension
                 else {
@@ -493,17 +506,17 @@
                         hUnit = '%';
                     }
                 }
+            }
 
-                // set width
-                if ( !!width ) this.style.width = width + ( wUnit ? wUnit : 'px' );
+            // set width
+            if ( !!width ) this.style.width = width + wUnit||'px';
 
-                // set height
-                if ( !!height ) {
-                    if ( hUnit == '%' ) $slides.style.paddingTop = height + hUnit;
-                    else {
-                        $slides.style.paddingTop = '';
-                        $slides.style.height = height + 'px';
-                    }
+            // set height
+            if ( !!height ) {
+                if ( hUnit == '%' ) $slides.style.paddingTop = height + hUnit;
+                else {
+                    $slides.style.paddingTop = '';
+                    $slides.style.height = height + 'px';
                 }
             }
 
@@ -938,7 +951,7 @@
                     $item.setAttribute( 'data-slide', 'prev' );
                 }
                 else {
-                    $item.innerHTML = oElementSettings.t9n.next;
+                    $item.innerHTML = '<span>' + oElementSettings.t9n.next + '</span>';
                     $item.setAttribute( 'data-slide', 'next' );
                 }
 

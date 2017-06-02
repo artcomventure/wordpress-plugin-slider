@@ -3,7 +3,12 @@
 ## Unreleased
 
 * more slide animations
-* display bug for dimension:auto and size:cover
+
+## 1.11.1 - 2017-06-02
+**Fixed**
+
+* Missing t9ns.
+* Combination of dimension 'auto' and size 'cover'.
 
 ## 1.11.0 - 2017-06-02
 **Added**

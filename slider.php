@@ -4,7 +4,7 @@
  * Plugin Name: Gallery Slider
  * Plugin URI: https://github.com/artcomventure/wordpress-plugin-slider
  * Description: Extends WP's gallery (media popup) with a slider option.
- * Version: 1.11.0
+ * Version: 1.11.1
  * Text Domain: slider
  * Author: artcom venture GmbH
  * Author URI: http://www.artcom-venture.de/
@@ -41,7 +41,7 @@ function slider__print_media_templates() {
 			<select data-setting="slider__size"><?php
 				foreach ( array( 'cover' => __( 'area filling' ), 'contain' => __( 'letterboxed' ) ) as $size => $label ) : ?>
 					<option value="<?php echo $size ?>"<?php selected( $defaults['size'], $size ); ?>>
-						<?php echo $label; ?>
+						<?php _e( $label ); ?>
 					</option>
 				<?php endforeach; ?></select>
 		</label>
@@ -211,7 +211,7 @@ function slider_scripts() {
 
         while ( \$slider = \$sliders[i++] ) {
             // ... calculate whether the slider image has to cover width or height
-            \$slider.slider( 'set', 'size', \$slider.slider( 'get', 'size' ) );
+            \$slider.slider( 'set', 'dimension', \$slider.slider( 'get', 'dimension' ) );
         }
 
     } );

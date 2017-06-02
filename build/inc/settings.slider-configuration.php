@@ -30,6 +30,18 @@ foreach ( ( $options = get_slider_defaults() ) as $option => $value ) {
 	</tr>
 
 	<tr valign="top">
+		<th scope="row"><?php _e( 'Image display behaviour', 'slider' ); ?></th>
+		<td>
+			<select name="slider_defaults[size]"><?php
+				foreach ( array( 'cover' => __( 'area filling' ), 'contain' => __( 'letterboxed' ) ) as $size => $label ) : ?>
+					<option value="<?php echo $size ?>"<?php selected( isset( $options['size'] ) ? $options['size'] : $defaults['size'], $size ); ?>>
+						<?php echo $label; ?>
+					</option>
+				<?php endforeach; ?></select>
+		</td>
+	</tr>
+
+	<tr valign="top">
 		<th scope="row"><?php _e( 'Show Navigation', 'slider' ) ?></th>
 		<td>
 			<fieldset><legend class="screen-reader-text"><span><?php _e( 'Show Navigation', 'slider' ) ?></span></legend>

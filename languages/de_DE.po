@@ -144,3 +144,12 @@ msgstr "Alle Beitragsbilder ersetzen"
 
 msgid "Don't auto-replace post thumbnails"
 msgstr "Beitragsbilder nicht automatisch ersetzen"
+
+msgid "Image display behaviour"
+msgstr "Bildanzeigeverhalten"
+
+msgid "area filling"
+msgstr "flächenfüllend"
+
+msgid "letterboxed"
+msgstr "beinhaltend"

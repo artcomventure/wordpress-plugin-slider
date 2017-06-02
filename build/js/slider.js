@@ -1,8 +1,8 @@
 /**
- * Slider v1.8.3
+ * Slider v1.11.0
  * https://github.com/artcomventure/wordpress-plugin-slider/blob/master/build/js/slider[.min].js
  *
- * Copyright 2016, artcom venture GmbH
+ * Copyright 2017, artcom venture GmbH
  * http://www.artcom-venture.de/
  *
  * Licensed under GNU GENERAL PUBLIC LICENSE Version 3
@@ -73,6 +73,11 @@
                 regexp: new RegExp( '^(slide)$' ),
                 value: 'slide'
             },
+            // image size behaviour
+            size: {
+                regexp: new RegExp( '^(contain|cover)$' ),
+                value: 'cover'
+            },
 
             // translation
             t9n: {
@@ -103,7 +108,8 @@
             'columns',
             'jump',
             'captions',
-            'slideshow'
+            'slideshow',
+            'size'
         ];
 
     /**
@@ -328,6 +334,48 @@
         },
 
         /**
+         * Set size attribute.
+         *
+         * @param {integer} size
+         */
+        setSize: function ( size ) {
+            if (!this.slider) return this;
+
+            if ( !validateType( size, oDefaultSettings.size.regexp, false ) ) return this;
+
+            this.setAttribute( 'data-size', size );
+
+            var $slides = window.Sliders.settings[this.id].$.slides,
+                i, image, format;
+
+            // reset image size behaviour
+            for ( i = 0; i < $slides.children.length; i++ ) {
+                window.Sliders.helper.removeClass.call( $slides.children[i], ['cover-height', 'cover-width'] );
+            }
+            // class for positioning (like background-size: cover)
+            if ( this.className.indexOf( 'gallery' ) >= 0 ) {
+                if ( this.slider( 'get', 'size' ) == 'cover' && this.slider( 'get', 'dimension' ) == 'auto' ) {
+                    console.info( "A proper display with dimension 'auto' and size 'cover' is buggy and thus disabled. Size 'contain' is used instead." );
+                }
+                else {
+                    for ( i = 0; i < $slides.children.length; i++ ) {
+                        image = $slides.children[i].getElementsByTagName( 'img' );
+                        if ( !image.length ) continue;
+
+                        if ( image[0].offsetHeight * $slides.children[i].offsetWidth / image[0].offsetWidth < $slides.children[i].offsetHeight )
+                            format = 'height';
+                        else format = 'width';
+
+                        window.Sliders.helper.addClass.call( $slides.children[i], 'cover-' + format );
+                    }
+                }
+
+            }
+
+            return this;
+        },
+
+        /**
          * Set slideshow attribute.
          * ... and action.
          *
@@ -407,80 +455,59 @@
         setDimension: function ( dimension ) {
             if (!this.slider) return this;
 
-            var $slides = window.Sliders.settings[this.id].$.slides,
-                i, image, format;
+            var $slides = window.Sliders.settings[this.id].$.slides;
 
-            // reset image positioning
-            for ( i = 0; i < $slides.children.length; i++ ) {
-                window.Sliders.helper.removeClass.call( $slides.children[i], ['cover-height', 'cover-width'] );
-            }
+            this.setAttribute( 'data-dimension', dimension );
 
             if ( dimension == 'auto' ) {
-                this.setAttribute( 'data-dimension', dimension );
                 $slides.style.paddingTop = '';
             }
-            else {
-                this.removeAttribute( 'data-dimension' );
+            else if ( typeof dimension != 'undefined' ) {
+                // get format values
+                var aDimensions = dimension.match( oDefaultSettings.dimension.regexp );
 
-                if ( typeof dimension != 'undefined' ) {
-                    // get format values
-                    var aDimensions = dimension.match( oDefaultSettings.dimension.regexp );
+                var width = aDimensions[3],
+                    wUnit = aDimensions[4],
 
-                    var width = aDimensions[3],
-                        wUnit = aDimensions[4],
+                    height = aDimensions[8],
+                    hUnit = aDimensions[9];
 
-                        height = aDimensions[8],
-                        hUnit = aDimensions[9];
+                // square
+                if ( !aDimensions[6] || !height ) {
+                    height = '100';
+                    hUnit = '%';
+                }
+                // ratio
+                else if ( aDimensions[6] == ':' ) {
+                    height = height * 100 / width;
+                    hUnit = '%';
 
-                    // square
-                    if ( !aDimensions[6] || !height ) {
-                        height = '100';
-                        hUnit = '%';
-                    }
-                    // ratio
-                    else if ( aDimensions[6] == ':' ) {
+                    width = false;
+                    wUnit = false;
+                }
+                // 'fixed' dimension
+                else {
+                    // ... but in this case always in % to keep it responsive
+                    if ( [hUnit, wUnit].indexOf( '%' ) < 0 ) {
                         height = height * 100 / width;
                         hUnit = '%';
-
-                        width = false;
-                        wUnit = false;
-                    }
-                    // 'fixed' dimension
-                    else {
-                        // ... but in this case always in % to keep it responsive
-                        if ( [hUnit, wUnit].indexOf( '%' ) < 0 ) {
-                            height = height * 100 / width;
-                            hUnit = '%';
-                        }
-                    }
-
-                    // set width
-                    if ( !!width ) this.style.width = width + ( wUnit ? wUnit : 'px' );
-
-                    // set height
-                    if ( !!height ) {
-                        if ( hUnit == '%' ) $slides.style.paddingTop = height + hUnit;
-                        else {
-                            $slides.style.paddingTop = '';
-                            $slides.style.height = height + 'px';
-                        }
                     }
                 }
 
-                // class for positioning (like background-size: cover)
-                for ( i = 0; i < $slides.children.length; i++ ) {
-                    image = $slides.children[i].getElementsByTagName( 'img' );
-                    if ( !image.length ) continue;
+                // set width
+                if ( !!width ) this.style.width = width + ( wUnit ? wUnit : 'px' );
 
-                    if ( image[0].offsetHeight * $slides.children[i].offsetWidth / image[0].offsetWidth < $slides.children[i].offsetHeight )
-                        format = 'height';
-                    else format = 'width';
-
-                    window.Sliders.helper.addClass.call( $slides.children[i], 'cover-' + format );
+                // set height
+                if ( !!height ) {
+                    if ( hUnit == '%' ) $slides.style.paddingTop = height + hUnit;
+                    else {
+                        $slides.style.paddingTop = '';
+                        $slides.style.height = height + 'px';
+                    }
                 }
             }
 
-            return this;
+            return this.slider( 'set', 'size', this.slider( 'get', 'size' ) );
         },
 
         /**

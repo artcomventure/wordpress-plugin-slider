@@ -70,9 +70,10 @@ echo get_the_featured_slider(); ?>
 == Use slider js standalone ==
 
 **Markup example.** You don't necessarily use an `ul`. It also could be interleaved `div`s. But it must be 3 levels to the _content_.
+For _pure_ image sliders<sup>1</sup> it's mandatory to add the class `gallery`.
 
 ```html
-<div id="my-slider" data-OPTION="VALUE">
+<div id="my-slider" class="gallery" data-OPTION="VALUE">
     <ul>
         <li>
             <img />
@@ -101,27 +102,30 @@ var mySlider = new Slider( ELEMENT, OPTIONS );
 
 These options could be passed via HTML `data-`attributes or set as `object` on the js call.
 
-|Option|Type|Value|Default*|
+|Option|Type|Value|Default<sup>1</sup>|
 |------|----|-----|-------|
 |startSlide|integer|Slide to begin with.|1|
 |duration|integer|Slide animation duration im ms.|500|
 |loop|boolean|Loop from end to start and the other way round.|true|
 |pager|string or boolean|Position of the pager. Possible values: 'top', 'bottom' or 'none' (to hide pager).|bottom|
 |navigation|boolean|Show/hide next and previous buttons.|false|
-|dimension|string|Dimension of the slider. Could be 'auto', a ratio (e.g. '16:9') or an exact size (e.g. '600px x 400px').|16:9|
+|dimension|string|Dimension of the slider. Could be 'auto'<sup>2</sup>, a ratio (e.g. '16:9') or an exact size (e.g. '600px x 400px').|16:9|
 |columns|integer|Number of slides to show at once.|1|
 |jump|string or integer|Number of slides to scroll on a slide action. Integers should be between 1 and the value of the _columns_ option (see above), otherwise it's calculated to its min./max. possible value. |'columns' (_dynamic_ option value of the _columns_ option (see above))|
 |slideshow|integer or boolean|Delay of auto slide in ms.|false|
+|size<sup>`1.11.0`</sup>|string|Image size behaviour. Possible values: '[cover](https://developer.mozilla.org/en/docs/Web/CSS/background-size?v=control== Description ==
+
+<sup>2</sup> The display of image sliders with dimension 'auto' and size 'cover' is buggy ... and thus disabled for now. Instead it uses size 'contain' internally. :/
 
 === Additional js options ===
 
-|Option|Type|Value|Default*|
+|Option|Type|Value|Default<sup>1</sup>|
 |------|----|-----|-------|
 |onInit|function|Callback after slider is initialized.|`function() {}`|
 |onBeforeSlide|function|Callback before slide begins.|`function() {}`|
 |onAfterSlide|function|Callback on slide's completed.|`function() {}`|
 
-=== *Override default values ===
+=== <sup>1</sup> Override default values ===
 
 ```javascript
 // add an array object named 'SliderDefaults' with all your desired default settings
@@ -206,6 +210,12 @@ Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-slide
 = Unreleased =
 
 * more slide animations
+* display bug for dimension:auto and size:cover
+
+= 1.11.0 - 2017-06-02 =
+**Added**
+
+* New option 'size' aka image size behaviour ('cover' or 'contain').
 
 = 1.10.8 - 2017-06-01 =
 **Fixed**

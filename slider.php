@@ -4,7 +4,7 @@
  * Plugin Name: Gallery Slider
  * Plugin URI: https://github.com/artcomventure/wordpress-plugin-slider
  * Description: Extends WP's gallery (media popup) with a slider option.
- * Version: 1.10.8
+ * Version: 1.11.0
  * Text Domain: slider
  * Author: artcom venture GmbH
  * Author URI: http://www.artcom-venture.de/
@@ -35,6 +35,15 @@ function slider__print_media_templates() {
 		<label class="setting">
 			<span><?php _e( 'Display as slider', 'slider' ) ?></span>
 			<input data-setting="slider" type="checkbox" />
+		</label>
+		<label class="setting">
+			<span><?php _e( 'Image display behaviour', 'slider' ) ?></span>
+			<select data-setting="slider__size"><?php
+				foreach ( array( 'cover' => __( 'area filling' ), 'contain' => __( 'letterboxed' ) ) as $size => $label ) : ?>
+					<option value="<?php echo $size ?>"<?php selected( $defaults['size'], $size ); ?>>
+						<?php echo $label; ?>
+					</option>
+				<?php endforeach; ?></select>
 		</label>
 		<label class="setting" title="<?php _e( 'Show next and previous buttons', 'slider' ); ?>">
 			<span><?php _e( 'Show Navigation', 'slider' ) ?></span>
@@ -128,7 +137,8 @@ function slider__print_media_templates() {
 							$sliderLoop = this.$('input[data-setting="slider__loop"]'),
 							$sliderSlideshow = this.$('input[data-setting="slider__slideshow"]'),
 							$sliderDimension = this.$('input[data-setting="slider__dimension"]'),
-							$sliderCaptions = this.$('input[data-setting="slider__captions"]' );
+							$sliderCaptions = this.$('input[data-setting="slider__captions"]' ),
+							$sliderSize = this.$('input[data-setting="slider__size"]' );
 
 						// disable columns select if slider is enabled
 						function toggleColumns( e ) {
@@ -150,6 +160,7 @@ function slider__print_media_templates() {
 							$sliderSlideshow.prop('disabled', !bIsSlider);
 							$sliderDimension.prop('disabled', !bIsSlider);
 							$sliderCaptions.prop('disabled', !bIsSlider);
+							$sliderSize.prop('disabled', !bIsSlider);
 						}
 
 						toggleColumns(); // on initial popup
@@ -194,14 +205,13 @@ function slider_scripts() {
     } );
 
     // wait till resource and its dependent resources have finished loading
-    document.addEventListener( 'load', function () {
-
+    window.addEventListener( 'load', function () {
         var \$sliders = document.getElementsByClassName( 'slider-attached' ),
             \$slider, i = 0;
 
         while ( \$slider = \$sliders[i++] ) {
             // ... calculate whether the slider image has to cover width or height
-            \$slider.slider( 'set', 'dimension', \$slider.slider( 'get', 'dimension' ) );
+            \$slider.slider( 'set', 'size', \$slider.slider( 'get', 'size' ) );
         }
 
     } );

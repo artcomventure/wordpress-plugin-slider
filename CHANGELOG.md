@@ -3,6 +3,12 @@
 ## Unreleased
 
 * more slide animations
+* display bug for dimension:auto and size:cover
+
+## 1.11.0 - 2017-06-02
+**Added**
+
+* New option 'size' aka image size behaviour ('cover' or 'contain').
 
 ## 1.10.8 - 2017-06-01
 **Fixed**

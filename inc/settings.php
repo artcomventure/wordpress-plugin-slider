@@ -22,7 +22,8 @@ function get_slider_defaults( $js_defaults = FALSE ) {
 		'columns'    => '1',
 		'jump'       => 'columns',
 		'slideshow'  => '',
-		'captions'   => 'false'
+		'captions'   => 'false',
+		'size'       => 'cover'
 	);
 
 	// return js defaults

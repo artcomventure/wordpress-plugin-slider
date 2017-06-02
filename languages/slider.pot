@@ -149,3 +149,12 @@ msgstr ""
 
 msgid "Don't auto-replace post thumbnails"
 msgstr ""
+
+msgid "Image display behaviour"
+msgstr ""
+
+msgid "area filling"
+msgstr ""
+
+msgid "letterboxed"
+msgstr ""

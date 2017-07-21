@@ -42,29 +42,7 @@
     }
   }
 
-  @for $i from 1 through 30 {
-    &[data-slides="#{$i}"] {
-      .slides {
-        width: #{100% * $i};
-
-        > * {
-          width: #{100% / $i};
-        }
-      }
-
-      @for $d from 2 through 9 {
-        &[data-columns="#{$d}"] .slides {
-          width: #{100% * $i/$d};
-
-          > * {
-            width: #{100% / $i};
-          }
-        }
-      }
-    }
-  }
-
-  &[data-dimension="auto"] .slides {
+  &[data-dimension="auto"]:not(.gallery) .slides {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -85,39 +63,6 @@
           width: auto;
           max-height: 100%;
           height: auto;
-        }
-      }
-    }
-
-    @for $i from 1 through 30 {
-      &[data-slides="#{$i}"] {
-        .slides > * {
-          @for $j from 2 through $i {
-            @if $j <= $i {
-              &:nth-child(#{$j}) {
-                left: #{100% / $i * ($j - 1)};
-              }
-            }
-          }
-        }
-
-        @for $d from 2 through 9 {
-          &[data-columns="#{$d}"] .slides {
-            width: #{100% * $i/$d};
-            padding-top: #{56.25% / $d};
-
-            > * {
-              width: #{100% / $i};
-
-              @for $j from 1 through 30 {
-                @if $j <= $i {
-                  &:nth-child(#{$j}) {
-                    left: #{100% / $i * ($j - 1)};
-                  }
-                }
-              }
-            }
-          }
         }
       }
     }
@@ -200,6 +145,7 @@
   }
 
   .slider__navigation {
+    box-sizing: border-box;
     top: 0;
     height: 100%;
 

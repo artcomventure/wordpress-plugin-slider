@@ -74,7 +74,7 @@ gulp.task( 'scss', function() {
         .pipe( csscomb() )
         // in addition to csscomb (didn't found any options for this)
         // ... add a blank line between two instructions
-        .pipe( replace( /}\n(\.|#|\w|\s*\d)/g, "}\n\n$1" ) )
+        .pipe( replace( /}\n(\.|#|@|\w|\s*\d)/g, "}\n\n$1" ) )
         // ... remove blank lines in instruction
         .pipe( replace( /;\s*\n(\s*\n)+/g, ";\n" ) )
         // write sourcemap

@@ -4,6 +4,11 @@
 
 * more slide animations
 
+## 1.11.3 - 2017-07-21
+**Changed**
+
+* CSS dimensions and position calculation to JS.
+
 ## 1.11.2 - 2017-07-21
 **Fixed**
 

@@ -1,5 +1,5 @@
 /**
- * Slider v1.11.2
+ * Slider v1.11.3
  * https://github.com/artcomventure/wordpress-plugin-slider/blob/master/build/js/slider[.min].js
  *
  * Copyright 2017, artcom venture GmbH
@@ -117,7 +117,7 @@
      */
     window.Sliders = {
 
-        version: '1.11.2',
+        version: '1.11.3',
 
         setDefaults: function(oSettings) {
             var newValue, property;
@@ -321,6 +321,20 @@
             if ( !validateType( columns, oDefaultSettings.columns.regexp, false ) ) return this;
 
             this.setAttribute( 'data-columns', columns );
+
+            var $ = window.Sliders.settings[this.id].$,
+                width = 100 / $.slides.children.length;
+
+            // set slides dimension
+            $.slides.style.width = 100 * $.slides.children.length / columns + '%';
+            Array.prototype.forEach.call( $.slides.children, function( $slide, i ) {
+                $slide.style.width = width + '%';
+
+                // ... and position
+                if ( $.slider.className.indexOf( 'gallery' ) >= 0 ) {
+                    $slide.style.left = width * i + '%';
+                }
+            } );
 
             // re-calculate dimensions
             var dimension = this.slider( 'get', 'dimension' );
@@ -541,7 +555,8 @@
                 this.setAttribute( 'data-duration', duration );
 
                 // remove old css
-                if ( typeof oSettings.$.css != 'undefined' ) oSettings.$.css.remove();
+                if ( typeof oSettings.$.css != 'undefined' )
+                    oSettings.$.css.parentNode.removeChild(oSettings.$.css);
 
                 duration = 'transition: transform ' + duration / 1000 + 's;';
 
@@ -609,9 +624,9 @@
                 property;
 
             // remove HTML traces
-            oSettings.$.navigation.remove();
-            oSettings.$.pager.remove();
-            oSettings.$.css.remove();
+            oSettings.$.navigation.parentNode.removeChild(oSettings.$.navigation);
+            oSettings.$.pager.parentNode.removeChild(oSettings.$.pager);
+            oSettings.$.css.parentNode.removeChild(oSettings.$.css);
 
             // remove classes
             Sliders.helper.removeClass.call( this, 'slider-attached' );
@@ -621,6 +636,12 @@
             oSettings.$.slides.style.left = '';
             oSettings.$.slides.style.paddingTop = '';
             oSettings.$.slides.style.transform = '';
+            oSettings.$.slides.style.width = '';
+            oSettings.$.slides.style.height = '';
+            Array.prototype.forEach.call( oSettings.$.slides.children, function( $slide ) {
+                $slide.style.width = '';
+                $slide.style.left = '';
+            } );
 
             // remove attributes
             // todo: keep initial attributes and remove 'id' and 'tabindex' IF set by slider

@@ -4,6 +4,11 @@
 
 * more slide animations
 
+## 1.11.2 - 2017-07-21
+**Fixed**
+
+* Recalculate size (cover which dimension) on window resize.
+
 ## 1.11.1 - 2017-06-02
 **Fixed**
 

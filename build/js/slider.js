@@ -1,5 +1,5 @@
 /**
- * Slider v1.11.1
+ * Slider v1.11.2
  * https://github.com/artcomventure/wordpress-plugin-slider/blob/master/build/js/slider[.min].js
  *
  * Copyright 2017, artcom venture GmbH
@@ -116,6 +116,8 @@
      * Slider methods and helper.
      */
     window.Sliders = {
+
+        version: '1.11.2',
 
         setDefaults: function(oSettings) {
             var newValue, property;
@@ -345,15 +347,16 @@
 
             this.setAttribute( 'data-size', size );
 
-            var $slides = window.Sliders.settings[this.id].$.slides,
-                i, image, format;
-
-            // reset image size behaviour
-            for ( i = 0; i < $slides.children.length; i++ ) {
-                window.Sliders.helper.removeClass.call( $slides.children[i], ['cover-height', 'cover-width'] );
-            }
             // class for positioning (like background-size: cover)
-            if ( this.className.indexOf( 'gallery' ) >= 0 ) {
+            if ( this.className.indexOf( 'gallery' ) >= 0 && size == 'cover' ) {
+                var $slides = window.Sliders.settings[this.id].$.slides,
+                    i, image, format;
+
+                // reset image size behaviour
+                for ( i = 0; i < $slides.children.length; i++ ) {
+                    window.Sliders.helper.removeClass.call( $slides.children[i], ['cover-height', 'cover-width'] );
+                }
+
                 for ( i = 0; i < $slides.children.length; i++ ) {
                     image = $slides.children[i].getElementsByTagName( 'img' );
                     if ( !image.length ) continue;
@@ -836,6 +839,20 @@
             swipe = false;
         };
 
+    // check image size for cover
+    window.addEventListener( 'resize', function() {
+        for ( var id in Sliders.settings ) {
+            if ( !Sliders.settings.hasOwnProperty( id ) ) continue;
+
+            var $slider = Sliders.settings[id].$.slider,
+                size = $slider.slider( 'get', 'size' );
+
+            if (size == 'cover') {
+                $slider.slider( 'set', 'size', $slider.slider( 'get', 'size' ) );
+            }
+        }
+    } );
+
     /**
      * ...
      */
@@ -1024,6 +1041,7 @@
             window.Sliders.settings[$element.id] = oElementSettings;
             window.Sliders.settings[$element.id].iCurrentSlide = oElementSettings.startSlide;
             window.Sliders.settings[$element.id]['$'] = {
+                slider: $element,
                 slides: $slides,
                 navigation: $navigation,
                 pager: $pager

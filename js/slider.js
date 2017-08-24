@@ -1,5 +1,5 @@
 /**
- * Slider v1.11.3
+ * Slider v1.11.4
  * https://github.com/artcomventure/wordpress-plugin-slider/blob/master/build/js/slider[.min].js
  *
  * Copyright 2017, artcom venture GmbH
@@ -117,13 +117,13 @@
      */
     window.Sliders = {
 
-        version: '1.11.3',
+        version: '1.11.4',
 
-        setDefaults: function(oSettings) {
+        setDefaults: function ( oSettings ) {
             var newValue, property;
 
             for ( property in oDefaultSettings ) {
-                if (!oSettings.hasOwnProperty(property)) continue;
+                if ( !oSettings.hasOwnProperty( property ) ) continue;
 
                 // check type
                 newValue = validateType( oSettings[property], ( oDefaultSettings[property].regexp != undefined
@@ -141,7 +141,7 @@
          * Wrapper for next slide.
          */
         next: function () {
-            if (!this.slider) return this;
+            if ( !this.slider ) return this;
 
             return this.slider( 'slide', 'next' );
         },
@@ -150,7 +150,7 @@
          * Wrapper for previous slide.
          */
         prev: function () {
-            if (!this.slider) return this;
+            if ( !this.slider ) return this;
 
             return this.slider( 'slide', 'prev' );
         },
@@ -161,7 +161,7 @@
          * @param {string|integer} iNb
          */
         slide: function ( iNb ) {
-            if (!this.slider) return this;
+            if ( !this.slider ) return this;
 
             var oSettings = window.Sliders.settings[this.id],
                 $ = oSettings.$;
@@ -262,7 +262,7 @@
          * @param {string|boolean|integer} value
          */
         set: function ( attribute, value ) {
-            if (!this.slider) return this;
+            if ( !this.slider ) return this;
 
             // attribute is object of attributes (shortcut)
             if ( validateType( attribute, 'object' ) ) {
@@ -298,10 +298,10 @@
          * @param {*} initial (!!true: get initial value; !!false (default): get current value)
          */
         get: function ( attribute, initial ) {
-            if (!this.slider) return this;
+            if ( !this.slider ) return this;
 
             var oSettings = window.Sliders.settings[this.id];
-            if (!!initial && oSettings[attribute] != undefined) return oSettings[attribute];
+            if ( !!initial && oSettings[attribute] != undefined ) return oSettings[attribute];
 
             if ( aChangeableAttributes.indexOf( attribute ) < 0 ) return undefined;
 
@@ -316,7 +316,7 @@
          * @param {integer} columns
          */
         setColumns: function ( columns ) {
-            if (!this.slider) return this;
+            if ( !this.slider ) return this;
 
             if ( !validateType( columns, oDefaultSettings.columns.regexp, false ) ) return this;
 
@@ -327,7 +327,7 @@
 
             // set slides dimension
             $.slides.style.width = 100 * $.slides.children.length / columns + '%';
-            Array.prototype.forEach.call( $.slides.children, function( $slide, i ) {
+            Array.prototype.forEach.call( $.slides.children, function ( $slide, i ) {
                 $slide.style.width = width + '%';
 
                 // ... and position
@@ -338,7 +338,7 @@
 
             // re-calculate dimensions
             var dimension = this.slider( 'get', 'dimension' );
-            window.Sliders.setDimension.call( this, ( dimension == 'auto' ? dimension : undefined ) );
+            if ( dimension == 'auto' ) window.Sliders.setDimension.call( this, dimension );
 
             // re-slide to current slide
             window.Sliders.slide.call( this, window.Sliders.settings[this.id].iCurrentSlide + 1 );
@@ -355,7 +355,7 @@
          * @param {integer} size
          */
         setSize: function ( size ) {
-            if (!this.slider) return this;
+            if ( !this.slider ) return this;
 
             if ( !validateType( size, oDefaultSettings.size.regexp, false ) ) return this;
 
@@ -393,7 +393,7 @@
          * @param {integer} delay
          */
         setSlideshow: function ( delay ) {
-            if (!this.slider) return this;
+            if ( !this.slider ) return this;
 
             delay = validateType( delay, oDefaultSettings.slideshow.regexp, this.slider( 'get', 'slideshow' ) );
             this.setAttribute( 'data-slideshow', delay );
@@ -426,7 +426,7 @@
          * @param {boolean} loop
          */
         setLoop: function ( loop ) {
-            if (!this.slider) return this;
+            if ( !this.slider ) return this;
 
             var oSettings = window.Sliders.settings[this.id],
                 $ = oSettings.$,
@@ -464,7 +464,7 @@
          * @param {string} dimension
          */
         setDimension: function ( dimension ) {
-            if (!this.slider) return this;
+            if ( !this.slider ) return this;
 
             var $slides = window.Sliders.settings[this.id].$.slides;
 
@@ -523,10 +523,21 @@
                         hUnit = '%';
                     }
                 }
+
+                if ( this.className.indexOf( 'gallery' ) < 0 ) {
+                    //console.warn(
+                    //    "The slider #" + this.id + " is no image gallery!?",
+                    //    (!!height ? 'Therefore the set (respectively calculated) height of ' + height + (hUnit || 'px') + ' is ignored.' : ''),
+                    //    "Please add the class name 'gallery' to make the height functional."
+                    //);
+
+                    height = undefined;
+                    hUnit = undefined;
+                }
             }
 
             // set width
-            if ( !!width ) this.style.width = width + wUnit||'px';
+            if ( !!width ) this.style.width = width + (wUnit || 'px');
 
             // set height
             if ( !!height ) {
@@ -547,7 +558,7 @@
          * @param {integer} duration
          */
         setDuration: function ( duration ) {
-            if (!this.slider) return this;
+            if ( !this.slider ) return this;
 
             var oSettings = window.Sliders.settings[this.id];
 
@@ -556,7 +567,7 @@
 
                 // remove old css
                 if ( typeof oSettings.$.css != 'undefined' )
-                    oSettings.$.css.parentNode.removeChild(oSettings.$.css);
+                    oSettings.$.css.parentNode.removeChild( oSettings.$.css );
 
                 duration = 'transition: transform ' + duration / 1000 + 's;';
 
@@ -580,7 +591,7 @@
          * @param {string|array} attributes
          */
         reset: function ( attributes ) {
-            if (!this.slider) return this;
+            if ( !this.slider ) return this;
 
             if ( attributes == undefined ) attributes = [];
             else if ( typeof attributes == 'string' ) attributes = [attributes];
@@ -602,7 +613,7 @@
          * @param {string} confirmation
          */
         destroy: function ( confirmation ) {
-            if (!this.slider) return this;
+            if ( !this.slider ) return this;
 
             if ( confirmation !== 'destroy' ) {
                 console.error( 'Missing confirmation "destroy" to destroy slider. Are you really sure?' );
@@ -624,9 +635,9 @@
                 property;
 
             // remove HTML traces
-            oSettings.$.navigation.parentNode.removeChild(oSettings.$.navigation);
-            oSettings.$.pager.parentNode.removeChild(oSettings.$.pager);
-            oSettings.$.css.parentNode.removeChild(oSettings.$.css);
+            oSettings.$.navigation.parentNode.removeChild( oSettings.$.navigation );
+            oSettings.$.pager.parentNode.removeChild( oSettings.$.pager );
+            oSettings.$.css.parentNode.removeChild( oSettings.$.css );
 
             // remove classes
             Sliders.helper.removeClass.call( this, 'slider-attached' );
@@ -638,7 +649,7 @@
             oSettings.$.slides.style.transform = '';
             oSettings.$.slides.style.width = '';
             oSettings.$.slides.style.height = '';
-            Array.prototype.forEach.call( oSettings.$.slides.children, function( $slide ) {
+            Array.prototype.forEach.call( oSettings.$.slides.children, function ( $slide ) {
                 $slide.style.width = '';
                 $slide.style.left = '';
             } );
@@ -751,20 +762,20 @@
     };
 
     // on init check for custom slider default settings
-    if (typeof window.SliderDefaults != 'undefined') {
+    if ( typeof window.SliderDefaults != 'undefined' ) {
         // ... and override
-        window.Sliders.setDefaults(window.SliderDefaults);
+        window.Sliders.setDefaults( window.SliderDefaults );
     }
 
     /**
      * Element's event callbacks.
      */
 
-    var elementMouseover = function() {
+    var elementMouseover = function () {
         Sliders.helper.addClass.call( this, 'hover' );
     };
 
-    var elementMousout = function( e ) {
+    var elementMousout = function ( e ) {
         var isChild = e.relatedTarget;
 
         // check if mouse is 'in' slider
@@ -808,13 +819,13 @@
                 iClientY = e.clientY;
 
                 // remember scroll position
-                var windowScrollX = window.pageXOffset||document.documentElement.scrollLeft||document.body.scrollLeft||0,
-                    windowScrollY = window.pageYOffset||document.documentElement.scrollTop||document.body.scrollTop||0;
+                var windowScrollX = window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0,
+                    windowScrollY = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
 
                 this.focus();
 
                 // ... for focusing WITHOUT scrolling
-                window.scrollTo(windowScrollX, windowScrollY);
+                window.scrollTo( windowScrollX, windowScrollY );
             }
             else {
                 iClientX = e.changedTouches[0].clientX;
@@ -861,14 +872,14 @@
         };
 
     // check image size for cover
-    window.addEventListener( 'resize', function() {
+    window.addEventListener( 'resize', function () {
         for ( var id in Sliders.settings ) {
             if ( !Sliders.settings.hasOwnProperty( id ) ) continue;
 
             var $slider = Sliders.settings[id].$.slider,
                 size = $slider.slider( 'get', 'size' );
 
-            if (size == 'cover') {
+            if ( size == 'cover' ) {
                 $slider.slider( 'set', 'size', $slider.slider( 'get', 'size' ) );
             }
         }

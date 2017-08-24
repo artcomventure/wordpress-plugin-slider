@@ -4,6 +4,11 @@
 
 * more slide animations
 
+## 1.11.4 - 2017-08-24
+**Fixed**
+
+* Non gallery dimension calculation fix.
+
 ## 1.11.3 - 2017-07-21
 **Changed**
 

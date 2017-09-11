@@ -1,5 +1,5 @@
 /**
- * Slider v1.11.4
+ * Slider v1.12.0
  * https://github.com/artcomventure/wordpress-plugin-slider/blob/master/build/js/slider[.min].js
  *
  * Copyright 2017, artcom venture GmbH
@@ -70,7 +70,7 @@
             },
             // effect to change
             effect: {
-                regexp: new RegExp( '^(slide)$' ),
+                regexp: new RegExp( '^(slide|skip)$' ),
                 value: 'slide'
             },
             // image size behaviour
@@ -569,7 +569,7 @@
                 if ( typeof oSettings.$.css != 'undefined' )
                     oSettings.$.css.parentNode.removeChild( oSettings.$.css );
 
-                duration = 'transition: transform ' + duration / 1000 + 's;';
+                duration = 'transition-duration: ' + duration / 1000 + 's;';
 
                 // create and add new css
                 oSettings.$.css = document.createElement( 'style' );
@@ -996,11 +996,11 @@
                 $item = document.createElement( 'li' );
 
                 if ( !j ) {
-                    $item.innerHTML = oElementSettings.t9n.previous;
+                    $item.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.82 53.4"><polygon points="0 26.7 19.4 53.4 21.82 51.64 3.71 26.7 21.82 1.76 19.4 0 0 26.7 0 26.7 0 26.7"/></svg><span>' + oElementSettings.t9n.next + '</span>';
                     $item.setAttribute( 'data-slide', 'prev' );
                 }
                 else {
-                    $item.innerHTML = '<span>' + oElementSettings.t9n.next + '</span>';
+                    $item.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.82 53.4"><polygon points="21.82 26.7 2.43 0 0 1.76 18.12 26.7 0 51.64 2.43 53.4 21.82 26.7 21.82 26.7 21.82 26.7"/></svg><span>' + oElementSettings.t9n.next + '</span>';
                     $item.setAttribute( 'data-slide', 'next' );
                 }
 

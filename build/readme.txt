@@ -109,7 +109,7 @@ These options could be passed via HTML `data-`attributes or set as `object` on t
 |loop|boolean|Loop from end to start and the other way round.|true|
 |pager|string or boolean|Position of the pager. Possible values: 'top', 'bottom' or 'none' (to hide pager).|bottom|
 |navigation|boolean|Show/hide next and previous buttons.|false|
-|dimension|string|Dimension of the slider. Could be 'auto', a ratio (e.g. '16:9') or an exact size (e.g. '600px x 400px').|16:9|
+|dimension|string|Dimension of the slider. Could be 'auto', a ratio (e.g. '16:9') or an exact size (e.g. '600px x 400px'). _Height is ignored for non `.gallery`._|16:9|
 |columns|integer|Number of slides to show at once.|1|
 |jump|string or integer|Number of slides to scroll on a slide action. Integers should be between 1 and the value of the _columns_ option (see above), otherwise it's calculated to its min./max. possible value. |'columns' (_dynamic_ option value of the _columns_ option (see above))|
 |slideshow|integer or boolean|Delay of auto slide in ms.|false|
@@ -205,9 +205,14 @@ Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-slide
 
 == Changelog ==
 
-= Unreleased =
+= 1.12.0 - 2017-09-11 =
+**Changed**
 
-* more slide animations
+* ... to SVG navigation arrows.
+
+**Added**
+
+* Non animated slide.
 
 = 1.11.4 - 2017-08-24 =
 **Fixed**

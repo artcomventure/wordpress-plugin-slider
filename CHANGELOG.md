@@ -1,8 +1,13 @@
 # Changelog
 
-## Unreleased
+## 1.12.0 - 2017-09-11
+**Changed**
 
-* more slide animations
+* ... to SVG navigation arrows.
+
+**Added**
+
+* Non animated slide.
 
 ## 1.11.4 - 2017-08-24
 **Fixed**

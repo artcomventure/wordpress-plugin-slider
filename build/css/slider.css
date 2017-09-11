@@ -24,6 +24,7 @@
     margin: 0;
     padding: 0;
     list-style: none;
+    transition-property: none;
 }
 
 .slider-attached .slides > * {
@@ -33,6 +34,10 @@
 .slider-attached .slides .slider-icon {
     line-height: 0;
     height: 100%;
+}
+
+.slider-attached[data-effect="slide"] .slides {
+    transition-property: transform;
 }
 
 .slider-attached:not(.gallery) .slides {
@@ -161,48 +166,24 @@
     display: none;
 }
 
-.slider-attached .slider__navigation li:before,
-.slider-attached .slider__navigation li:after {
+.slider-attached .slider__navigation li svg {
     position: absolute;
-    top: calc(50% - 12px);
+    top: 50%;
     left: 50%;
-    width: 3px;
-    height: 33px;
-    content: "";
-    background-color: #fff;
-    box-shadow: 0 0 2px rgba(0, 0, 0, .35);
-}
-
-.slider-attached .slider__navigation li:after {
-    top: calc(50% + 12px);
-}
-
-.slider-attached .slider__navigation li:hover {
-    opacity: 1;
-}
-
-.slider-attached .slider__navigation li[data-slide="prev"]:before {
-    -ms-transform: translate(0, -50%) rotate(36deg);
-        transform: translate(0, -50%) rotate(36deg);
-}
-
-.slider-attached .slider__navigation li[data-slide="prev"]:after {
-    -ms-transform: translate(0, -50%) rotate(-36deg);
-        transform: translate(0, -50%) rotate(-36deg);
+    width: 22px;
+    -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    pointer-events: none;
+    fill: #fff;
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, .35));
 }
 
 .slider-attached .slider__navigation li[data-slide="next"] {
     float: right;
 }
 
-.slider-attached .slider__navigation li[data-slide="next"]:before {
-    -ms-transform: translate(0, -50%) rotate(-36deg);
-        transform: translate(0, -50%) rotate(-36deg);
-}
-
-.slider-attached .slider__navigation li[data-slide="next"]:after {
-    -ms-transform: translate(0, -50%) rotate(36deg);
-        transform: translate(0, -50%) rotate(36deg);
+.slider-attached .slider__navigation li:hover {
+    opacity: 1;
 }
 
 .slider-attached .slider__navigation li.disabled {

@@ -114,10 +114,21 @@ These options could be passed via HTML `data-`attributes or set as `object` on t
 
 |Option|Type|Value|Default<sup>1</sup>|
 |------|----|-----|-------|
-|onInit|function|Callback after slider is initialized.|`function() {}`|
-|onBeforeSlide|function|Callback before slide begins.|`function() {}`|
-|onSlide|function|Interval callback during slide.|`function() {}`|
-|onSlideComplete|function|Callback on slide's completed.|`function() {}`|
+|onInit|function|Callback after slider is initialized.|`function( $elements ) {}`|
+|onBeforeSlide|function|Callback before slide begins.|`function( $elements ) {}`|
+|onSlide|function|Interval callback during slide.|`function( $elements ) {}`|
+|onSlideComplete|function|Callback on slide's completed.|`function() { $elements }`|
+
+Since `1.13.0` all callback functions got the slider elements (dom) as variable:
+
+```javascript
+{
+    navigation: HTMLElement,
+    pager: HTMLElement,
+    slider: HTMLElement,
+    slides: HTMLElement
+}
+```
 
 ### <sup>1</sup> Override default values
 

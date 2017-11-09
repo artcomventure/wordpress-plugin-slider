@@ -1,5 +1,5 @@
 /**
- * Slider v1.12.1
+ * Slider v1.13.0
  * https://github.com/artcomventure/wordpress-plugin-slider/blob/master/build/js/slider[.min].js
  *
  * Copyright 2017, artcom venture GmbH
@@ -219,7 +219,7 @@
             else if ( iNb > iSlides - iColumns ) iNb = ( !bLoop ? iSlides - iColumns : 0 );
 
             if ( iNb != oSettings.iCurrentSlide ) {
-                oSettings.onBeforeSlide.apply( this );
+                oSettings.onBeforeSlide.apply( this, $ );
 
                 oSettings.iCurrentSlide = iNb;
 
@@ -227,12 +227,12 @@
                 this.slider( 'setLoop' );
 
                 var onSlideInterval = setInterval( function() {
-                    oSettings.onSlide.apply( this );
+                    oSettings.onSlide.apply( this, $ );
                 }.bind( this ), 16 );
 
                 setTimeout( function () {
                     clearInterval( onSlideInterval );
-                    oSettings.onSlideComplete.apply( this );
+                    oSettings.onSlideComplete.apply( this, $ );
                 }.bind( this ), oSettings.duration );
             }
 
@@ -1122,7 +1122,7 @@
             window.Sliders.reset.apply( $element );
 
             // after init callback
-            $element.slider( 'onInit' );
+            $element.slider( 'onInit', oElementSettings.$ );
             if ( oElementSettings.startSlide ) $element.slider( 'slide', oElementSettings.startSlide );
         }
 

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.13.0 - 2017-11-09
+**Added**
+
+* Slider elements to callback.
+
 ## 1.12.1 - 2017-11-09
 **Fixed**
 

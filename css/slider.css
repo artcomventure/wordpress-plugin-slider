@@ -148,6 +148,7 @@
 
 .slider-attached .slider__navigation {
     top: 0;
+    left: 0;
     box-sizing: border-box;
     height: 100%;
 }

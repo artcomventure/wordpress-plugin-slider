@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.12.1 - 2017-11-09
+**Fixed**
+
+* Callbacks (onSlide and onSlideComplete).
+
 ## 1.12.0 - 2017-09-11
 **Changed**
 

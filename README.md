@@ -116,7 +116,8 @@ These options could be passed via HTML `data-`attributes or set as `object` on t
 |------|----|-----|-------|
 |onInit|function|Callback after slider is initialized.|`function() {}`|
 |onBeforeSlide|function|Callback before slide begins.|`function() {}`|
-|onAfterSlide|function|Callback on slide's completed.|`function() {}`|
+|onSlide|function|Interval callback during slide.|`function() {}`|
+|onSlideComplete|function|Callback on slide's completed.|`function() {}`|
 
 ### <sup>1</sup> Override default values
 

@@ -1,5 +1,5 @@
 /**
- * Slider v1.12.0
+ * Slider v1.12.1
  * https://github.com/artcomventure/wordpress-plugin-slider/blob/master/build/js/slider[.min].js
  *
  * Copyright 2017, artcom venture GmbH
@@ -226,8 +226,13 @@
                 // in this case check for navigation button visibility
                 this.slider( 'setLoop' );
 
+                var onSlideInterval = setInterval( function() {
+                    oSettings.onSlide.apply( this );
+                }.bind( this ), 16 );
+
                 setTimeout( function () {
-                    oSettings.onSlideComplete.bind( this );
+                    clearInterval( onSlideInterval );
+                    oSettings.onSlideComplete.apply( this );
                 }.bind( this ), oSettings.duration );
             }
 

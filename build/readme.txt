@@ -121,7 +121,8 @@ These options could be passed via HTML `data-`attributes or set as `object` on t
 |------|----|-----|-------|
 |onInit|function|Callback after slider is initialized.|`function() {}`|
 |onBeforeSlide|function|Callback before slide begins.|`function() {}`|
-|onAfterSlide|function|Callback on slide's completed.|`function() {}`|
+|onSlide|function|Interval callback during slide.|`function() {}`|
+|onSlideComplete|function|Callback on slide's completed.|`function() {}`|
 
 === <sup>1</sup> Override default values ===
 
@@ -204,6 +205,11 @@ _We test our plugin through its paces, but we advise you to take all safety prec
 Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-slider/issues) welcome.
 
 == Changelog ==
+
+= 1.12.1 - 2017-11-09 =
+**Fixed**
+
+* Callbacks (onSlide and onSlideComplete).
 
 = 1.12.0 - 2017-09-11 =
 **Changed**

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.13.1 - 2017-11-13
+**Fixed**
+
+* Element's className check.
+
 ## 1.13.0 - 2017-11-09
 **Added**
 

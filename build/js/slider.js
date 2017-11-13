@@ -1,5 +1,5 @@
 /**
- * Slider v1.13.0
+ * Slider v1.13.1
  * https://github.com/artcomventure/wordpress-plugin-slider/blob/master/build/js/slider[.min].js
  *
  * Copyright 2017, artcom venture GmbH
@@ -117,7 +117,7 @@
      */
     window.Sliders = {
 
-        version: '1.11.4',
+        version: '1.13.1',
 
         setDefaults: function ( oSettings ) {
             var newValue, property;
@@ -209,7 +209,7 @@
                 iNb--;
 
                 // requested slide is already visible
-                if ( $.pager.children[iNb] != undefined && $.pager.children[iNb].className.indexOf( 'active' ) > -1 )
+                if ( $.pager.children[iNb] != undefined && Sliders.helper.hasClass.call( $.pager.children[iNb], 'active' ) )
                     iNb = oSettings.iCurrentSlide;
                 else if ( iNb > iSlides - iColumns ) iNb = iSlides - iColumns;
             }
@@ -336,7 +336,7 @@
                 $slide.style.width = width + '%';
 
                 // ... and position
-                if ( $.slider.className.indexOf( 'gallery' ) >= 0 ) {
+                if ( Sliders.helper.hasClass.call( $.slider, 'gallery' ) ) {
                     $slide.style.left = width * i + '%';
                 }
             } );
@@ -367,7 +367,7 @@
             this.setAttribute( 'data-size', size );
 
             // class for positioning (like background-size: cover)
-            if ( this.className.indexOf( 'gallery' ) >= 0 && size == 'cover' ) {
+            if ( Sliders.helper.hasClass.call( this, 'gallery' ) && size == 'cover' ) {
                 var $slides = window.Sliders.settings[this.id].$.slides,
                     i, image, format;
 
@@ -415,10 +415,10 @@
             // initial call after delay
             // following: delay + duration
             setTimeout( function ( delay, duration ) {
-                if ( this.className.indexOf( 'hover' ) === -1 ) this.slider( 'next' );
+                if ( !Sliders.helper.hasClass.call( this, 'hover' ) ) this.slider( 'next' );
 
                 this.slideshow = setInterval( function () {
-                    if ( this.className.indexOf( 'hover' ) === -1 ) this.slider( 'next' );
+                    if ( !Sliders.helper.hasClass.call( this, 'hover' ) ) this.slider( 'next' );
                 }.bind( this ), parseInt( delay ) + duration );
             }.bind( this, delay, this.slider( 'get', 'duration' ) ), delay );
 
@@ -478,7 +478,7 @@
             var width, wUnit, height, hUnit;
 
             if ( dimension == 'auto' ) {
-                if ( this.className.indexOf( 'gallery' ) < 0 ) {
+                if ( !Sliders.helper.hasClass.call( this, 'gallery' ) ) {
                     $slides.style.paddingTop = '';
                 }
                 // calculate slider height from image with most height
@@ -529,7 +529,7 @@
                     }
                 }
 
-                if ( this.className.indexOf( 'gallery' ) < 0 ) {
+                if ( !Sliders.helper.hasClass.call( this, 'gallery' ) ) {
                     //console.warn(
                     //    "The slider #" + this.id + " is no image gallery!?",
                     //    (!!height ? 'Therefore the set (respectively calculated) height of ' + height + (hUnit || 'px') + ' is ignored.' : ''),
@@ -705,12 +705,8 @@
                 if ( ['add', 'remove'].indexOf( action ) < 0 ) action = 'toggle';
 
                 // element's classes
-                var classList = this.className.split( ' ' ),
+                var classList = Sliders.helper.hasClass.call( this ),
                     i, j, doAction;
-
-                classList = classList.filter( function ( item ) {
-                    return item.trim();
-                } );
 
                 // merge 'classes'
                 for ( i = 0; i < classes.length; i++ ) {
@@ -761,6 +757,12 @@
              */
             removeClass: function ( classes ) {
                 return Sliders.helper.toggleClass.call( this, classes, 'remove' );
+            },
+
+            hasClass: function( selector ) {
+                var classList = this.className.trim().split( / +/ );
+                if ( !selector ) return classList;
+                return classList.indexOf( selector.trim() ) >= 0;
             }
 
         }

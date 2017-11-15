@@ -217,6 +217,11 @@ Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-slide
 
 == Changelog ==
 
+= 1.13.2 - 2017-11-15 =
+**Changed**
+
+* Remove (redundant) CSS.
+
 = 1.13.1 - 2017-11-13 =
 **Fixed**
 

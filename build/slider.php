@@ -4,7 +4,7 @@
  * Plugin Name: Gallery Slider
  * Plugin URI: https://github.com/artcomventure/wordpress-plugin-slider
  * Description: Extends WP's gallery (media popup) with a slider option.
- * Version: 1.13.1
+ * Version: 1.13.2
  * Text Domain: slider
  * Author: artcom venture GmbH
  * Author URI: http://www.artcom-venture.de/
@@ -183,7 +183,7 @@ function slider__print_media_templates() {
  */
 add_action( 'wp_enqueue_scripts', 'slider_scripts' );
 function slider_scripts() {
-	wp_enqueue_style( 'slider', SLIDER_PLUGIN_URL . 'css/slider.min.css', array(), '1.12.0' );
+	wp_enqueue_style( 'slider', SLIDER_PLUGIN_URL . 'css/slider.min.css', array(), '1.13.2' );
 	wp_add_inline_style( 'slider', '.slider-attached {
 	margin-bottom: 1.5em;
 }
@@ -193,7 +193,7 @@ function slider_scripts() {
     margin-left: auto;
 }' );
 
-	wp_enqueue_script( 'slider', SLIDER_PLUGIN_URL . 'js/slider.min.js', array(), '1.12.0', TRUE );
+	wp_enqueue_script( 'slider', SLIDER_PLUGIN_URL . 'js/slider.min.js', array(), '1.13.2', TRUE );
 	wp_add_inline_script( 'slider', "(function ( window, document, undefined ) {
 
 	document.addEventListener( 'DOMContentLoaded', function () {

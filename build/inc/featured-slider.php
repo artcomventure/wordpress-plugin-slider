@@ -12,11 +12,25 @@ function the_featured_slider( $post = null ) {
  */
 function get_the_featured_slider( $post = null ) {
 	$post = get_post( $post );
-	if ( ! $post || !( $shortcode = get_post_meta( $post->ID, '_featured_slider', true ) ) ) {
+	if ( ! $post || !featured_slider_is_supported( $post->post_type ) || !( $shortcode = get_post_meta( $post->ID, '_featured_slider', true ) ) ) {
 		return '';
 	}
 
 	return apply_filters( 'featured_slider_html', do_shortcode( $shortcode ), $post->ID, $shortcode );
+}
+
+/**
+ * Check if theme/post type supports post thumbnails and thereby supports featured slider.
+ *
+ * @param null|string|WP_Post_Type $post_type Optional. Post type ID or WP_Post_Type object. Default is `null`.
+ * @return bool Whether featured slider is supported or not.
+ */
+function featured_slider_is_supported( $post_type = null ) {
+	if ( !$post_type ) $post_type = get_post_type(); // get current post type
+    if ( is_string( $post_type ) ) $post_type = get_post_type_object( $post_type );
+    if ( !$post_type ) return false;
+
+	return (bool) current_theme_supports( 'post-thumbnails' ) && post_type_supports( $post_type->name, 'thumbnail' ) || 'revision' === $post_type->name;
 }
 
 /**
@@ -25,7 +39,7 @@ function get_the_featured_slider( $post = null ) {
 add_filter( 'post_thumbnail_html', 'featured_slider__post_thumbnail_html', 10, 5 );
 function featured_slider__post_thumbnail_html( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
 	if ( ( $post = get_post( $post_id ) ) && ( $featured_slider_enabled_post_types = get_featured_slider_post_types() ) ) {
-		if ( array_key_exists( $post->post_type, $featured_slider_enabled_post_types ) ) {
+		if ( array_key_exists( $post->post_type, $featured_slider_enabled_post_types ) && featured_slider_is_supported( $post->post_type ) ) {
 			$post_thumnbail = $html;
 
 			switch ( $featured_slider_enabled_post_types[$post->post_type] ) {
@@ -51,6 +65,8 @@ function featured_slider__post_thumbnail_html( $html, $post_id, $post_thumbnail_
 add_action( 'add_meta_boxes', 'featured_slider__meta_box' );
 function featured_slider__meta_box() {
 	foreach ( get_featured_slider_post_types() as $post_type => $enabled ) {
+	    if ( !featured_slider_is_supported( $post_type ) ) continue;
+
 		add_meta_box( 'featuredsliderdiv', __( 'Featured Slider', 'slider' ), 'featured_slider_meta_box', $post_type, 'side' );
 		remove_meta_box( 'postimagediv', $post_type, 'side' );
 	}
@@ -123,7 +139,8 @@ function _slider_featured_slider_html( $featured_slider = NULL, $post = NULL, $t
  */
 add_action( 'admin_enqueue_scripts', 'featured_slider_style' );
 function featured_slider_style() {
-	wp_enqueue_style( 'featured-slider-div', SLIDER_PLUGIN_URL . 'css/featured-slider.css' );
+    if ( featured_slider_is_supported() ) return;
+    wp_enqueue_style( 'featured-slider-div', SLIDER_PLUGIN_URL . 'css/featured-slider.css' );
 }
 
 /**

@@ -100,7 +100,7 @@ foreach ( ( $options = get_slider_defaults() ) as $option => $value ) {
 		<td>
 			<input type="text" name="slider_defaults[slideshow]"
 			       value="<?php echo isset( $options['slideshow'] ) ? $options['slideshow'] : ''; ?>"
-			       placeholder="<?php echo $defaults['slidershow'] ?>" class="regular-text" />
+			       placeholder="<?php echo $defaults['slideshow'] ?>" class="regular-text" />
 			<p class="description"><?php _e( 'Auto-slide in milliseconds', 'slider' ); ?></p>
 		</td>
 	</tr>

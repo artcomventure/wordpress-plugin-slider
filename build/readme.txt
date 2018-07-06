@@ -217,6 +217,11 @@ Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-slide
 
 == Changelog ==
 
+= 1.13.3 - 2018-07-06 =
+**Changed**
+
+* Check for post type's thumbnail support.
+
 = 1.13.2 - 2017-11-15 =
 **Changed**
 

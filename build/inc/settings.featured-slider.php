@@ -9,6 +9,8 @@
 	<tbody>
 
 	<?php foreach ( get_featured_slider_post_types( false ) as $post_type => $status ) :
+        if ( !featured_slider_is_supported( $post_type ) ) continue;
+
 		$post_type = get_post_type_object( $post_type );
 		$id = 'featured_slider_for_' . $post_type->name; ?>
 

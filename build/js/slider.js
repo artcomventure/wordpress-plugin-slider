@@ -253,11 +253,11 @@
             // mark visible slides and active pager items
             for ( var k = 0; k < $.slides.children.length; k++ ) {
                 if ( k >= iNb && k - iColumns < iNb ) {
-                    Sliders.helper.addClass.call( $.slides.children[k], 'slide-item-visible' );
+                    Sliders.helper.addClass.call( $.slides.children[k], 'slider-item-visible' );
                     Sliders.helper.addClass.call( $.pager.children[k], 'active' );
                 }
                 else {
-                    Sliders.helper.removeClass.call( $.slides.children[k], 'slide-item-visible' );
+                    Sliders.helper.removeClass.call( $.slides.children[k], 'slider-item-visible' );
                     Sliders.helper.removeClass.call( $.pager.children[k], 'active' );
                 }
             }

@@ -12,16 +12,33 @@ div[data-wpview-type="gallery"][data-wpview-text*="slider%3D%22true"] {
     right: 0;
     bottom: 0;
     left: 0;
-    padding: 2.2801304%;
+    padding: 0;
+    margin-bottom: 0;
   }
 
   dl {
     width: auto;
+    padding: 0;
+    flex-grow: 1;
+    position: relative;
+    overflow: hidden;
 
     img {
+      min-width: 100%;
       width: auto;
-      max-height: 50px;
+      max-width: none;
+      min-height: 100%;
+      height: auto;
+      max-height: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
     }
+  }
+
+  dd, br {
+    display: none;
   }
 
   &:before {
@@ -39,10 +56,13 @@ div[data-wpview-type="gallery"][data-wpview-text*="slider%3D%22true"] {
   &:after {
     content: "This is a slider preview placeholder in 16:9 ratio. Might differ on frontend.";
     position: absolute;
-    left: 0;
+    right: 0;
     bottom: 0;
-    font-size: .75em;
+    left: 0;
+    font-size: 12px;
+    letter-spacing: 0;
     padding: .15em .5em;
-    opacity: .35;
+    background-color: rgba(#000, .35);
+    color: #fff;
   }
 }

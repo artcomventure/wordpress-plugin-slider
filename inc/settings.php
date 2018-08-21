@@ -44,7 +44,7 @@ function get_featured_slider_post_types( $is_enabled = true ) {
 
 	// all available post types
 	$post_types = array_filter( get_post_types(), function ( $post_type ) {
-		return ! in_array( $post_type, array( 'revision', 'nav_menu_item', 'attachment', 'customize_changeset', 'custom_css' ) );
+		return $post_type != 'revision' && featured_slider_is_supported( $post_type );
 	} );
 
 	// merge post types

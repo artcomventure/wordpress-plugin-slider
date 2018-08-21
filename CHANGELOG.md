@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.14.0 - 2018-08-21
+**Added**
+
+* Mark (class) visible slides.
+
 ## 1.13.3 - 2018-07-06
 **Changed**
 

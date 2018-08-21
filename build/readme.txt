@@ -217,6 +217,11 @@ Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-slide
 
 == Changelog ==
 
+= 1.14.1 - 2018-08-21 =
+**Fixed**
+
+* Typo :/
+
 = 1.14.0 - 2018-08-21 =
 **Added**
 

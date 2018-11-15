@@ -217,10 +217,15 @@ Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-slide
 
 == Changelog ==
 
+= 1.14.3 - 2018-11-915 =
+**Fixed**
+
+* apply vs call
+
 = 1.14.2 - 2018-08-21 =
 **Changed**
 
-* Backend slider preview (in editor). 
+* Backend slider preview (in editor).
 
 = 1.14.1 - 2018-08-21 =
 **Fixed**

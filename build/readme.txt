@@ -217,11 +217,6 @@ Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-slide
 
 == Changelog ==
 
-= 1.14.4 - 2019-02-12 =
-**Fixed**
-
-* Hidden pager due to faulty css.
-
 = 1.14.3 - 2018-11-15 =
 **Fixed**
 

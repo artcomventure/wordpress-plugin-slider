@@ -12,10 +12,9 @@
     position: relative;
   }
 
-  .slides {
-    &, > * {
-      overflow: hidden;
-    }
+  &,
+  .slides > * {
+    overflow: hidden;
   }
 
   .slides {

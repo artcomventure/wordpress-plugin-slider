@@ -14,7 +14,7 @@
     width: 100%;
 }
 
-.slider-attached,
+.slider-attached .slides,
 .slider-attached .slides > * {
     overflow: hidden;
 }

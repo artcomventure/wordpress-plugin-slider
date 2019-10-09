@@ -158,3 +158,6 @@ msgstr ""
 
 msgid "letterboxed"
 msgstr ""
+
+msgid "Not compatible with Gutenberg!"
+msgstr ""

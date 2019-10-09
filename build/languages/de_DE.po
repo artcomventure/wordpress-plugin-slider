@@ -153,3 +153,6 @@ msgstr "flächenfüllend"
 
 msgid "letterboxed"
 msgstr "beinhaltend"
+
+msgid "Not compatible with Gutenberg!"
+msgstr "Nicht kompatibel mit Gutenberg!"

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.14.4 - 2019-10-09
+**Fixed**
+
+* _Disable_ plugin on active Gutenberg.
+
 ## 1.14.3 - 2018-11-15
 **Fixed**
 

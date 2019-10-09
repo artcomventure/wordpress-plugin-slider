@@ -4,18 +4,63 @@
  * Plugin Name: Gallery Slider
  * Plugin URI: https://github.com/artcomventure/wordpress-plugin-slider
  * Description: Extends WP's gallery (media popup) with a slider option.
- * Version: 1.14.3
+ * Version: 1.14.4
  * Text Domain: slider
  * Author: artcom venture GmbH
  * Author URI: http://www.artcom-venture.de/
  */
 
-if ( ! defined( 'SLIDER_PLUGIN_URL' ) ) {
-	define( 'SLIDER_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+if ( ! defined( 'SLIDER_PLUGIN_URL' ) ) define( 'SLIDER_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+if ( ! defined( 'SLIDER_PLUGIN_DIR' ) ) define( 'SLIDER_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+
+/**
+ * Remove update notification
+ * ... due to 'update conflicts' with an other slider plugin
+ */
+add_filter( 'site_transient_update_plugins', 'slider__site_transient_update_plugins' );
+function slider__site_transient_update_plugins( $value ) {
+	$plugin_file = plugin_basename( __FILE__ );
+
+	if ( isset( $value->response[ $plugin_file ] ) ) {
+		unset( $value->response[ $plugin_file ] );
+	}
+
+	return $value;
 }
 
-if ( ! defined( 'SLIDER_PLUGIN_DIR' ) ) {
-	define( 'SLIDER_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+/**
+ * t9n.
+ */
+add_action( 'after_setup_theme', 'slider__after_setup_theme' );
+function slider__after_setup_theme() {
+	load_theme_textdomain( 'slider', SLIDER_PLUGIN_DIR . 'languages' );
+}
+
+function slider_can_be_used() {
+	global $wp_version;
+
+	include_once ABSPATH . 'wp-admin/includes/plugin.php';
+
+	$gutenberg_wp = version_compare( $wp_version, '5.0.0', '>' ) && !is_plugin_active( 'classic-editor/classic-editor.php' );
+	$gutenberg_plugin = is_plugin_active( 'gutenberg/gutenberg.php' );
+
+	return apply_filters( 'slider_can_be_used', !$gutenberg_wp && !$gutenberg_plugin );
+}
+
+// Plugin isn't working with Gutenberg
+// ... so check weather Gutenberg is active or not
+//
+// @since 1.14.4
+if ( !slider_can_be_used() ) {
+	add_filter( 'plugin_row_meta', function ( $links, $file ) {
+		if ( plugin_basename( __FILE__ ) == $file ) {
+			$links[] = '<span style="color: #a00;"><span class="dashicons dashicons-info"></span> ' . __( 'Not compatible with Gutenberg!', 'slider' ) . '</span>';
+		}
+
+		return $links;
+	}, 10, 2 );
+
+    return;
 }
 
 /**
@@ -223,43 +268,6 @@ function slider_scripts() {
 add_action( 'admin_head', 'slider__admin_head' );
 function slider__admin_head() {
 	add_editor_style( plugins_url( '/css/editor.min.css?', __FILE__ ) . '?' . time() );
-}
-
-/**
- * t9n.
- */
-add_action( 'after_setup_theme', 'slider__after_setup_theme' );
-function slider__after_setup_theme() {
-	load_theme_textdomain( 'slider', SLIDER_PLUGIN_DIR . 'languages' );
-}
-
-/**
- * Remove update notification
- * ... due to 'update conflicts' with an other slider plugin
- */
-add_filter( 'site_transient_update_plugins', 'slider__site_transient_update_plugins' );
-function slider__site_transient_update_plugins( $value ) {
-	$plugin_file = plugin_basename( __FILE__ );
-
-	if ( isset( $value->response[ $plugin_file ] ) ) {
-		unset( $value->response[ $plugin_file ] );
-	}
-
-	return $value;
-}
-
-/**
- * Change details link to GitHub repository.
- */
-add_filter( 'plugin_row_meta', 'slider__plugin_row_meta', 10, 2 );
-function slider__plugin_row_meta( $links, $file ) {
-	if ( plugin_basename( __FILE__ ) == $file ) {
-		$plugin_data = get_plugin_data( WP_PLUGIN_DIR . '/' . $file );
-
-		$links[2] = '<a href="' . $plugin_data['PluginURI'] . '">' . __( 'Plugin-Seite aufrufen' ) . '</a>';
-	}
-
-	return $links;
 }
 
 /**

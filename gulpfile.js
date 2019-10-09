@@ -124,7 +124,7 @@ gulp.task( 'clear:build', function() {
     del.sync( 'build/**/*' );
 } );
 
-gulp.task( 'build', ['clear:build', 'css', 'js'], function() {
+gulp.task( 'build', ['clear:build', 'css', 'js', 'po2mo'], function() {
     // collect all needed files
     gulp.src( [
         '**/*',

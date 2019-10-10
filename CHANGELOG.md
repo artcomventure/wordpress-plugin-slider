@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.15.0 - 2019-10-10
+**Added**
+
+* Trigger slide events.
+
 ## 1.14.4 - 2019-10-09
 **Fixed**
 

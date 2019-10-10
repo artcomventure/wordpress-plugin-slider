@@ -128,11 +128,26 @@ Since `1.13.0` all callback functions got the slider elements (dom) as variable:
 
 ```javascript
 {
-    navigation: HTMLElement,
-    pager: HTMLElement,
-    slider: HTMLElement,
-    slides: HTMLElement
+    css: HTMLStyleElement,
+    navigation: HTMLUListElement,
+    pager: HTMLUListElement,
+    slider: HTMLDivElement,
+    slides: HTMLDivElement
 }
+```
+
+=== Events <sup>since `1.15.0`</sup> ===
+|Event|Triggers|Variables|
+|-----|-------|----------|
+|sliderSetAttribute|When attribute is set.|`{attribute: 'ATTRIBUTE_NAME', value: ATTRIBUTE_VALUE}`|
+|beforeSlide|Before slide begins.|Slider elements (dom) as variable _(see callback functions above)_.|
+|slideComplete|On slide's completed.|Slider elements (dom) as variable _(see callback functions above)_.|
+|sliderDestroy|Right before slider will be destroyed.|Slider elements (dom) as variable _(see callback functions above)_.|
+
+```javascript
+mySlider.addEventListener( EVENT, function( event ) {
+    var variables = event.detail;
+}, false );
 ```
 
 === <sup>1</sup> Override default values ===
@@ -216,6 +231,11 @@ _We test our plugin through its paces, but we advise you to take all safety prec
 Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-slider/issues) welcome.
 
 == Changelog ==
+
+= 1.15.0 - 2019-10-10 =
+**Added**
+
+* Trigger slide events.
 
 = 1.14.4 - 2019-10-09 =
 **Fixed**

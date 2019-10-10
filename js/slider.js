@@ -1,5 +1,5 @@
 /**
- * Slider v1.13.2
+ * Slider v1.15.0
  * https://github.com/artcomventure/wordpress-plugin-slider/blob/master/build/js/slider[.min].js
  *
  * Copyright 2018, artcom venture GmbH
@@ -220,6 +220,7 @@
 
             if ( iNb != oSettings.iCurrentSlide ) {
                 oSettings.onBeforeSlide.call( this, $ );
+                this.slider( 'trigger', 'beforeSlide', $ );
 
                 oSettings.iCurrentSlide = iNb;
 
@@ -233,6 +234,7 @@
                 setTimeout( function () {
                     clearInterval( onSlideInterval );
                     oSettings.onSlideComplete.call( this, $ );
+                    this.slider( 'trigger', 'slideComplete', $ );
                 }.bind( this ), oSettings.duration );
             }
 
@@ -288,6 +290,8 @@
 
                 value = validateType( value, ( oDefaultSettings[attribute].regexp != undefined ? oDefaultSettings[attribute].regexp : oDefaultSettings[attribute] ) );
                 if ( value == undefined ) return this;
+
+                this.slider( 'trigger', 'sliderSetAttribute', { attribute: attribute, value: value } );
 
                 // check for specific attribute setter
                 if ( typeof Sliders['set' + attribute[0].toUpperCase() + attribute.slice( 1 )] == 'function' ) {
@@ -630,6 +634,8 @@
                 return this;
             }
 
+            this.slider( 'trigger', 'sliderDestroy', oSettings.$ );
+
             // remove event listeners
             this.removeEventListener( 'mouseover', elementMouseover );
             this.removeEventListener( 'mouseout', elementMousout );
@@ -674,6 +680,26 @@
             // last: delete Sliders entry and wrapper
             delete( window.Sliders.settings[this.id] );
             delete( this.slider );
+
+            return this;
+        },
+
+        /**
+         * Trigger (custom) event on slider element.
+         *
+         * @param {string|Event} event
+         * @param {object} params
+         */
+        trigger: function(event, params) {
+            if ( typeof event === 'string' ) {
+                if ( typeof params !== 'undefined' ) {
+                    if ( !params['detail'] ) params = { detail: params };
+                    event = new CustomEvent( event, params );
+                }
+                else event = new Event( event, { bubbles: true } );
+            }
+
+            this.dispatchEvent( event );
 
             return this;
         },

@@ -1,6 +1,36 @@
 <?php
 
 /**
+ * Adds custom classes to the array of post classes.
+ * `has-post-thumbnail` vs `has-post-slider`
+ *
+ * @param array $classes Classes for the body element.
+ * @return array
+ */
+add_filter( 'post_class', 'featured_slider__post_classes' );
+function featured_slider__post_classes( $classes ) {
+	if ( ($post = get_post()) && featured_slider_is_supported( $post->post_type )  ) {
+		$fspt = get_featured_slider_post_types();
+		if ( array_key_exists( $post->post_type, $fspt )
+		     && ($fspt[$post->post_type] == '2'
+		         || ($fspt[$post->post_type] == 1 && is_singular( $post->post_type ))
+		     )
+		) {
+			if ( $shortcode = get_post_meta( $post->ID, '_featured_slider', true ) ) {
+				$atts = shortcode_parse_atts( trim( $shortcode, '[]' ) );
+				if ( count(explode( ',', $atts['ids'] )) > 1 ) {
+					$classes = array_values($classes);
+					array_splice( $classes, array_search( 'has-post-thumbnail', $classes ), 1);
+					$classes[] = 'has-post-slider';
+				}
+			}
+		}
+	}
+
+	return $classes;
+}
+
+/**
  * Display the feature slider.
  */
 function the_featured_slider( $post = null ) {
@@ -34,7 +64,8 @@ function featured_slider_is_supported( $post_type = null ) {
 }
 
 /**
- * Override thumbnail html with featured slider html in single post.
+ * Override thumbnail html with featured slider html.
+ * ... but only if slider replacement is needed (> 1 image selected). Otherwise show standard post thumbnail.
  */
 add_filter( 'post_thumbnail_html', 'featured_slider__post_thumbnail_html', 10, 5 );
 function featured_slider__post_thumbnail_html( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
@@ -42,16 +73,19 @@ function featured_slider__post_thumbnail_html( $html, $post_id, $post_thumbnail_
 		if ( array_key_exists( $post->post_type, $featured_slider_enabled_post_types ) && featured_slider_is_supported( $post->post_type ) ) {
 			$post_thumnbail = $html;
 
-			switch ( $featured_slider_enabled_post_types[$post->post_type] ) {
-				case '1':
-					if ( !is_singular( $post->post_type ) ) break;
+			$atts = shortcode_parse_atts( trim( get_post_meta( $post->ID, '_featured_slider', true ), '[]' ) );
+			if ( $atts && count(explode( ',', $atts['ids'] )) > 1 ) {
+				switch ( $featured_slider_enabled_post_types[$post->post_type] ) {
+					case '1':
+						if ( !is_singular( $post->post_type ) ) break;
 
-				case '2':
-					if ( !$html = get_the_featured_slider( $post ) ) {
-						// fallback to default post thumbnail
-						$html = $post_thumnbail;
-					}
-					break;
+					case '2':
+						if ( !$html = get_the_featured_slider( $post ) ) {
+							// fallback to default post thumbnail
+							$html = $post_thumnbail;
+						}
+						break;
+				}
 			}
 		}
 	}

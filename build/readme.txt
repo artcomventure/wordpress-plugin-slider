@@ -232,6 +232,12 @@ Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-slide
 
 == Changelog ==
 
+= 1.16.0 - 2019-10-16 =
+**Changed**
+
+* Only replace post thumbnail by featured slider if needed (> 1 image selected).
+* `.has-post-thumbnail` vs `.has-post-slider`
+
 = 1.15.0 - 2019-10-10 =
 **Added**
 

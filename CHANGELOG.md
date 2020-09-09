@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.16.1 - 2020-09-09
+**Fixed**
+
+* _Missing_ variable in destroy function. 
+
 ## 1.16.0 - 2019-10-16
 **Changed**
 

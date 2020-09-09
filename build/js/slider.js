@@ -117,7 +117,7 @@
      */
     window.Sliders = {
 
-        version: '1.13.2',
+        version: '1.16.1',
 
         setDefaults: function ( oSettings ) {
             var newValue, property;
@@ -634,6 +634,8 @@
                 return this;
             }
 
+            var oSettings = window.Sliders.settings[this.id];
+
             this.slider( 'trigger', 'sliderDestroy', oSettings.$ );
 
             // remove event listeners
@@ -646,9 +648,6 @@
             this.removeEventListener( 'touchend', elementSwipeend );
             //this.removeEventListener( 'mouseup', elementSwipeend );
             this.removeEventListener( 'keydown', elementKeydown );
-
-            var oSettings = window.Sliders.settings[this.id],
-                property;
 
             // remove HTML traces
             oSettings.$.navigation.parentNode.removeChild( oSettings.$.navigation );
@@ -673,7 +672,7 @@
             // remove attributes
             // todo: keep initial attributes and remove 'id' and 'tabindex' IF set by slider
             this.removeAttribute( 'data-slides' );
-            for ( property in oSettings ) {
+            for ( var property in oSettings ) {
                 this.removeAttribute( 'data-' + property );
             }
 

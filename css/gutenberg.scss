@@ -1,0 +1,127 @@
+//@import "../lib/swiper/swiper-bundle.min";
+
+// ---
+// Panel
+
+.components-panel__body.slider-settings-panel .components-panel__body {
+  margin-right: -16px;
+  margin-left: -16px;
+
+  > .components-panel__body-title > button {
+    font-weight: 400;
+
+    > svg {
+      order: -1;
+      margin-right: 3px;
+      margin-left: 0;
+      transform: rotateX(180deg);
+    }
+  }
+
+  .components-input-control {
+    margin-bottom: 24px;
+
+    + .components-base-control__help {
+      margin-top: -12px;
+    }
+  }
+
+  .components-base-control {
+    margin-bottom: 24px;
+
+    &__help {
+      font-size: 12px;
+      color: rgb(117, 117, 117);
+      margin-bottom: 24px;
+    }
+  }
+
+  .components-panel__body {
+    margin-bottom: -16px;
+  }
+}
+
+// ---
+// Preview
+
+[data-type="acv/slider"] {
+  padding: 1em;
+  background-color: rgba(#000, .025);
+
+  .block-editor-default-block-appender {
+    height: auto !important;
+  }
+
+  .block-editor-block-list__layout,
+  .block-editor-block-list__block {
+    position: static;
+  }
+
+  .block-list-appender {
+    &:first-child {
+      margin: 1em 0;
+    }
+
+    &:not(:first-child) {
+      bottom: 0;
+
+      button {
+        background: #1e1e1e;
+        border-radius: 2px;
+        color: #fff;
+        padding: 0;
+        min-width: 24px;
+        height: 24px;
+      }
+    }
+  }
+
+  [data-type="acv/slide"] {
+    padding: .01em 1em;
+    margin-bottom: 1em;
+    background-color: rgba(#000, .035);
+    position: relative;
+  }
+
+  .swiper {
+    margin: 0 !important;
+
+    &-pagination {
+      display: flex;
+      justify-content: center;
+
+      span {
+        color: transparent;
+        width: .82rem;
+        height: .82rem;
+        background-color: #000;
+        opacity: .1;
+        border-radius: 50%;
+        margin-right: .14em;
+        margin-left: .14em;
+        cursor: pointer;
+        transition: opacity .2s;
+
+        &:hover {
+          opacity: .82;
+        }
+      }
+    }
+
+    &[data-view="list"] .swiper-pagination {
+      pointer-events: none;
+    }
+
+    &[data-view="slide"] {
+      @for $index from 1 to 42 {
+        &[data-slide="#{$index}"] .swiper-wrapper > .block-editor-inner-blocks > .block-editor-block-list__layout > .block-editor-block-list__block:not(:nth-child(#{$index})) {
+          display: none;
+        }
+      }
+
+      .swiper-pagination span.active {
+        opacity: .82;
+      }
+    }
+  }
+}

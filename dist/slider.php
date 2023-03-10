@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Slider
  * Description: Swiper goes Gutenberg.
- * Version: 3.1.0
+ * Version: 3.1.1
  * Text Domain: slider
  * Author: artcom venture GmbH
  * Author URI: http://www.artcom-venture.de/

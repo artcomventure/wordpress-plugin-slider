@@ -1,8 +1,8 @@
-=== Gallery Slider ===
+=== Swider ===
 
 Contributors:
 Donate link:
-Tags: gallery, slider
+Tags: slider
 Requires at least:
 Tested up to:
 Stable tag:

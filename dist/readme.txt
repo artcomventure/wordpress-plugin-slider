@@ -1,8 +1,8 @@
-=== Gallery Slider ===
+=== Swider ===
 
 Contributors:
 Donate link:
-Tags: gallery, slider
+Tags: slider
 Requires at least:
 Tested up to:
 Stable tag:
@@ -47,6 +47,11 @@ _We test our plugin through its paces, but we advise you to take all safety prec
 Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-slider/issues) welcome.
 
 == Changelog ==
+
+= 3.1.1 - 2023-03-10 =
+**Fixed**
+
+* Autoplay.
 
 = 3.1.0 - 2023-01-19 =
 **Added**

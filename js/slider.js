@@ -54,6 +54,14 @@ const doSliders = function( $context ) {
             }
         }
 
+        if ( parameters.autoplay ) {
+            parameters.autoplay = {
+                delay: parameters.autoplay,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true
+            }
+        }
+
         // init slider
         new Swiper( $swiper, parameters = {
             watchSlidesProgress: true,

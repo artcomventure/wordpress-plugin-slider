@@ -1,6 +1,6 @@
 {
   "name": "slider",
-  "version": "3.1.1",
+  "version": "3.2.0",
   "description": "Swiper goes Gutenberg",
   "author": "stefan.kaesche@artcom-venutre.de",
   "license": "MIT",
@@ -9,8 +9,8 @@
     "assets": "npm run assets:swiper",
     "assets:swiper": "cp node_modules/swiper/swiper-bundle.min.js lib/swiper/swiper-bundle.min.js & cp node_modules/swiper/swiper-bundle.min.css lib/swiper/swiper-bundle.min.css & cp node_modules/swiper/LICENSE lib/swiper/LICENSE",
 
-    "watch": "wp-scripts start src/block.js & npm run watch:css & npm run watch:js & gulp",
-    "build": "(wp-scripts build src/block.js && npm run compile:css && npm run compile:js) && npm run i18n && gulp build",
+    "watch": "wp-scripts start src/block.js & npm run watch:css & npm run watch:js",
+    "build": "(wp-scripts build src/block.js && npm run compile:css && npm run compile:js) && gulp build",
 
     "watch:css": "node-sass css/ -o css/ --source-map true --output-style expanded --indent-type tab --indent-width 1 -w",
     "watch:js": "babel js -d js --out-file-extension .min.js --source-maps --no-comments --ignore=js/*.min.js --presets=@babel/preset-env --watch",
@@ -18,23 +18,27 @@
     "compile:css": "node-sass css/ -o css/ --output-style compressed",
     "compile:js": "babel js -d js --out-file-extension .min.js --no-comments --ignore=js/*.min.js --presets=@babel/preset-env,babel-preset-minify",
 
-    "i18n": "(wp i18n make-pot . languages/slider.pot --exclude=src,dist,node_modules) && wp i18n make-json languages --no-purge"
+    "i18n:pot": "wp i18n make-pot . languages/slider.pot --exclude=src,dist",
+    "i18n:po": "wp i18n update-po languages/slider.pot",
+    "i18n:po2mo": "npm run i18n:mo & npm run i18n:json",
+    "i18n:mo": "wp i18n make-mo languages",
+    "i18n:json": "wp i18n make-json languages --no-purge"
   },
   "devDependencies": {
-    "@babel/cli": "^7.17.10",
-    "@babel/core": "^7.18.0",
-    "@babel/preset-env": "^7.18.0",
-    "@wordpress/icons": "^9.0.0",
-    "@wordpress/scripts": "^23.1.0",
+    "@babel/cli": "^7.21.5",
+    "@babel/core": "^7.21.8",
+    "@babel/preset-env": "^7.21.5",
+    "@wordpress/icons": "^9.24.0",
+    "@wordpress/scripts": "^26.4.0",
     "babel-preset-minify": "^0.5.2",
     "del": "^6.1.0",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
     "gulp-gettext": "^0.3.0",
-    "gulp-replace": "^1.1.3",
-    "node-sass": "^7.0.1"
+    "gulp-replace": "^1.1.4",
+    "node-sass": "^9.0.0"
   },
   "dependencies": {
-    "swiper": "^8.1.5"
+    "swiper": "^9.3.2"
   }
 }

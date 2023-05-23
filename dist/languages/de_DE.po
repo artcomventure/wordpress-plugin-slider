@@ -1,25 +1,22 @@
-# Copyright (C) 2021 artcom venture GmbH
-# This file is distributed under the same license as the Slider plugin.
 msgid ""
 msgstr ""
 "Project-Id-Version: Slider 2.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2021-04-19T06:20:47+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Language: \n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: slider\n"
 
 #. Plugin Name of the plugin
-#: build/index.js:1
+#: build/block.js:1
 msgid "Slider"
 msgstr "Slider"
-
-#. Description of the plugin
-#: build/index.js:1
-msgid "Display multiple images in a rich slider."
-msgstr "Zeige mehrere Bilder in einer ansprechenden Slider an."
 
 #. Author of the plugin
 msgid "artcom venture GmbH"
@@ -29,162 +26,211 @@ msgstr "artcom venture GmbH"
 msgid "http://www.artcom-venture.de/"
 msgstr "http://www.artcom-venture.de/"
 
-#: build/index.js:1
+#: build/block.js:1
 msgid "Slider Settings"
 msgstr "Slider-Einstellungen"
 
-#: build/index.js:382
+#: build/block.js:1
 msgid "Display"
 msgstr "Anzeige"
 
-#: build/index.js:384
-msgid "Only the slides on the stage are displayed."
-msgstr "Nur die Slides auf der Bühne werden angezeigt."
-
-#: build/index.js:384
-msgid "Slides outside the slider are displayed too."
-msgstr "Slides außehalb des Sliders werden auch angezeigt."
-
-#: build/index.js:387
-msgid "boxed"
-msgstr "abgeschnitten"
-
-#: build/index.js:390
-msgid "peek"
-msgstr "spähen"
-
-#: build/index.js:400
-msgid "For custom styling. CSS selector: [data-theme=\"THEME\"]"
-msgstr "Für individuelles Stylen. CSS-Selektor: [data-theme=\"THEMA\"]"
-
-#: build/index.js:1
-msgid "Default"
-msgstr "Standard"
-
-#: build/index.js:1
-msgid "Dimensions"
-msgstr "Dimensionen"
-
-#: build/index.js:1
-msgid "Ratio or exact size or 'auto'"
-msgstr "Verhältnis oder genaue Größe oder "auto'"
-
-#: build/index.js:428
-msgid "Image fit"
-msgstr "Bilddarstellung"
-
-#: build/index.js:1
-msgid "Images are displayed area-filled. It's possible that some images will be cropped."
-msgstr "Bilder werden flächendeckend angezeigt. Es ist möglich, dass einige Bilder zugeschnitten werden."
-
-#: build/index.js:1
-msgid "Images are displayed in full and may show the slider's background."
-msgstr "Die Bilder werden vollständig angezeigt und zeigen möglicherweise den Hintergrund des Sliders."
-
-#: build/index.js:1
-msgid "Images will be displayed as there are."
-msgstr "Bilder werden so angezeigt, wie sie sind."
-
-#: build/index.js:1
-msgid "auto"
-msgstr "automatisch"
-
-#: build/index.js:1
-msgid "cover canvas"
-msgstr "flächenfüllend"
-
-#: build/index.js:1
-msgid "contain image"
-msgstr "beinhaltend"
-
-#: build/index.js:447
-msgid "Number of visible slides"
-msgstr "Anzahl der sichtbare Slides"
-
-#: build/index.js:1
-msgid "Jump"
-msgstr "Sprung"
-
-#: build/index.js:1
-msgid "Number of slides that will be slided on control's previous/next action."
-msgstr "Anzahl der Slides, die bei der zurück-/vor-Aktion verschoben werden."
-
-#: build/index.js:1
-msgid "Center currently active slide"
-msgstr "Aktuellen Slide zentrieren"
-
-#: build/index.js:1
-msgid "Gap"
-msgstr "Spalt"
-
-#: build/index.js:1
-msgid "Space between slides in px (default), em or rem."
-msgstr "Abstand zwischen den Slides in px (Standard), em oder rem."
-
-#: build/index.js:1
-msgid "Show controls"
-msgstr "Steuerelemente anzeigen"
-
-#: build/index.js:1
-msgid "Show pager"
-msgstr "Pager anzeigen"
-
-#: build/index.js:1
+#: build/block.js:1
 msgid "Loop"
 msgstr "Schleife"
 
-#: build/index.js:1
-msgid "Jump from last to first and from first to last slide."
-msgstr "Springe vom letzten zum ersten und vom ersten zum letzten Slide."
-
-#: build/index.js:1
-msgid "Effect"
-msgstr "Effekt"
-
-#: build/index.js:1
+#: build/block.js:1
 msgid "slide"
-msgstr "animieren"
+msgstr "Verschieben"
 
-#: build/index.js:1
-msgid "skip"
-msgstr "überspringen"
+#. Description of the plugin
+#: build/block.js:1
+msgid "Swiper goes Gutenberg."
+msgstr "Swiper für Gutenberg."
 
-#: build/index.js:1
-msgid "Animation duration (in milliseconds)"
-msgstr "Animationsdauer (in Millisekunden)"
+#: build/block.js:1
+msgid "Slides per view"
+msgstr "Slides pro Ansicht"
 
-#: build/index.js:1
-msgid "Animation timing function"
-msgstr "Animations-Timing-Funktion"
+#: build/block.js:1
+msgid "Number (or \"auto\") of slides visible at the same time on slider's container."
+msgstr "Anzahl (oder \"auto\") der Slides, die zum gleichen Zeitpunkt sichtbar sind."
 
-#: build/index.js:1
-msgid "ease"
-msgstr "ease"
+#: build/block.js:1
+msgid "Space between slides (in px)"
+msgstr "Abstand zwischen den Slides (in px)."
 
-#: build/index.js:1
-msgid "ease-in"
-msgstr "ease-in"
+#: build/block.js:1
+msgid "Show overflow"
+msgstr "Überlauf anzeigen"
 
-#: build/index.js:1
-msgid "ease-out"
-msgstr "ease-out"
+#: build/block.js:1
+msgid "Show slides outside of slider's premises."
+msgstr "Zeigt die Slides außerhalb der Bühne."
 
-#: build/index.js:1
-msgid "ease-in-out"
-msgstr "ease-in-out"
+#: build/block.js:1
+msgid "Center slides"
+msgstr "Slides zentrieren"
 
-#: build/index.js:1
-msgid "linear"
-msgstr "linear"
+#: build/block.js:1
+msgid "Active slide will be centered, not always on the left side."
+msgstr "Aktiver Slide ist zentriert und nicht immer links ausgerichtet."
 
-#: build/index.js:1
-msgid "Autoslide (in milliseconds)"
-msgstr "Autoslide (in Millisekunden)"
+#: build/block.js:1
+msgid "Auto height"
+msgstr "Automatische Höhe"
 
-#: build/index.js:1
-msgid "Current value: %s"
-msgstr "Aktueller Wert: %s"
+#: build/block.js:1
+msgid "Enable and slider wrapper will adapt its height to the height of the currently active slide."
+msgstr "Wenn aktiviert, passt sich die Höhe des Sliders an die Höhe des aktuell aktiven Slides an."
 
-#: build/index.js:1
-msgid "never"
-msgstr "nie"
+#: build/block.js:1
+msgid "Navigation"
+msgstr "Navigation"
+
+#: build/block.js:1
+msgid "Aka prev and next buttons."
+msgstr "Auch bekannt als Vor- und Zurück-Buttons."
+
+#: build/block.js:1
+msgid "Pagination"
+msgstr "Seitennummerierung"
+
+#: build/block.js:1
+msgid "Nope"
+msgstr "Ohne"
+
+#: build/block.js:1
+msgid "Bullets"
+msgstr "Kugeln"
+
+#: build/block.js:1
+msgid "Fraction"
+msgstr "Bruch"
+
+#: build/block.js:1
+msgid "Progressbar"
+msgstr "Fortschrittsanzeige"
+
+#: build/block.js:1
+msgid "Scrollbar"
+msgstr "Scrollleiste"
+
+#: build/block.js:1
+msgid "Animation"
+msgstr "Animation"
+
+#: build/block.js:1
+msgid "Transition effect"
+msgstr "Übergangseffekt"
+
+#: build/block.js:1
+msgid "fade"
+msgstr "Ein-/Ausblenden"
+
+#: build/block.js:1
+msgid "cube"
+msgstr "Würfel"
+
+#: build/block.js:1
+msgid "coverflow"
+msgstr "Coverflow"
+
+#: build/block.js:1
+msgid "flip"
+msgstr "Umdrehen"
+
+#: build/block.js:1
+msgid "cards"
+msgstr "Karten"
+
+#: build/block.js:1
+msgid "Speed"
+msgstr "Geschwindigkeit"
+
+#: build/block.js:1
+msgid "Duration of transition between slides (in ms)."
+msgstr "Dauer des Übergangs zwischen Slides (in ms)."
+
+#: build/block.js:1
+msgid "Direction"
+msgstr "Richtung"
+
+#: build/block.js:1
+msgid "horizontal"
+msgstr "horizontal"
+
+#: build/block.js:1
+msgid "vertical"
+msgstr "vertikal"
+
+#: build/block.js:1
+msgid "Behaviour"
+msgstr "Verhalten"
+
+#: build/block.js:1
+msgid "Slides per group"
+msgstr ""
+
+#: build/block.js:1
+msgid "Enable continuous loop mode."
+msgstr "Aktiviert den Endlosschleifenmodus."
+
+#: build/block.js:1
+msgid "Rewind"
+msgstr "Zurückspulen"
+
+#: build/block.js:1
+msgid "Last slide will slide back to the first slide and vice versa."
+msgstr "Vom letzte Slide gelangt man zurück zum ersten und umgekehrt."
+
+#: build/block.js:1
+msgid "Slide to clicked slide"
+msgstr "Zum angeklickten Slide verschieben"
+
+#: build/block.js:1
+msgid "Click on any slide will produce transition to this slide."
+msgstr "Klicke auf einen beliebigen Slide, um einen Übergang zu diesem Slide zu erzeugen."
+
+#: build/block.js:1
+msgid "Autoplay"
+msgstr "Automatisches Abspielen"
+
+#: build/block.js:1
+msgid "Delay between transitions (in ms)."
+msgstr "Verzögerung zwischen Übergängen (in ms)."
+
+#: build/block.js:1
+msgid "Simulate touch"
+msgstr "Berührung simulieren"
+
+#: build/block.js:1
+msgid "Mouse wheel"
+msgstr "Mausrad"
+
+#: build/block.js:1
+msgid "Navigate through slides using mouse wheel."
+msgstr "Navigiere mit dem Mausrad durch die Slides."
+
+#: build/block.js:1
+msgid "Slide view"
+msgstr "Slide-Ansicht"
+
+#: build/block.js:1
+msgid "List view"
+msgstr "Listen-Ansicht"
+
+#: build/block.js:1
+msgid "show slide %d"
+msgstr "zeige Slide %d"
+
+#: build/block.js:1
+msgid "Slide"
+msgstr "Slide"
+
+#: build/block.js:1
+msgid "Slider will accept mouse events like touch events (click and drag to change slides)."
+msgstr "Der Slider akzeptiert Mausereignisse wie Berührungsereignisse (Klicken und Ziehen, um die Slides zu wechseln)."
+
+#: build/block.js:1
+msgid "Set numbers of slides to define and enable group sliding. \"auto\" will slide as many slides as defined in \"Slides per view\"."
+msgstr "Lege die Anzahl der Slides fest, die sich bei Aktion verschieben. „Auto“ verschiebt so viele Slides, wie in „Slides pro Ansicht“ definiert sind."

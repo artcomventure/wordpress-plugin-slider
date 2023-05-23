@@ -62,6 +62,14 @@ const doSliders = function( $context ) {
             }
         }
 
+        if ( !!parameters.slidesPerGroup && parameters.slidesPerGroup === 'auto' ) {
+            if ( parameters.slidesPerView === 'auto' ) {
+                parameters.slidesPerGroup = 1;
+                parameters.slidesPerGroupAuto = true;
+            }
+            else parameters.slidesPerGroup = parameters.slidesPerView || 1;
+        }
+
         // init slider
         new Swiper( $swiper, parameters = {
             watchSlidesProgress: true,

@@ -181,7 +181,7 @@ msgstr "Zurückspulen"
 
 #: build/block.js:1
 msgid "Last slide will slide back to the first slide and vice versa."
-msgstr "Vom letzte Slide gelangt man zurück zum ersten und umgekehrt."
+msgstr "Vom letzte Slide gelangen Sie zurück zum ersten und umgekehrt."
 
 #: build/block.js:1
 msgid "Slide to clicked slide"
@@ -189,7 +189,7 @@ msgstr "Zum angeklickten Slide verschieben"
 
 #: build/block.js:1
 msgid "Click on any slide will produce transition to this slide."
-msgstr "Klicke auf einen beliebigen Slide, um einen Übergang zu diesem Slide zu erzeugen."
+msgstr "Klicken Sie auf einen beliebigen Slide, um einen Übergang zu diesem Slide zu erzeugen."
 
 #: build/block.js:1
 msgid "Autoplay"
@@ -209,7 +209,7 @@ msgstr "Mausrad"
 
 #: build/block.js:1
 msgid "Navigate through slides using mouse wheel."
-msgstr "Navigiere mit dem Mausrad durch die Slides."
+msgstr "Navigieren Sie mit dem Mausrad durch die Slides."
 
 #: build/block.js:1
 msgid "Slide view"
@@ -233,4 +233,4 @@ msgstr "Der Slider akzeptiert Mausereignisse wie Berührungsereignisse (Klicken 
 
 #: build/block.js:1
 msgid "Set numbers of slides to define and enable group sliding. \"auto\" will slide as many slides as defined in \"Slides per view\"."
-msgstr "Lege die Anzahl der Slides fest, die sich bei Aktion verschieben. „Auto“ verschiebt so viele Slides, wie in „Slides pro Ansicht“ definiert sind."
+msgstr "Legen Sie die Anzahl der Slides fest, die sich bei Aktion verschieben. „Auto“ verschiebt so viele Slides, wie in „Slides pro Ansicht“ definiert sind."

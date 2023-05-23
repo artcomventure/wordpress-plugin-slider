@@ -1,28 +1,7 @@
 let gulp = require( 'gulp' )
     replace = require( 'gulp-replace' ),
     del = require( 'del' ),
-    concat = require( 'gulp-concat' ),
-    gettext = require( 'gulp-gettext' );
-
-/**
- * Compile .po files to .mo
- */
-let poFiles = ['./languages/**/*.po'];
-gulp.task( 'po2mo', function () {
-    return gulp.src( poFiles )
-        .pipe( gettext() )
-        .pipe( gulp.dest( function (file) {
-            return file.base;
-        } ) );
-} );
-
-/**
- * Watch tasks.
- */
-gulp.task( 'default', gulp.series( gulp.parallel( 'po2mo' ), watchers = ( done ) => {
-    gulp.watch( poFiles, gulp.series( 'po2mo' ) );
-    done();
-} ) );
+    concat = require( 'gulp-concat' );
 
 gulp.task( 'build', gulp.series( build = (done) => {
     // clear dist folder

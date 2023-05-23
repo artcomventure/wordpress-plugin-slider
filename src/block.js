@@ -137,6 +137,18 @@ const SliderEdit = ( { attributes, slides, slide, clientId, setAttributes, ...pr
                         />
                     </PanelBody>
                     <PanelBody title={ __( 'Behaviour', 'slider' ) } initialOpen={ false } icon={ redo }>
+                        <TextControl
+                            label={ __( 'Slides per group', 'slider' ) }
+                            help={ __( 'Set numbers of slides to define and enable group sliding. "auto" will slide as many slides as defined in "Slides per view".', 'slider' ) }
+                            value={ attributes.slidesPerGroup }
+                            disabled={ attributes.slidesPerView === 1 }
+                            placeholder={ SliderBlock.attributes.slidesPerGroup.default }
+                            onChange={ ( slidesPerGroup ) => {
+                                if ( slidesPerGroup === 'a' ) slidesPerGroup = 'auto'
+                                else if ( slidesPerGroup === 'aut' ) slidesPerGroup = ''
+                                if ( /^(|\d+|auto)$/.test( slidesPerGroup ) )
+                                    setAttributes( { slidesPerGroup } )
+                            } } />
                         <ToggleControl
                             label={ __( 'Loop', 'slider' ) }
                             help={ __( 'Enable continuous loop mode.', 'slider' ) }
@@ -171,7 +183,7 @@ const SliderEdit = ( { attributes, slides, slide, clientId, setAttributes, ...pr
                         </>
                         <ToggleControl
                             label={ __( 'Simulate touch', 'slider' ) }
-                            help={ __( 'Sliper will accept mouse events like touch events (click and drag to change slides).', 'slider' ) }
+                            help={ __( 'Slider will accept mouse events like touch events (click and drag to change slides).', 'slider' ) }
                             checked={ attributes.simulateTouch }
                             onChange={ ( simulateTouch ) => setAttributes( { simulateTouch } ) }
                         />
@@ -295,6 +307,10 @@ const SliderBlock = registerBlockType( 'acv/slider', {
             type: 'boolean',
             default: true
         },
+        slidesPerGroup: {
+            type: 'string',
+            default: 'auto'
+        },
         slidesPerView: {
             type: 'string',
             default: '1' // 'auto'
@@ -319,11 +335,18 @@ const SliderBlock = registerBlockType( 'acv/slider', {
 
     save: function( { attributes } ) {
         const parameters = { ...attributes }
-        // remove default values
+
+        // remove default or empty values
         Object.keys( parameters ).map( ( attribute ) => {
-            if ( ['blockView','showOverflow'].indexOf( attribute ) >= 0 || SliderBlock.attributes[attribute].default === parameters[attribute] )
-                delete parameters[attribute]
+            if ( ['blockView','showOverflow'].indexOf( attribute ) >= 0
+                || SliderBlock.attributes[attribute].default === parameters[attribute]
+                || parameters[attribute] === ''
+            ) delete parameters[attribute]
         } )
+
+        // 'auto' is not swiper default
+        if ( !parameters.slidesPerGroup )
+            parameters.slidesPerGroup = 'auto';
 
         return <div className={ 'swiper' + (attributes.showOverflow ? ' swiper-overflow-visible' : '') } data-swiper={ JSON.stringify( parameters ) }>
             <div className="swiper-wrapper">

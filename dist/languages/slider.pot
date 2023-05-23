@@ -2,23 +2,25 @@
 # This file is distributed under the same license as the Slider plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Slider 3.1.1\n"
+"Project-Id-Version: Slider 3.2.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wordpress-plugin-slider\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-03-10T10:14:07+00:00\n"
+"POT-Creation-Date: 2023-05-23T05:26:45+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.4.0\n"
+"X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: slider\n"
 
 #. Plugin Name of the plugin
+#: build/block.js:1
 msgid "Slider"
 msgstr ""
 
 #. Description of the plugin
+#: build/block.js:1
 msgid "Swiper goes Gutenberg."
 msgstr ""
 
@@ -28,4 +30,208 @@ msgstr ""
 
 #. Author URI of the plugin
 msgid "http://www.artcom-venture.de/"
+msgstr ""
+
+#: build/block.js:1
+msgid "Slider Settings"
+msgstr ""
+
+#: build/block.js:1
+msgid "Display"
+msgstr ""
+
+#: build/block.js:1
+msgid "Slides per view"
+msgstr ""
+
+#: build/block.js:1
+msgid "Number (or \"auto\") of slides visible at the same time on slider's container."
+msgstr ""
+
+#: build/block.js:1
+msgid "Space between slides (in px)"
+msgstr ""
+
+#: build/block.js:1
+msgid "Show overflow"
+msgstr ""
+
+#: build/block.js:1
+msgid "Show slides outside of slider's premises."
+msgstr ""
+
+#: build/block.js:1
+msgid "Center slides"
+msgstr ""
+
+#: build/block.js:1
+msgid "Active slide will be centered, not always on the left side."
+msgstr ""
+
+#: build/block.js:1
+msgid "Auto height"
+msgstr ""
+
+#: build/block.js:1
+msgid "Enable and slider wrapper will adapt its height to the height of the currently active slide."
+msgstr ""
+
+#: build/block.js:1
+msgid "Navigation"
+msgstr ""
+
+#: build/block.js:1
+msgid "Aka prev and next buttons."
+msgstr ""
+
+#: build/block.js:1
+msgid "Pagination"
+msgstr ""
+
+#: build/block.js:1
+msgid "Nope"
+msgstr ""
+
+#: build/block.js:1
+msgid "Bullets"
+msgstr ""
+
+#: build/block.js:1
+msgid "Fraction"
+msgstr ""
+
+#: build/block.js:1
+msgid "Progressbar"
+msgstr ""
+
+#: build/block.js:1
+msgid "Scrollbar"
+msgstr ""
+
+#: build/block.js:1
+msgid "Animation"
+msgstr ""
+
+#: build/block.js:1
+msgid "Transition effect"
+msgstr ""
+
+#: build/block.js:1
+msgid "slide"
+msgstr ""
+
+#: build/block.js:1
+msgid "fade"
+msgstr ""
+
+#: build/block.js:1
+msgid "cube"
+msgstr ""
+
+#: build/block.js:1
+msgid "coverflow"
+msgstr ""
+
+#: build/block.js:1
+msgid "flip"
+msgstr ""
+
+#: build/block.js:1
+msgid "cards"
+msgstr ""
+
+#: build/block.js:1
+msgid "Speed"
+msgstr ""
+
+#: build/block.js:1
+msgid "Duration of transition between slides (in ms)."
+msgstr ""
+
+#: build/block.js:1
+msgid "Direction"
+msgstr ""
+
+#: build/block.js:1
+msgid "horizontal"
+msgstr ""
+
+#: build/block.js:1
+msgid "vertical"
+msgstr ""
+
+#: build/block.js:1
+msgid "Behaviour"
+msgstr ""
+
+#: build/block.js:1
+msgid "Slides per group"
+msgstr ""
+
+#: build/block.js:1
+msgid "Set numbers of slides to define and enable group sliding. \"auto\" will slide as many slides as defined in \"Slides per view\"."
+msgstr ""
+
+#: build/block.js:1
+msgid "Loop"
+msgstr ""
+
+#: build/block.js:1
+msgid "Enable continuous loop mode."
+msgstr ""
+
+#: build/block.js:1
+msgid "Rewind"
+msgstr ""
+
+#: build/block.js:1
+msgid "Last slide will slide back to the first slide and vice versa."
+msgstr ""
+
+#: build/block.js:1
+msgid "Slide to clicked slide"
+msgstr ""
+
+#: build/block.js:1
+msgid "Click on any slide will produce transition to this slide."
+msgstr ""
+
+#: build/block.js:1
+msgid "Autoplay"
+msgstr ""
+
+#: build/block.js:1
+msgid "Delay between transitions (in ms)."
+msgstr ""
+
+#: build/block.js:1
+msgid "Simulate touch"
+msgstr ""
+
+#: build/block.js:1
+msgid "Slider will accept mouse events like touch events (click and drag to change slides)."
+msgstr ""
+
+#: build/block.js:1
+msgid "Mouse wheel"
+msgstr ""
+
+#: build/block.js:1
+msgid "Navigate through slides using mouse wheel."
+msgstr ""
+
+#: build/block.js:1
+msgid "Slide view"
+msgstr ""
+
+#: build/block.js:1
+msgid "List view"
+msgstr ""
+
+#: build/block.js:1
+msgid "show slide %d"
+msgstr ""
+
+#: build/block.js:1
+msgid "Slide"
 msgstr ""

@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.2.0 - 2023-05-19
+**Added**
+
+* Slides per group.
+* Translations (de).
+
+**Changed**
+
+* Switch mo file generation to WP CLI.
+
 ## 3.1.1 - 2023-03-10
 **Fixed**
 

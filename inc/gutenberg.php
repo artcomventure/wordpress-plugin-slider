@@ -7,22 +7,22 @@
  */
 function register_slider() {
     // automatically load dependencies and version
-    $asset_file = include(SLIDER_DIRECTORY . '/build/block.asset.php');
+    $asset_file = include(SLIDER_DIRECTORY . 'build/block.asset.php');
 
     wp_register_script(
         'slider-be-js',
-        SLIDER_DIRECTORY_URI . '/build/block.js',
+        SLIDER_DIRECTORY_URI . 'build/block.js',
         $asset_file['dependencies'],
         $asset_file['version']
     );
 
-    wp_set_script_translations( 'slider-be-js', 'slider', SLIDER_DIRECTORY . '/languages' );
+    wp_set_script_translations( 'slider-be-js', 'slider', SLIDER_DIRECTORY . 'languages' );
 
     wp_register_style(
         'slider-be-css',
-        SLIDER_DIRECTORY_URI . '/css/gutenberg.css',
+        SLIDER_DIRECTORY_URI . 'css/gutenberg.css',
         array(),
-        filemtime(SLIDER_DIRECTORY . '/css/gutenberg.css')
+        filemtime(SLIDER_DIRECTORY . 'css/gutenberg.css')
     );
 
     register_block_type( 'acv/slider', array(
@@ -36,11 +36,9 @@ add_action( 'init', 'register_slider' );
 add_filter( 'load_script_translation_file', function( $file, $handle, $domain ) {
     if ( $file && $domain == 'slider' ) {
         if ( $handle == 'slider-be-js' ) {
-            $md5 = md5('build/block.js');
+            $md5 = md5('build/block.js' );
+            $file = preg_replace( '/slider-\/' . $domain . '-([^-]+)-.+\.json$/', "/slider-$1-{$md5}.json", $file );
         }
-
-        if ( isset($md5) )
-            $file = preg_replace( '/\/' . $domain . '-([^-]+)-.+\.json$/', "/$1-{$md5}.json", $file );
     }
 
     return $file;

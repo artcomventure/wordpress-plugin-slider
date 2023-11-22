@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Slider
  * Description: Swiper goes Gutenberg.
- * Version: 3.2.0
+ * Version: 3.3.1
  * Text Domain: slider
  * Author: artcom venture GmbH
  * Author URI: http://www.artcom-venture.de/
@@ -31,18 +31,23 @@ add_filter( 'site_transient_update_plugins', function( $value ) {
 
 // t9n
 add_action( 'after_setup_theme', function() {
-    load_theme_textdomain( 'slider', SLIDER_DIRECTORY . '/languages' );
+    load_theme_textdomain( 'slider', SLIDER_DIRECTORY . 'languages' );
 } );
 
 /**
  * Enqueue frontend scripts and styles.
  */
 function slider_scripts() {
+    if ( !function_exists('get_plugin_data' ) )
+        require_once ABSPATH . 'wp-admin/includes/plugin.php';
+
+    $ver = get_plugin_data( __FILE__ )['Version'];
+
     wp_register_script( 'swiper', SLIDER_DIRECTORY_URI . 'lib/swiper/swiper-bundle.min.js', array(), '8.1.5', true );
-	wp_enqueue_script( 'slider', SLIDER_DIRECTORY_URI . 'js/slider.min.js', array( 'swiper' ), '3.0.0', true );
+	wp_enqueue_script( 'slider', SLIDER_DIRECTORY_URI . 'js/slider.min.js', array( 'swiper' ), $ver, true );
 
     wp_register_style( 'swiper', SLIDER_DIRECTORY_URI . 'lib/swiper/swiper-bundle.min.css', array(), '8.1.5' );
-    wp_enqueue_style( 'slider', SLIDER_DIRECTORY_URI . 'css/slider.css', array( 'swiper' ), filemtime( SLIDER_DIRECTORY . '/css/slider.css' ) );
+    wp_enqueue_style( 'slider', SLIDER_DIRECTORY_URI . 'css/slider.css', array( 'swiper' ), $ver );
 }
 add_action( 'wp_enqueue_scripts', 'slider_scripts', 11 );
 

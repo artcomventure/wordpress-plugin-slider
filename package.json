@@ -1,13 +1,13 @@
 {
   "name": "slider",
-  "version": "3.2.0",
+  "version": "3.3.1",
   "description": "Swiper goes Gutenberg",
   "author": "stefan.kaesche@artcom-venutre.de",
   "license": "MIT",
   "main": "build/index.js",
   "scripts": {
     "assets": "npm run assets:swiper",
-    "assets:swiper": "cp node_modules/swiper/swiper-bundle.min.js lib/swiper/swiper-bundle.min.js & cp node_modules/swiper/swiper-bundle.min.css lib/swiper/swiper-bundle.min.css & cp node_modules/swiper/LICENSE lib/swiper/LICENSE",
+    "assets:swiper": "cp node_modules/swiper/swiper-bundle.min.js lib/swiper/swiper-bundle.min.js & cp node_modules/swiper/swiper-bundle.min.js.map lib/swiper/swiper-bundle.min.js.map & cp node_modules/swiper/swiper-bundle.min.css lib/swiper/swiper-bundle.min.css & cp node_modules/swiper/LICENSE lib/swiper/LICENSE",
 
     "watch": "wp-scripts start src/block.js & npm run watch:css & npm run watch:js",
     "build": "(wp-scripts build src/block.js && npm run compile:css && npm run compile:js) && gulp build",

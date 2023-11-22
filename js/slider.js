@@ -8,6 +8,11 @@ const doSliders = function( $context ) {
     else $sliders = $context.getElementsByClassName( 'swiper' );
 
     [].forEach.call( $sliders, function( $swiper ) {
+        $swiper.dispatchEvent( new CustomEvent( 'swiper:beforeInit', {
+            detail: $swiper,
+            bubbles: true
+        } ) );
+
         let parameters = $swiper.getAttribute( 'data-swiper' )||{};
         // try to parse parameters
         try { parameters = JSON.parse( parameters ); }
@@ -69,6 +74,18 @@ const doSliders = function( $context ) {
             }
             else parameters.slidesPerGroup = parameters.slidesPerView || 1;
         }
+
+        // filter default values
+        // and _normalize_ given ones
+
+        if ( parameters.slidesPerGroup === 1 )
+            delete parameters.slidesPerGroup;
+
+        // make boolean
+        ['keyboard', 'simulateTouch'].forEach( parameter => {
+            if ( typeof parameters[parameter] !== 'undefined' )
+                parameters[parameter] = !!parameters[parameter];
+        } )
 
         // init slider
         new Swiper( $swiper, parameters = {

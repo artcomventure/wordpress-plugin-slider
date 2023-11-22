@@ -13,7 +13,7 @@ gulp.task( 'build', gulp.series( build = (done) => {
         // ... but:
         '!**/*.scss',
         '!**/*.css.map',
-        '!**/*.js.map',
+        '!js/*.js.map',
         '!*.md',
         '!LICENSE',
         '!readme.txt',

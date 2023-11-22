@@ -1,9 +1,30 @@
 # Changelog
 
+## 3.3.1 - 2023-11-22
+**Fixed**
+
+* Maybe missing `get_plugin_data`.
+
+## 3.3.0 - 2023-11-09
+**Changed**
+
+* Remove `slidesPerView` restriction.
+
+## 3.2.2 - 2022-08-10
+**Added**
+
+* `swiper:beforeInit` event dispatch.
+
+## 3.2.1 - 2023-08-01
+**Added**
+
+* _Keyboard_ setting.
+* Filter default values (and _normalize_ given ones).
+
 ## 3.2.0 - 2023-05-19
 **Added**
 
-* Slides per group.
+* _Slides per group_ setting.
 * Translations (de).
 
 **Changed**

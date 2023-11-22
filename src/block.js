@@ -10,18 +10,18 @@ const SliderEdit = ( { attributes, slides, slide, clientId, setAttributes, ...pr
     const { setState } = props;
 
     // keep current visible slide in boundaries (0 <=> slides.length - 1)
-    setState( { slide: Math.min( Math.max(1, slide ), slides ) } )
+    // setState( { slide: Math.min( Math.max(1, slide ), slides ) } )
 
     // pass attributes to child blocks
-    // select( 'core/editor' ).getBlocksByClientId( clientId )[0].innerBlocks.forEach( function ( block ) {
-    //     dispatch( 'core/editor' ).updateBlockAttributes( block.clientId, { slide: slide } )
+    // select( 'core/block-editor' ).getBlocksByClientId( clientId )[0].innerBlocks.forEach( function ( block ) {
+    //     dispatch( 'core/block-editor' ).updateBlockAttributes( block.clientId, { slide: slide } )
     // } )
 
     // get current slide blocks
-    let slideBlocks = select( 'core/editor' ).getBlocksByClientId( clientId )[0].innerBlocks.map( ( block ) => block.clientId );
+    let slideBlocks = select( 'core/block-editor' ).getBlocksByClientId( clientId )[0].innerBlocks.map( ( block ) => block.clientId );
     subscribe( () => {
         // get _new_ slide blocks
-        let _slideBlocks = select( 'core/editor' ).getBlocksByClientId( clientId )[0];
+        let _slideBlocks = select( 'core/block-editor' ).getBlocksByClientId( clientId )[0];
         if ( !_slideBlocks ) return;
         _slideBlocks = _slideBlocks.innerBlocks.map( ( block ) => block.clientId );
 
@@ -48,7 +48,7 @@ const SliderEdit = ( { attributes, slides, slide, clientId, setAttributes, ...pr
                                 label={ __( 'Slides per view', 'slider' ) }
                                 help={ __( 'Number (or "auto") of slides visible at the same time on slider\'s container.', 'slider' ) }
                                 value={ attributes.slidesPerView }
-                                disabled={ slides === 1 }
+                                // disabled={ slides === 1 }
                                 placeholder={ SliderBlock.attributes.slidesPerView.default }
                                 onChange={ ( slidesPerView ) => {
                                     if ( slidesPerView === 'a' ) slidesPerView = 'auto'
@@ -182,6 +182,12 @@ const SliderEdit = ( { attributes, slides, slide, clientId, setAttributes, ...pr
                             </p>
                         </>
                         <ToggleControl
+                            label={ __( 'Keyboard control', 'slider' ) }
+                            help={ __( 'Sliders currently in viewport can be controlled using the keyboard.', 'slider' ) }
+                            checked={ attributes.keyboard }
+                            onChange={ ( keyboard ) => setAttributes( { keyboard } ) }
+                        />
+                        <ToggleControl
                             label={ __( 'Simulate touch', 'slider' ) }
                             help={ __( 'Slider will accept mouse events like touch events (click and drag to change slides).', 'slider' ) }
                             checked={ attributes.simulateTouch }
@@ -233,7 +239,7 @@ const SliderControl = compose( [
     withState(),
     withSelect( ( select, props ) => {
         return {
-            slides: select('core/block-editor').getBlockCount( props.clientId )||1,
+            slides: select( 'core/block-editor' ).getBlockCount( props.clientId )||1,
             slide: 1,
             ...props
         }
@@ -282,6 +288,10 @@ const SliderBlock = registerBlockType( 'acv/slider', {
         effect: {
             type: 'string',
             default: 'slide'
+        },
+        keyboard: {
+            type: 'boolean',
+            default: false
         },
         loop: {
             type: 'boolean',

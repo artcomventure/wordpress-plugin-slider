@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.3.2 - 2023-12-14
+**Changed**
+
+* Automatically set `releaseOnEdges: true` if _mouseswheel_ is activated.
+
 ## 3.3.1 - 2023-11-22
 **Fixed**
 

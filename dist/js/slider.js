@@ -46,7 +46,7 @@ const doSliders = function( $context ) {
                 parameters.scrollbar = {
                     el: ".swiper-scrollbar",
                     draggable: true,
-                    snapOnRelease: false,
+                    snapOnRelease: (parameters.effect || 'swipe') === 'fade',
                     dragSize: 'auto',
                     hide: false
                 };

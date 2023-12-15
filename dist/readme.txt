@@ -48,6 +48,11 @@ Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-slide
 
 == Changelog ==
 
+= 3.3.3 - 2023-12-15 =
+**Changed**
+
+* Automatically set `snapOnRelease: true` for fade effect.
+
 = 3.3.2 - 2023-12-14 =
 **Changed**
 

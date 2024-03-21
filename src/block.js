@@ -199,6 +199,13 @@ const SliderEdit = ( { attributes, slides, slide, clientId, setAttributes, ...pr
                             checked={ attributes.mousewheel }
                             onChange={ ( mousewheel ) => setAttributes( { mousewheel } ) }
                         />
+                        <ToggleControl
+                          label={ __( 'Release on edges', 'slider' ) }
+                          help={ __( 'Allow page scrolling when swiper is on edge positions (in the beginning or in the end)', 'slider' ) }
+                          disabled={ !attributes.mousewheel }
+                          checked={ attributes.releaseOnEdges }
+                          onChange={ ( releaseOnEdges ) => setAttributes( { releaseOnEdges } ) }
+                        />
                     </PanelBody>
                 </PanelBody>
             </InspectorControls>
@@ -308,6 +315,10 @@ const SliderBlock = registerBlockType( 'acv/slider', {
         pagination: {
             type: 'string',
             default: 'false'
+        },
+        releaseOnEdges: {
+            type: 'boolean',
+            default: false
         },
         rewind: {
             type: 'boolean',

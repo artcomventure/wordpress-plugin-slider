@@ -8,16 +8,12 @@
   "scripts": {
     "assets": "npm run assets:swiper",
     "assets:swiper": "cp node_modules/swiper/swiper-bundle.min.js lib/swiper/swiper-bundle.min.js & cp node_modules/swiper/swiper-bundle.min.js.map lib/swiper/swiper-bundle.min.js.map & cp node_modules/swiper/swiper-bundle.min.css lib/swiper/swiper-bundle.min.css & cp node_modules/swiper/LICENSE lib/swiper/LICENSE",
-
     "watch": "wp-scripts start src/block.js & npm run watch:css & npm run watch:js",
     "build": "(wp-scripts build src/block.js && npm run compile:css && npm run compile:js) && gulp build",
-
     "watch:css": "node-sass css/ -o css/ --source-map true --output-style expanded --indent-type tab --indent-width 1 -w",
     "watch:js": "babel js -d js --out-file-extension .min.js --source-maps --no-comments --ignore=js/*.min.js --presets=@babel/preset-env --watch",
-
     "compile:css": "node-sass css/ -o css/ --output-style compressed",
     "compile:js": "babel js -d js --out-file-extension .min.js --no-comments --ignore=js/*.min.js --presets=@babel/preset-env,babel-preset-minify",
-
     "i18n:pot": "wp i18n make-pot . languages/slider.pot --exclude=src,dist",
     "i18n:po": "wp i18n update-po languages/slider.pot",
     "i18n:po2mo": "npm run i18n:mo & npm run i18n:json",
@@ -39,6 +35,6 @@
     "node-sass": "^9.0.0"
   },
   "dependencies": {
-    "swiper": "^9.3.2"
+    "swiper": "^11.0.7"
   }
 }

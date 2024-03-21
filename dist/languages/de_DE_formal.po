@@ -14,8 +14,8 @@ msgstr ""
 "X-Domain: slider\n"
 
 #. Plugin Name of the plugin
-#: build/block.js:598
-#: build/block.js:367
+#: build/block.js:605
+#: build/block.js:374
 msgid "Slider"
 msgstr "Slider"
 
@@ -27,273 +27,283 @@ msgstr "artcom venture GmbH"
 msgid "http://www.artcom-venture.de/"
 msgstr "http://www.artcom-venture.de/"
 
-#: build/block.js:360
+#: build/block.js:358
 #: build/block.js:161
 msgid "Slider Settings"
 msgstr "Slider-Einstellungen"
 
-#: build/block.js:363
+#: build/block.js:361
 #: build/block.js:162
 msgid "Display"
 msgstr "Anzeige"
 
-#: build/block.js:505
+#: build/block.js:504
 #: build/block.js:270
 msgid "Loop"
 msgstr "Schleife"
 
-#: build/block.js:445
+#: build/block.js:444
 #: build/block.js:226
 msgid "slide"
 msgstr "Verschieben"
 
 #. Description of the plugin
-#: build/block.js:599
-#: build/block.js:368
+#: build/block.js:606
+#: build/block.js:375
 msgid "Swiper goes Gutenberg."
 msgstr "Swiper für Gutenberg."
 
-#: build/block.js:367
+#: build/block.js:365
 #: build/block.js:165
 msgid "Slides per view"
 msgstr "Slides pro Ansicht"
 
-#: build/block.js:368
+#: build/block.js:366
 #: build/block.js:166
 msgid "Number (or \"auto\") of slides visible at the same time on slider's container."
 msgstr "Anzahl (oder \"auto\") der Slides, die zum gleichen Zeitpunkt sichtbar sind."
 
-#: build/block.js:379
+#: build/block.js:378
 #: build/block.js:178
 msgid "Space between slides (in px)"
 msgstr "Abstand zwischen den Slides (in px)."
 
-#: build/block.js:387
+#: build/block.js:386
 #: build/block.js:185
 msgid "Show overflow"
 msgstr "Überlauf anzeigen"
 
-#: build/block.js:388
+#: build/block.js:387
 #: build/block.js:186
 msgid "Show slides outside of slider's premises."
 msgstr "Zeigt die Slides außerhalb der Bühne."
 
-#: build/block.js:394
+#: build/block.js:393
 #: build/block.js:191
 msgid "Center slides"
 msgstr "Slides zentrieren"
 
-#: build/block.js:395
+#: build/block.js:394
 #: build/block.js:192
 msgid "Active slide will be centered, not always on the left side."
 msgstr "Aktiver Slide ist zentriert und nicht immer links ausgerichtet."
 
-#: build/block.js:401
+#: build/block.js:400
 #: build/block.js:197
 msgid "Auto height"
 msgstr "Automatische Höhe"
 
-#: build/block.js:402
+#: build/block.js:401
 #: build/block.js:198
 msgid "Enable and slider wrapper will adapt its height to the height of the currently active slide."
 msgstr "Wenn aktiviert, passt sich die Höhe des Sliders an die Höhe des aktuell aktiven Slides an."
 
-#: build/block.js:408
+#: build/block.js:407
 #: build/block.js:203
 msgid "Navigation"
 msgstr "Navigation"
 
-#: build/block.js:409
+#: build/block.js:408
 #: build/block.js:204
 msgid "Aka prev and next buttons."
 msgstr "Auch bekannt als Vor- und Zurück-Buttons."
 
-#: build/block.js:415
+#: build/block.js:414
 #: build/block.js:209
 msgid "Pagination"
 msgstr "Seitennummerierung"
 
-#: build/block.js:419
+#: build/block.js:418
 #: build/block.js:212
 msgid "Nope"
 msgstr "Ohne"
 
-#: build/block.js:422
+#: build/block.js:421
 #: build/block.js:213
 msgid "Bullets"
 msgstr "Kugeln"
 
-#: build/block.js:425
+#: build/block.js:424
 #: build/block.js:214
 msgid "Fraction"
 msgstr "Bruch"
 
-#: build/block.js:428
+#: build/block.js:427
 #: build/block.js:215
 msgid "Progressbar"
 msgstr "Fortschrittsanzeige"
 
-#: build/block.js:431
+#: build/block.js:430
 #: build/block.js:216
 msgid "Scrollbar"
 msgstr "Scrollleiste"
 
-#: build/block.js:437
+#: build/block.js:436
 #: build/block.js:221
 msgid "Animation"
 msgstr "Animation"
 
-#: build/block.js:441
+#: build/block.js:440
 #: build/block.js:223
 msgid "Transition effect"
 msgstr "Übergangseffekt"
 
-#: build/block.js:448
+#: build/block.js:447
 #: build/block.js:227
 msgid "fade"
 msgstr "Ein-/Ausblenden"
 
-#: build/block.js:451
+#: build/block.js:450
 #: build/block.js:228
 msgid "cube"
 msgstr "Würfel"
 
-#: build/block.js:454
+#: build/block.js:453
 #: build/block.js:229
 msgid "coverflow"
 msgstr "Coverflow"
 
-#: build/block.js:457
+#: build/block.js:456
 #: build/block.js:230
 msgid "flip"
 msgstr "Umdrehen"
 
-#: build/block.js:460
+#: build/block.js:459
 #: build/block.js:231
 msgid "cards"
 msgstr "Karten"
 
-#: build/block.js:466
+#: build/block.js:465
 #: build/block.js:237
 msgid "Speed"
 msgstr "Geschwindigkeit"
 
-#: build/block.js:475
+#: build/block.js:474
 #: build/block.js:243
 msgid "Duration of transition between slides (in ms)."
 msgstr "Dauer des Übergangs zwischen Slides (in ms)."
 
-#: build/block.js:476
+#: build/block.js:475
 #: build/block.js:247
 msgid "Direction"
 msgstr "Richtung"
 
-#: build/block.js:480
+#: build/block.js:479
 #: build/block.js:250
 msgid "horizontal"
 msgstr "horizontal"
 
-#: build/block.js:483
+#: build/block.js:482
 #: build/block.js:251
 msgid "vertical"
 msgstr "vertikal"
 
-#: build/block.js:489
+#: build/block.js:488
 #: build/block.js:256
 msgid "Behaviour"
 msgstr "Verhalten"
 
-#: build/block.js:493
+#: build/block.js:492
 #: build/block.js:258
 msgid "Slides per group"
 msgstr ""
 
-#: build/block.js:506
+#: build/block.js:505
 #: build/block.js:271
 msgid "Enable continuous loop mode."
 msgstr "Aktiviert den Endlosschleifenmodus."
 
-#: build/block.js:513
+#: build/block.js:512
 #: build/block.js:277
 msgid "Rewind"
 msgstr "Zurückspulen"
 
-#: build/block.js:514
+#: build/block.js:513
 #: build/block.js:278
 msgid "Last slide will slide back to the first slide and vice versa."
 msgstr "Vom letzte Slide gelangen Sie zurück zum ersten und umgekehrt."
 
-#: build/block.js:521
+#: build/block.js:520
 #: build/block.js:284
 msgid "Slide to clicked slide"
 msgstr "Zum angeklickten Slide verschieben"
 
-#: build/block.js:522
+#: build/block.js:521
 #: build/block.js:285
 msgid "Click on any slide will produce transition to this slide."
 msgstr "Klicken Sie auf einen beliebigen Slide, um einen Übergang zu diesem Slide zu erzeugen."
 
-#: build/block.js:528
+#: build/block.js:527
 #: build/block.js:291
 msgid "Autoplay"
 msgstr "Automatisches Abspielen"
 
-#: build/block.js:537
+#: build/block.js:536
 #: build/block.js:298
 msgid "Delay between transitions (in ms)."
 msgstr "Verzögerung zwischen Übergängen (in ms)."
 
-#: build/block.js:545
+#: build/block.js:544
 #: build/block.js:308
 msgid "Simulate touch"
 msgstr "Berührung simulieren"
 
-#: build/block.js:552
+#: build/block.js:551
 #: build/block.js:314
 msgid "Mouse wheel"
 msgstr "Mausrad"
 
-#: build/block.js:553
+#: build/block.js:552
 #: build/block.js:315
 msgid "Navigate through slides using mouse wheel."
 msgstr "Navigieren Sie mit dem Mausrad durch die Slides."
 
-#: build/block.js:560
-#: build/block.js:327
+#: build/block.js:567
+#: build/block.js:334
 msgid "Slide view"
 msgstr "Slide-Ansicht"
 
-#: build/block.js:566
-#: build/block.js:332
+#: build/block.js:573
+#: build/block.js:339
 msgid "List view"
 msgstr "Listen-Ansicht"
 
-#: build/block.js:584
-#: build/block.js:347
+#: build/block.js:591
+#: build/block.js:354
 msgid "show slide %d"
 msgstr "zeige Slide %d"
 
-#: build/block.js:726
-#: build/block.js:493
+#: build/block.js:737
+#: build/block.js:504
 msgid "Slide"
 msgstr "Slide"
 
-#: build/block.js:546
+#: build/block.js:545
 #: build/block.js:309
 msgid "Slider will accept mouse events like touch events (click and drag to change slides)."
 msgstr "Der Slider akzeptiert Mausereignisse wie Berührungsereignisse (Klicken und Ziehen, um die Slides zu wechseln)."
 
-#: build/block.js:494
+#: build/block.js:493
 #: build/block.js:259
 msgid "Set numbers of slides to define and enable group sliding. \"auto\" will slide as many slides as defined in \"Slides per view\"."
 msgstr "Legen Sie die Anzahl der Slides fest, die sich bei Aktion verschieben. „Auto“ verschiebt so viele Slides, wie in „Slides pro Ansicht“ definiert sind."
 
-#: build/block.js:538
+#: build/block.js:537
 #: build/block.js:302
 msgid "Keyboard control"
 msgstr "Tastatursteuerung"
 
-#: build/block.js:539
+#: build/block.js:538
 #: build/block.js:303
 msgid "Sliders currently in viewport can be controlled using the keyboard."
 msgstr "Slider, die sich im Sichtfeld befinden, können über die Tastatur gesteuert werden."
+
+#: build/block.js:558
+#: build/block.js:320
+msgid "Release on edges"
+msgstr "Am Ende weiterscrollen"
+
+#: build/block.js:559
+#: build/block.js:321
+msgid "Allow page scrolling when swiper is on edge positions (in the beginning or in the end)"
+msgstr "Erlauben Sie das Scrollen der Seite, wenn sich der Swiper an Randpositionen befindet (am Anfang oder am Ende)."

@@ -55,8 +55,7 @@ const doSliders = function( $context ) {
 
         if ( parameters.mousewheel ) {
             parameters.mousewheel = {
-                forceToAxis: true,
-                releaseOnEdges: true
+                releaseOnEdges: !!parameters.releaseOnEdges
             }
         }
 

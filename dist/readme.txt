@@ -48,6 +48,16 @@ Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-slide
 
 == Changelog ==
 
+= 3.3.4 - 2024-03-20 =
+**Updated**
+
+* Swiper from 9.3.2 to 11.0.7
+
+**Added**
+
+* Mousewheel `releaseOnEdges` parameter.
+  .
+
 = 3.3.3 - 2023-12-15 =
 **Changed**
 

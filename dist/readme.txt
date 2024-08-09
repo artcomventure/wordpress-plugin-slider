@@ -48,6 +48,11 @@ Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-slide
 
 == Changelog ==
 
+= 3.4.2 - 2024-08-09 =
+**Fixed**
+
+* Speed setting.
+
 = 3.4.1 - 2024-08-09 =
 **Fixed**
 

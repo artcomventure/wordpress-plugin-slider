@@ -118,7 +118,7 @@ const SliderEdit = ( { attributes, slides, slide, clientId, setAttributes, ...pr
                         <>
                             <NumberControl
                                 label={ __( 'Speed', 'slider' ) }
-                                value={ (attributes.speed !== SliderBlock.attributes.speed.default && SliderBlock.attributes.speed.default)||'' }
+                                value={ attributes.speed !== SliderBlock.attributes.speed.default ? attributes.speed : '' }
                                 min={ 0 }
                                 placeholder={ SliderBlock.attributes.speed.default }
                                 onChange={ ( speed ) => setAttributes( { speed } ) }/>

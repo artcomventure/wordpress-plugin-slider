@@ -87,6 +87,19 @@ const doSliders = function( $context ) {
                 parameters[parameter] = !!parameters[parameter];
         } )
 
+        parameters.a11y = {
+            firstSlideMessage: wp.i18n.__( 'This is the first slide', 'slider' ),
+            lastSlideMessage: wp.i18n.__( 'This is the last slide', 'slider' ),
+            nextSlideMessage: wp.i18n.__( 'Next slide', 'slider' ),
+            prevSlideMessage: wp.i18n.__( 'Previous slide', 'slider' ),
+            paginationBulletMessage: wp.i18n.__( 'Go to slide {{index}}', 'slider' ),
+            scrollOnFocus: false
+        }
+
+        if ( typeof Alter !== 'undefined' ) {
+            parameters = Alter.do( 'swiper:parameters', parameters, $swiper )
+        }
+
         // init slider
         new Swiper( $swiper, parameters = {
             watchSlidesProgress: true,

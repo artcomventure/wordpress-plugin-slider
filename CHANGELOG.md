@@ -1,5 +1,16 @@
 # Changelog
 
+## 3.4.1 - 2024-08-09
+**Fixed**
+
+* Check for slider attributes first before removing default or empty values.
+
+## 3.4.0 - 2024-08-02
+**Added**
+
+* [`Alter`](https://gist.github.com/enoks/a336e8db4594737a98d8bd2c3783c2d6) support (optional).
+* a11y translations.
+
 ## 3.3.4 - 2024-03-20
 **Updated**
 

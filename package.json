@@ -1,6 +1,6 @@
 {
   "name": "slider",
-  "version": "3.3.3",
+  "version": "3.4.1",
   "description": "Swiper goes Gutenberg",
   "author": "stefan.kaesche@artcom-venutre.de",
   "license": "MIT",
@@ -14,7 +14,7 @@
     "watch:js": "babel js -d js --out-file-extension .min.js --source-maps --no-comments --ignore=js/*.min.js --presets=@babel/preset-env --watch",
     "compile:css": "node-sass css/ -o css/ --output-style compressed",
     "compile:js": "babel js -d js --out-file-extension .min.js --no-comments --ignore=js/*.min.js --presets=@babel/preset-env,babel-preset-minify",
-    "i18n:pot": "wp i18n make-pot . languages/slider.pot --exclude=src,dist",
+    "i18n:pot": "wp i18n make-pot . languages/slider.pot --exclude=src,dist,node_modules,**/*.min.*",
     "i18n:po": "wp i18n update-po languages/slider.pot",
     "i18n:po2mo": "npm run i18n:mo & npm run i18n:json",
     "i18n:mo": "wp i18n make-mo languages",

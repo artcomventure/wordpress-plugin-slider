@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Slider
  * Description: Swiper goes Gutenberg.
- * Version: 3.3.4
+ * Version: 3.4.1
  * Text Domain: slider
  * Author: artcom venture GmbH
  * Author URI: http://www.artcom-venture.de/
@@ -44,7 +44,8 @@ function slider_scripts() {
     $ver = get_plugin_data( __FILE__ )['Version'];
 
     wp_register_script( 'swiper', SLIDER_DIRECTORY_URI . 'lib/swiper/swiper-bundle.min.js', array(), '11.0.7', true );
-	wp_enqueue_script( 'slider', SLIDER_DIRECTORY_URI . 'js/slider.min.js', array( 'swiper' ), $ver, true );
+	wp_enqueue_script( 'slider', SLIDER_DIRECTORY_URI . 'js/slider.min.js', array( 'swiper', 'wp-i18n' ), $ver, true );
+	wp_set_script_translations( 'slider', 'slider', SLIDER_DIRECTORY . '/languages' );
 
     wp_register_style( 'swiper', SLIDER_DIRECTORY_URI . 'lib/swiper/swiper-bundle.min.css', array(), '11.0.7' );
     wp_enqueue_style( 'slider', SLIDER_DIRECTORY_URI . 'css/slider.css', array( 'swiper' ), $ver );

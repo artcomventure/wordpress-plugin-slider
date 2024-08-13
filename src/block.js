@@ -359,11 +359,11 @@ const SliderBlock = registerBlockType( 'acv/slider', {
 
         // remove default or empty values
         Object.keys( parameters ).map( ( attribute ) => {
-            if ( !!SliderBlock.attributes[attribute] && (
-                ['blockView','showOverflow'].indexOf( attribute ) >= 0
-                || SliderBlock.attributes[attribute].default === parameters[attribute]
-                || parameters[attribute] === ''
-            ) ) delete parameters[attribute]
+            if ( !SliderBlock.attributes[attribute] // no swiper attribute
+                || ['blockView','showOverflow'].indexOf( attribute ) >= 0 // no needed
+                || SliderBlock.attributes[attribute].default === parameters[attribute] // is default value
+                || parameters[attribute] === '' // is empty
+            ) delete parameters[attribute]
         } )
 
         // 'auto' is not swiper default

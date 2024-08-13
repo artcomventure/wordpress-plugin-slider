@@ -1,1 +1,1 @@
-.swiper-overflow-visible{overflow:visible}.swiper-slide>:first-child{margin-top:0}.swiper-slide>:last-child{margin-bottom:0}.swiper[data-swiper*='"slidesPerView":"auto"'] .swiper-slide{width:auto}.swiper-lock .swiper-ui{display:none}
+.swiper-overflow-visible{overflow:visible}.swiper-slide{box-sizing:border-box}.swiper-slide>:first-child{margin-top:0}.swiper-slide>:last-child{margin-bottom:0}.swiper[data-swiper*='"slidesPerView":"auto"'] .swiper-slide{width:auto}.swiper-lock .swiper-ui{display:none}

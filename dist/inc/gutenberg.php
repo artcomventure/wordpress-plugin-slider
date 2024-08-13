@@ -53,3 +53,11 @@ function allow_slider_block( $allowed_blocks, $post ) {
     }
     return $allowed_blocks;
 }
+
+// add default styles to Gutenberg
+add_action( 'after_setup_theme', function() {
+	add_theme_support( 'editor-styles' );
+	// relative path from `functions.php`
+	add_editor_style(  '../../plugins/slider/lib/swiper/swiper-bundle.min.css' );
+	add_editor_style(  '../../plugins/slider/css/slider.css' );
+}, 11 );

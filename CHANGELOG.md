@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.4.3 - 2024-08-09
+**Added**
+
+* Swiper styles to Gutenberg.
+
 ## 3.4.2 - 2024-08-09
 **Fixed**
 

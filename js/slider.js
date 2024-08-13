@@ -13,7 +13,7 @@ const doSliders = function( $context ) {
             bubbles: true
         } ) );
 
-        let parameters = $swiper.getAttribute( 'data-swiper' )||{};
+        let parameters = $swiper.getAttribute( 'data-swiper' )||"{}";
         // try to parse parameters
         try { parameters = JSON.parse( parameters ); }
         catch( e ) { parameters = {}; }

@@ -45,6 +45,7 @@
 // Preview
 
 [data-type="acv/slider"] {
+  position: relative;
   padding: 1em;
   background-color: rgba(#000, .025);
 
@@ -64,6 +65,7 @@
 
     &:not(:first-child) {
       bottom: 0;
+      margin: 0 !important;
 
       button {
         background: #1e1e1e;
@@ -76,17 +78,30 @@
     }
   }
 
+  .swiper {
+    &, &-wrapper {
+      display: block !important;
+      position: static !important;
+      transform: none !important;
+    }
+  }
+
   [data-type="acv/slide"] {
     padding: .01em 1em;
     margin-bottom: 1em;
     background-color: rgba(#000, .035);
     position: relative;
+
+    &:not(.is-selected):not(.has-child-selected) .block-list-appender {
+      display: none;
+    }
   }
 
   .swiper {
     margin: 0 !important;
 
     &-pagination {
+      position: static !important;
       display: flex;
       justify-content: center;
 
@@ -125,3 +140,13 @@
     }
   }
 }
+
+
+
+// Gutenberg
+//.is-root-container & {
+//  &, &-wrapper {
+//    display: block !important;
+//    position: static !important;
+//  }
+//}

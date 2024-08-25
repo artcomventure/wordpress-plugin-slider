@@ -1,5 +1,3 @@
-# Copyright (C) 2024 artcom venture GmbH
-# This file is distributed under the same license as the Slider plugin.
 msgid ""
 msgstr ""
 "Project-Id-Version: Slider 3.4.0\n"
@@ -11,6 +9,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2024-08-02T06:52:52+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Language: \n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: slider\n"
 
@@ -256,22 +255,26 @@ msgstr "afficher la diapositive %d"
 msgid "Slide"
 msgstr "Glissoire"
 
-#: js/slider.js:95
+#: js/slider.js:96
 msgid "This is the first slide"
 msgstr "Ceci est la première diapositive"
 
-#: js/slider.js:96
+#: js/slider.js:97
 msgid "This is the last slide"
 msgstr "Ceci est la dernière diapositive"
 
-#: js/slider.js:97
+#: js/slider.js:98
 msgid "Next slide"
 msgstr "Diapositive suivante"
 
-#: js/slider.js:98
+#: js/slider.js:99
 msgid "Previous slide"
 msgstr "Diapositive précédente"
 
-#: js/slider.js:99
+#: js/slider.js:100
 msgid "Go to slide {{index}}"
 msgstr "Accéder à la diapositive {{index}}"
+
+#: build/block.js:1
+msgid "Freemode"
+msgstr ""

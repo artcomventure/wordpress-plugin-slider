@@ -150,6 +150,11 @@ const SliderEdit = ( { attributes, slides, slide, clientId, setAttributes, ...pr
                                     setAttributes( { slidesPerGroup } )
                             } } />
                         <ToggleControl
+                            label={ __( 'Freemode', 'slider' ) }
+                            checked={ attributes.freeMode }
+                            onChange={ ( freeMode ) => setAttributes( { freeMode } ) }
+                        />
+                        <ToggleControl
                             label={ __( 'Loop', 'slider' ) }
                             help={ __( 'Enable continuous loop mode.', 'slider' ) }
                             disabled={ attributes.rewind }
@@ -291,6 +296,10 @@ const SliderBlock = registerBlockType( 'acv/slider', {
         direction: {
             type: 'string',
             default: 'horizontal'
+        },
+        freeMode: {
+            type: 'boolean',
+            default: false
         },
         effect: {
             type: 'string',

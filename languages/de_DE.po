@@ -255,22 +255,26 @@ msgstr "Am Ende weiterscrollen"
 msgid "Allow page scrolling when swiper is on edge positions (in the beginning or in the end)"
 msgstr "Erlaube das Scrollen der Seite, wenn sich der Swiper an Randpositionen befindet (am Anfang oder am Ende)."
 
-#: js/slider.js:95
+#: js/slider.js:96
 msgid "This is the first slide"
 msgstr "Dies ist die erste Folie"
 
-#: js/slider.js:96
+#: js/slider.js:97
 msgid "This is the last slide"
 msgstr "Dies ist die letzte Folie"
 
-#: js/slider.js:97
+#: js/slider.js:98
 msgid "Next slide"
 msgstr "Nächste Folie"
 
-#: js/slider.js:98
+#: js/slider.js:99
 msgid "Previous slide"
 msgstr "Vorherige Folie"
 
-#: js/slider.js:99
+#: js/slider.js:100
 msgid "Go to slide {{index}}"
 msgstr "Wechsel zu Folie {{index}}"
+
+#: build/block.js:1
+msgid "Freemode"
+msgstr "Freimodus"

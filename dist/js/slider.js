@@ -81,6 +81,11 @@ const doSliders = function( $context ) {
         if ( parameters.slidesPerGroup === 1 )
             delete parameters.slidesPerGroup;
 
+        if ( !!parameters.freeMode ) parameters.freeMode = {
+            enabled: true,
+            sticky: false
+        };
+
         // make boolean
         ['keyboard', 'simulateTouch'].forEach( parameter => {
             if ( typeof parameters[parameter] !== 'undefined' )

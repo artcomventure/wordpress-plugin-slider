@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.4.4 - 2024-08-025
+**Added**
+
+* Freemode setting.
+
 ## 3.4.3 - 2024-08-09
 **Added**
 

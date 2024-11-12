@@ -255,26 +255,46 @@ msgstr "afficher la diapositive %d"
 msgid "Slide"
 msgstr "Glissoire"
 
-#: js/slider.js:96
+#: js/slider.js:99
 msgid "This is the first slide"
 msgstr "Ceci est la première diapositive"
 
-#: js/slider.js:97
+#: js/slider.js:100
 msgid "This is the last slide"
 msgstr "Ceci est la dernière diapositive"
 
-#: js/slider.js:98
+#: js/slider.js:101
 msgid "Next slide"
 msgstr "Diapositive suivante"
 
-#: js/slider.js:99
+#: js/slider.js:102
 msgid "Previous slide"
 msgstr "Diapositive précédente"
 
-#: js/slider.js:100
+#: js/slider.js:103
 msgid "Go to slide {{index}}"
 msgstr "Accéder à la diapositive {{index}}"
 
 #: build/block.js:1
 msgid "Freemode"
-msgstr ""
+msgstr "Mode libre"
+
+#: build/block.js:1
+msgid "Accessibility"
+msgstr "Accessibilité"
+
+#: build/block.js:1
+msgid "Role"
+msgstr "Rôle"
+
+#: build/block.js:1
+msgid "Value of the \"role\" attribute to be set."
+msgstr "Valeur de l'attribut \"role\" à définir."
+
+#: build/block.js:1
+msgid "Label"
+msgstr "Label"
+
+#: build/block.js:1
+msgid "Message for screen readers what this slider is about."
+msgstr "Message pour les lecteurs d'écran expliquant à quoi sert ce curseur."

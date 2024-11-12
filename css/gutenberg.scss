@@ -94,6 +94,10 @@
 
     &:not(.is-selected):not(.has-child-selected) .block-list-appender {
       display: none;
+
+      &:first-child:last-child {
+        display: inherit;
+      }
     }
   }
 

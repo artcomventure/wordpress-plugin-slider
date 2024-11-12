@@ -255,26 +255,46 @@ msgstr "Am Ende weiterscrollen"
 msgid "Allow page scrolling when swiper is on edge positions (in the beginning or in the end)"
 msgstr "Erlauben Sie das Scrollen der Seite, wenn sich der Swiper an Randpositionen befindet (am Anfang oder am Ende)."
 
-#: js/slider.js:96
+#: js/slider.js:99
 msgid "This is the first slide"
 msgstr "Dies ist die erste Folie"
 
-#: js/slider.js:97
+#: js/slider.js:100
 msgid "This is the last slide"
 msgstr "Dies ist die letzte Folie"
 
-#: js/slider.js:98
+#: js/slider.js:101
 msgid "Next slide"
 msgstr "Nächste Folie"
 
-#: js/slider.js:99
+#: js/slider.js:102
 msgid "Previous slide"
 msgstr "Vorherige Folie"
 
-#: js/slider.js:100
+#: js/slider.js:103
 msgid "Go to slide {{index}}"
 msgstr "Wechseln Sie zu Folie {{index}}"
 
 #: build/block.js:1
 msgid "Freemode"
 msgstr "Freimodus"
+
+#: build/block.js:1
+msgid "Accessibility"
+msgstr "Barrierefreiheit"
+
+#: build/block.js:1
+msgid "Role"
+msgstr "Rolle"
+
+#: build/block.js:1
+msgid "Value of the \"role\" attribute to be set."
+msgstr "Wert des festzulegenden Attributs \"role\"."
+
+#: build/block.js:1
+msgid "Label"
+msgstr "Beschriftung"
+
+#: build/block.js:1
+msgid "Message for screen readers what this slider is about."
+msgstr "Nachricht für Bildschirmlesegeräte, worum es in diesem Slider geht."

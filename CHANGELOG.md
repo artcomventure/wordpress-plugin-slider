@@ -1,6 +1,15 @@
 # Changelog
 
-## 3.4.4 - 2024-08-025
+## 3.4.5 - 2024-11-12
+**Updated**
+
+* swiper bundle to v11.1.14
+
+**Added**
+
+* A11y parameters.
+
+## 3.4.4 - 2024-08-25
 **Added**
 
 * Freemode setting.

@@ -212,6 +212,29 @@ const SliderEdit = ( { attributes, slides, slide, clientId, setAttributes, ...pr
                           onChange={ ( releaseOnEdges ) => setAttributes( { releaseOnEdges } ) }
                         />
                     </PanelBody>
+                    <PanelBody title={ __( 'Accessibility', 'slider' ) } initialOpen={ false } icon={ redo }>
+                        <SelectControl
+                            label={ __( 'Role', 'slider' ) }
+                            help={ __( 'Value of the "role" attribute to be set.', 'slider' ) }
+                            value={ attributes.a11y.containerRole || 'group' }
+                            options={ [
+                                { value: 'group', label: 'group' },
+                                { value: 'region', label: 'region' }
+                            ] }
+                            onChange={ containerRole => {
+                                const a11y = { ...attributes.a11y }
+                                setAttributes( { a11y: { ...a11y, ...{ containerRole } } } )
+                            } }
+                        />
+                        <TextControl
+                            label={ __( 'Label', 'slider' ) }
+                            help={ __( 'Message for screen readers what this slider is about.', 'slider' ) }
+                            value={ attributes.a11y.containerMessage || '' }
+                            onChange={ containerMessage => {
+                                const a11y = { ...attributes.a11y }
+                                setAttributes( { a11y: { ...a11y, ...{ containerMessage } } } )
+                            } } />
+                    </PanelBody>
                 </PanelBody>
             </InspectorControls>
 
@@ -280,6 +303,11 @@ const SliderBlock = registerBlockType( 'acv/slider', {
         },
 
         // Swiper parameters
+
+        a11y: {
+            type: 'object',
+            default: {}
+        },
 
         autoHeight: {
             type: 'boolean',
@@ -398,7 +426,8 @@ const SlideBlock = registerBlockType( 'acv/slide', {
     parent: [ 'acv/slider' ],
     // https://developer.wordpress.org/block-editor/reference-guides/block-api/block-supports/
     supports: {
-        color: true
+        color: true,
+        anchor: true
     },
 
     edit: ( { clientId } ) => {

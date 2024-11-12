@@ -1,6 +1,6 @@
 {
   "name": "slider",
-  "version": "3.4.4",
+  "version": "3.4.5",
   "description": "Swiper goes Gutenberg",
   "author": "stefan.kaesche@artcom-venutre.de",
   "license": "MIT",
@@ -35,6 +35,6 @@
     "node-sass": "^9.0.0"
   },
   "dependencies": {
-    "swiper": "^11.0.7"
+    "swiper": "^11.1.14"
   }
 }

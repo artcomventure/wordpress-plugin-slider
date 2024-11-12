@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Slider plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Slider 3.4.4\n"
+"Project-Id-Version: Slider 3.4.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wordpress-plugin-slider\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-08-25T09:11:40+00:00\n"
+"POT-Creation-Date: 2024-11-12T07:35:43+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: slider\n"
@@ -245,6 +245,26 @@ msgid "Allow page scrolling when swiper is on edge positions (in the beginning o
 msgstr ""
 
 #: build/block.js:1
+msgid "Accessibility"
+msgstr ""
+
+#: build/block.js:1
+msgid "Role"
+msgstr ""
+
+#: build/block.js:1
+msgid "Value of the \"role\" attribute to be set."
+msgstr ""
+
+#: build/block.js:1
+msgid "Label"
+msgstr ""
+
+#: build/block.js:1
+msgid "Message for screen readers what this slider is about."
+msgstr ""
+
+#: build/block.js:1
 msgid "Slide view"
 msgstr ""
 
@@ -260,22 +280,22 @@ msgstr ""
 msgid "Slide"
 msgstr ""
 
-#: js/slider.js:96
+#: js/slider.js:99
 msgid "This is the first slide"
 msgstr ""
 
-#: js/slider.js:97
+#: js/slider.js:100
 msgid "This is the last slide"
 msgstr ""
 
-#: js/slider.js:98
+#: js/slider.js:101
 msgid "Next slide"
 msgstr ""
 
-#: js/slider.js:99
+#: js/slider.js:102
 msgid "Previous slide"
 msgstr ""
 
-#: js/slider.js:100
+#: js/slider.js:103
 msgid "Go to slide {{index}}"
 msgstr ""

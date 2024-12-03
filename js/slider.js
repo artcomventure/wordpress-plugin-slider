@@ -14,15 +14,10 @@ const doSliders = function( $context ) {
         } ) );
 
         let parameters = $swiper.getAttribute( 'data-swiper' )||"{}";
-        // try to parse parameters
-        try { parameters = JSON.parse( parameters ); }
+        try { parameters = JSON.parse( parameters ); } // try to parse parameters
         catch( e ) { parameters = {}; }
 
-        // make sure number values are actually type of number
-        for ( const attribute in parameters ) {
-            if ( !isNaN( parameters[attribute] ) ) parameters[attribute] = parameters[attribute] * 1;
-        }
-
+        // https://swiperjs.com/swiper-api#navigation-parameters
         if ( !!parameters.navigation ) {
             parameters.navigation = {
                 nextEl: '.swiper-button-next',
@@ -30,18 +25,17 @@ const doSliders = function( $context ) {
             }
         }
 
+        // https://swiperjs.com/swiper-api#pagination-parameters
         if ( typeof parameters.pagination === 'string' ) {
             parameters.pagination = {
                 el: '.swiper-pagination',
                 type: parameters.pagination
             }
 
-            // bullets
             if ( parameters.pagination.type === 'bullets' ) {
                 parameters.pagination.clickable = true;
             }
 
-            // scrollbar
             if ( parameters.pagination.type === 'scrollbar' ) {
                 parameters.scrollbar = {
                     el: ".swiper-scrollbar",
@@ -53,12 +47,14 @@ const doSliders = function( $context ) {
             }
         }
 
+        // https://swiperjs.com/swiper-api#mousewheel-control-parameters
         if ( parameters.mousewheel ) {
             parameters.mousewheel = {
                 releaseOnEdges: !!parameters.releaseOnEdges
             }
         }
 
+        // https://swiperjs.com/swiper-api#autoplay-parameters
         if ( parameters.autoplay ) {
             parameters.autoplay = {
                 delay: parameters.autoplay,
@@ -75,23 +71,16 @@ const doSliders = function( $context ) {
             else parameters.slidesPerGroup = parameters.slidesPerView || 1;
         }
 
-        // filter default values
-        // and _normalize_ given ones
-
         if ( parameters.slidesPerGroup === 1 )
             delete parameters.slidesPerGroup;
 
+        // https://swiperjs.com/swiper-api#free-mode-parameters
         if ( !!parameters.freeMode ) parameters.freeMode = {
             enabled: true,
             sticky: false
         };
 
-        // make boolean
-        ['keyboard', 'simulateTouch'].forEach( parameter => {
-            if ( typeof parameters[parameter] !== 'undefined' )
-                parameters[parameter] = !!parameters[parameter];
-        } )
-
+        // https://swiperjs.com/swiper-api#accessibility-parameters
         parameters.a11y = { ...{
             containerRole: 'group',
             containerRoleDescriptionMessage: 'carousel',
@@ -105,34 +94,59 @@ const doSliders = function( $context ) {
             scrollOnFocus: false
         }, ...parameters.a11y }
 
+        // make hidden/visible slides non-active/accessible
+        function slideA11y( swiper ) {
+            swiper.slides.forEach( ( $slide, i) => {
+                const accessible = $slide.classList.contains( 'swiper-slide-fully-visible' );
+
+                $slide[accessible ? 'removeAttribute' : 'setAttribute']( 'inert', '' ) // browser will ignore the element
+                $slide[accessible ? 'removeAttribute' : 'setAttribute']( 'aria-hidden', 'true' ) // hide from accessibility API
+            } );
+        }
+
+        if ( !parameters.on ) parameters.on = {};
+        const afterInit = parameters.on.afterInit || (()=>{})
+        parameters.on.afterInit = swiper => {
+            slideA11y( swiper );
+
+            // for some reason swiper doesn't get drag width right
+            // so we update scrollbar's `dragSize` parameter immediately after init
+            if ( swiper.params.scrollbar.dragSize === 'auto' ) {
+                const $drag = swiper.el.querySelector( '.swiper-scrollbar-drag' )
+                if ( $drag ) swiper.params.scrollbar.dragSize = $drag.offsetWidth;
+            }
+
+            afterInit( swiper ) // custom callback
+            swiper.el.dispatchEvent( new CustomEvent( 'swiper:afterInit', {
+                detail: swiper,
+                bubbles: true
+            } ) );
+        }
+
+        // https://gist.github.com/enoks/a336e8db4594737a98d8bd2c3783c2d6
         if ( typeof Alter !== 'undefined' ) {
             parameters = Alter.do( 'swiper:parameters', parameters, $swiper )
         }
 
+        // make sure number values are actually type of number
+        for ( const parameter in parameters ) {
+            if ( !isNaN( parameters[parameter] ) ) parameters[parameter] = parameters[parameter] * 1;
+        }
+
+        // make boolean
+        ['keyboard', 'simulateTouch'].forEach( parameter => {
+            if ( typeof parameters[parameter] !== 'undefined' )
+                parameters[parameter] = !!parameters[parameter];
+        } )
+
         // init slider
-        new Swiper( $swiper, parameters = {
+        const swiper = new Swiper( $swiper, {
             watchSlidesProgress: true,
             threshold: ('ontouchstart' in window || navigator.msMaxTouchPoints > 0) ? 0 : 10,
-            on: {
-                afterInit: function( swiper ) {
-                    // for some reason swiper doesn't get drag width right
-                    // so we update scrollbar's `dragSize` parameter immediately after init
-                    if ( swiper.params.scrollbar.dragSize === 'auto' ) {
-                        const $drag = swiper.el.querySelector( '.swiper-scrollbar-drag' )
-                        if ( $drag ) swiper.params.scrollbar.dragSize = $drag.offsetWidth;
-                    }
-
-                    swiper.el.dispatchEvent( new CustomEvent( 'swiper:afterInit', {
-                        detail: swiper,
-                        bubbles: true
-                    } ) );
-                },
-                disable: function( swiper ) { swiper.el.classList.add( 'swiper-lock' ); },
-                enable: function( swiper ) { swiper.el.classList.remove( 'swiper-lock' ); }
-            },
-            // merge slider specific parameters
             ...parameters
         } );
+
+        swiper.on( 'transitionEnd', slideA11y )
     } );
 
     return $sliders;

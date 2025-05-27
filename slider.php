@@ -3,8 +3,9 @@
 /**
  * Plugin Name: Slider
  * Description: Swiper goes Gutenberg.
- * Version: 3.4.6
+ * Version: 3.4.7
  * Text Domain: slider
+ * Domain Path: /languages
  * Author: artcom venture GmbH
  * Author URI: http://www.artcom-venture.de/
  */
@@ -29,9 +30,19 @@ add_filter( 'site_transient_update_plugins', function( $value ) {
 	return $value;
 } );
 
-// t9n
-add_action( 'after_setup_theme', function() {
-    load_theme_textdomain( 'slider', SLIDER_DIRECTORY . 'languages' );
+/**
+ * T9n.
+ */
+add_action( 'after_setup_theme', function () {
+	$domain = 'slider';
+	$domain_path = 'languages';
+
+	load_plugin_textdomain( $domain, false, dirname( plugin_basename( __FILE__ ) ) . "/$domain_path" );
+
+	// @since WP 6.7.1 :/ ???
+	// fallback to manually load local translations if not picked up
+	if ( !is_textdomain_loaded( $domain ) )
+		load_textdomain( $domain, SLIDER_DIRECTORY . "$domain_path/" . get_locale() . '.mo' );
 } );
 
 /**

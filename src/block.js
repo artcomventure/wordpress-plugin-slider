@@ -174,18 +174,41 @@ const SliderEdit = ( { attributes, slides, slide, clientId, setAttributes, ...pr
                             checked={ attributes.slideToClickedSlide }
                             onChange={ ( slideToClickedSlide ) => setAttributes( { slideToClickedSlide } ) }
                         />
-                        <>
+                        <div className={ 'attribute--group attribute-autoplay--group' }>
                             <NumberControl
                                 label={ __( 'Autoplay', 'slider' ) }
-                                value={ (attributes.autoplay !== SliderBlock.attributes.autoplay.default && attributes.autoplay)||'' }
+                                value={ attributes.autoplay.delay||'' }
+                                help={ __( 'Delay between transitions (in ms).', 'slider' ) }
                                 min={ 0 }
-                                placeholder={ SliderBlock.attributes.autoplay.default }
-                                onChange={ ( autoplay ) => setAttributes( { autoplay } ) }
+                                placeholder={ __( 'disabled', 'slider' ) }
+                                onChange={ ( delay ) => {
+                                    const autoplay = { ...attributes.autoplay }
+                                    setAttributes( { autoplay: { ...autoplay, ...{ delay } } } )
+                                } }
                             />
-                            <p className="components-base-control__help">
-                                { __( 'Delay between transitions (in ms).', 'slider' ) }
-                            </p>
-                        </>
+
+                            <ToggleControl
+                                label={ __( 'Pause on mouseenter', 'slider' ) }
+                                help={ __( 'Autoplay will be paused on pointer (mouse) enter over Swiper container.', 'slider' ) }
+                                disabled={ !attributes.autoplay.delay }
+                                checked={ !!attributes.autoplay.pauseOnMouseEnter }
+                                onChange={ ( pauseOnMouseEnter ) => {
+                                    const autoplay = { ...attributes.autoplay }
+                                    setAttributes( { autoplay: { ...autoplay, ...{ pauseOnMouseEnter } } } )
+                                } }
+                            />
+
+                            <ToggleControl
+                                label={ __( 'Disable on interaction', 'slider' ) }
+                                help={ __( 'Autoplay will be disabled after user interactions (swipes).', 'slider' ) }
+                                disabled={ !attributes.autoplay.delay }
+                                checked={ !!attributes.autoplay.disableOnInteraction }
+                                onChange={ ( disableOnInteraction ) => {
+                                    const autoplay = { ...attributes.autoplay }
+                                    setAttributes( { autoplay: { ...autoplay, ...{ disableOnInteraction } } } )
+                                } }
+                            />
+                        </div>
                         <ToggleControl
                             label={ __( 'Keyboard control', 'slider' ) }
                             help={ __( 'Sliders currently in viewport can be controlled using the keyboard.', 'slider' ) }
@@ -198,19 +221,21 @@ const SliderEdit = ( { attributes, slides, slide, clientId, setAttributes, ...pr
                             checked={ attributes.simulateTouch }
                             onChange={ ( simulateTouch ) => setAttributes( { simulateTouch } ) }
                         />
-                        <ToggleControl
-                            label={ __( 'Mouse wheel', 'slider' ) }
-                            help={ __( 'Navigate through slides using mouse wheel.', 'slider' ) }
-                            checked={ attributes.mousewheel }
-                            onChange={ ( mousewheel ) => setAttributes( { mousewheel } ) }
-                        />
-                        <ToggleControl
-                          label={ __( 'Release on edges', 'slider' ) }
-                          help={ __( 'Allow page scrolling when swiper is on edge positions (in the beginning or in the end)', 'slider' ) }
-                          disabled={ !attributes.mousewheel }
-                          checked={ attributes.releaseOnEdges }
-                          onChange={ ( releaseOnEdges ) => setAttributes( { releaseOnEdges } ) }
-                        />
+                        <div className={ 'attribute--group attribute-mousewheel--group' }>
+                            <ToggleControl
+                                label={ __( 'Mouse wheel', 'slider' ) }
+                                help={ __( 'Navigate through slides using mouse wheel.', 'slider' ) }
+                                checked={ attributes.mousewheel }
+                                onChange={ ( mousewheel ) => setAttributes( { mousewheel } ) }
+                            />
+                            <ToggleControl
+                              label={ __( 'Release on edges', 'slider' ) }
+                              help={ __( 'Allow page scrolling when swiper is on edge positions (in the beginning or in the end)', 'slider' ) }
+                              disabled={ !attributes.mousewheel }
+                              checked={ attributes.releaseOnEdges }
+                              onChange={ ( releaseOnEdges ) => setAttributes( { releaseOnEdges } ) }
+                            />
+                        </div>
                     </PanelBody>
                     <PanelBody title={ __( 'Accessibility', 'slider' ) } initialOpen={ false } icon={ redo }>
                         <SelectControl
@@ -314,8 +339,8 @@ const SliderBlock = registerBlockType( 'acv/slider', {
             default: false
         },
         autoplay: {
-            type: 'string',
-            default: '3000'
+            type: 'object',
+            default: {}
         },
         centeredSlides: {
             type: 'boolean',
@@ -406,6 +431,10 @@ const SliderBlock = registerBlockType( 'acv/slider', {
         // 'auto' is not swiper default
         if ( !parameters.slidesPerGroup )
             parameters.slidesPerGroup = 'auto';
+
+        // no autoplay at all
+        if ( !parameters.autoplay?.delay )
+            delete parameters['autoplay']
 
         return <div className={ 'swiper' + (attributes.showOverflow ? ' swiper-overflow-visible' : '') } data-swiper={ JSON.stringify( parameters ) }>
             <div className="swiper-wrapper">

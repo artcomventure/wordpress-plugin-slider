@@ -41,6 +41,25 @@
   }
 }
 
+.attribute--group {
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: -12px;
+    right: -16px;
+    bottom: -12px;
+    left: -16px;
+    z-index: -1;
+    background-color: rgba(#000, .035);
+  }
+
+  &.attribute-mousewheel--group:before {
+    bottom: -40px;
+  }
+}
+
 // ---
 // Preview
 
@@ -144,8 +163,6 @@
     }
   }
 }
-
-
 
 // Gutenberg
 //.is-root-container & {

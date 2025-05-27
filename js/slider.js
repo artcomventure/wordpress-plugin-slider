@@ -54,9 +54,16 @@ const doSliders = function( $context ) {
             }
         }
 
+        // https://swiperjs.com/swiper-api#grid-parameters
+        if ( !!parameters.rows ) {
+            parameters.grid = { rows: parameters.rows }
+            delete parameters.rows;
+        }
+
         // https://swiperjs.com/swiper-api#autoplay-parameters
         if ( parameters.autoplay ) {
-            parameters.autoplay = {
+            // backwards compatibility @since 1.14.0
+            if ( !isNaN( parameters.autoplay ) ) parameters.autoplay = {
                 delay: parameters.autoplay,
                 disableOnInteraction: false,
                 pauseOnMouseEnter: true
@@ -97,7 +104,7 @@ const doSliders = function( $context ) {
         // make hidden/visible slides non-active/accessible
         function slideA11y( swiper ) {
             swiper.slides.forEach( ( $slide, i) => {
-                const accessible = $slide.classList.contains( 'swiper-slide-fully-visible' );
+                const accessible = $slide.classList.contains( 'swiper-slide-visible' );
 
                 $slide[accessible ? 'removeAttribute' : 'setAttribute']( 'inert', '' ) // browser will ignore the element
                 $slide[accessible ? 'removeAttribute' : 'setAttribute']( 'aria-hidden', 'true' ) // hide from accessibility API
@@ -108,13 +115,6 @@ const doSliders = function( $context ) {
         const afterInit = parameters.on.afterInit || (()=>{})
         parameters.on.afterInit = swiper => {
             slideA11y( swiper );
-
-            // for some reason swiper doesn't get drag width right
-            // so we update scrollbar's `dragSize` parameter immediately after init
-            if ( swiper.params.scrollbar.dragSize === 'auto' ) {
-                const $drag = swiper.el.querySelector( '.swiper-scrollbar-drag' )
-                if ( $drag ) swiper.params.scrollbar.dragSize = $drag.offsetWidth;
-            }
 
             afterInit( swiper ) // custom callback
             swiper.el.dispatchEvent( new CustomEvent( 'swiper:afterInit', {
@@ -147,6 +147,8 @@ const doSliders = function( $context ) {
         } );
 
         swiper.on( 'transitionEnd', slideA11y )
+        swiper.on( 'scrollbarDragEnd', slideA11y )
+        swiper.on( 'update', slideA11y )
     } );
 
     return $sliders;

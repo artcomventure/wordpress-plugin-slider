@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.4.7 - 2025-05-27
+**Added**
+
+* Extend autoplay parameter.
+* Anchor support.
+
 ## 3.4.6 - 2024-12-03
 **Added**
 

@@ -64,10 +64,13 @@ const doSliders = function( $context ) {
         if ( parameters.autoplay ) {
             // backwards compatibility @since 1.14.0
             if ( !isNaN( parameters.autoplay ) ) parameters.autoplay = {
+                enabled: true,
                 delay: parameters.autoplay,
                 disableOnInteraction: false,
                 pauseOnMouseEnter: true
             }
+            else if ( typeof parameters.autoplay.enabled === 'undefined' )
+                parameters.autoplay.enabled = true;
         }
 
         if ( !!parameters.slidesPerGroup && parameters.slidesPerGroup === 'auto' ) {
@@ -111,17 +114,35 @@ const doSliders = function( $context ) {
             } );
         }
 
-        if ( !parameters.on ) parameters.on = {};
-        const afterInit = parameters.on.afterInit || (()=>{})
-        parameters.on.afterInit = swiper => {
-            slideA11y( swiper );
+        // default event callbacks
+        (function() {
 
-            afterInit( swiper ) // custom callback
-            swiper.el.dispatchEvent( new CustomEvent( 'swiper:afterInit', {
-                detail: swiper,
-                bubbles: true
-            } ) );
-        }
+            if ( !parameters.on ) parameters.on = {};
+
+            const afterInit = parameters.on.afterInit || (()=>{})
+            parameters.on.afterInit = swiper => {
+                slideA11y( swiper );
+
+                afterInit( swiper ) // custom callback
+                swiper.el.dispatchEvent( new CustomEvent( 'swiper:afterInit', {
+                    detail: swiper,
+                    bubbles: true
+                } ) );
+            }
+
+            const onEnable = parameters.on.enable || (()=>{})
+            parameters.on.enable = swiper => {
+                onEnable( swiper ) // custom callback
+                swiper.el.classList.remove( 'swiper-lock' );
+            }
+
+            const onDisable = parameters.on.disable || (()=>{})
+            parameters.on.disable = swiper => {
+                onDisable( swiper ) // custom callback
+                swiper.el.classList.add( 'swiper-lock' );
+            }
+
+        })()
 
         // https://gist.github.com/enoks/a336e8db4594737a98d8bd2c3783c2d6
         if ( typeof Alter !== 'undefined' ) {

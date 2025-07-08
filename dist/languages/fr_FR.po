@@ -15,15 +15,13 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: slider.php
-#: build/block.js:701
-#: build/block.js:425
+#: build/block.js:1
 msgid "Slider"
 msgstr "Slider"
 
 #. Description of the plugin
 #: slider.php
-#: build/block.js:702
-#: build/block.js:426
+#: build/block.js:1
 msgid "Swiper goes Gutenberg."
 msgstr "Swiper goes Gutenberg."
 
@@ -37,352 +35,294 @@ msgstr "artcom venture GmbH"
 msgid "http://www.artcom-venture.de/"
 msgstr "http://www.artcom-venture.de/"
 
-#: build/block.js:358
-#: build/block.js:161
+#: build/block.js:1
 msgid "Slider Settings"
 msgstr "Paramètres du curseur"
 
-#: build/block.js:361
-#: build/block.js:162
+#: build/block.js:1
 msgid "Display"
 msgstr "Afficher"
 
-#: build/block.js:365
-#: build/block.js:165
+#: build/block.js:1
 msgid "Slides per view"
 msgstr "Diapositives par vue"
 
-#: build/block.js:366
-#: build/block.js:166
+#: build/block.js:1
 msgid "Number (or \"auto\") of slides visible at the same time on slider's container."
 msgstr "Nombre (ou \"auto\") de diapositives visibles en même temps sur le conteneur du curseur."
 
-#: build/block.js:378
-#: build/block.js:178
+#: build/block.js:1
 msgid "Space between slides (in px)"
 msgstr "Espace entre les diapositives (en px)"
 
-#: build/block.js:386
-#: build/block.js:185
+#: build/block.js:1
 msgid "Show overflow"
 msgstr "Afficher le débordement"
 
-#: build/block.js:387
-#: build/block.js:186
+#: build/block.js:1
 msgid "Show slides outside of slider's premises."
 msgstr "Afficher les diapositives en dehors des locaux du slider."
 
-#: build/block.js:393
-#: build/block.js:191
+#: build/block.js:1
 msgid "Center slides"
 msgstr "Glissières centrales"
 
-#: build/block.js:394
-#: build/block.js:192
+#: build/block.js:1
 msgid "Active slide will be centered, not always on the left side."
 msgstr "La diapositive active sera centrée, pas toujours sur le côté gauche."
 
-#: build/block.js:400
-#: build/block.js:197
+#: build/block.js:1
 msgid "Auto height"
 msgstr "Hauteur automatique"
 
-#: build/block.js:401
-#: build/block.js:198
+#: build/block.js:1
 msgid "Enable and slider wrapper will adapt its height to the height of the currently active slide."
 msgstr "L'activation et le wrapper du curseur adapteront sa hauteur à la hauteur de la diapositive actuellement active."
 
-#: build/block.js:407
-#: build/block.js:203
+#: build/block.js:1
 msgid "Navigation"
 msgstr "La navigation"
 
-#: build/block.js:408
-#: build/block.js:204
+#: build/block.js:1
 msgid "Aka prev and next buttons."
 msgstr "Boutons précédent et suivant."
 
-#: build/block.js:414
-#: build/block.js:209
+#: build/block.js:1
 msgid "Pagination"
 msgstr "Pagination"
 
-#: build/block.js:418
-#: build/block.js:212
+#: build/block.js:1
 msgid "Nope"
 msgstr "Non"
 
-#: build/block.js:421
-#: build/block.js:213
+#: build/block.js:1
 msgid "Bullets"
 msgstr "Balles"
 
-#: build/block.js:424
-#: build/block.js:214
+#: build/block.js:1
 msgid "Fraction"
 msgstr "Fraction"
 
-#: build/block.js:427
-#: build/block.js:215
+#: build/block.js:1
 msgid "Progressbar"
 msgstr "Barre de progression"
 
-#: build/block.js:430
-#: build/block.js:216
+#: build/block.js:1
 msgid "Scrollbar"
 msgstr "Barre de défilement"
 
-#: build/block.js:436
-#: build/block.js:221
+#: build/block.js:1
 msgid "Animation"
 msgstr "Animation"
 
-#: build/block.js:440
-#: build/block.js:223
+#: build/block.js:1
 msgid "Transition effect"
 msgstr "Effet de transition"
 
-#: build/block.js:444
-#: build/block.js:226
+#: build/block.js:1
 msgid "slide"
 msgstr "glissoire"
 
-#: build/block.js:447
-#: build/block.js:227
+#: build/block.js:1
 msgid "fade"
 msgstr "disparaître"
 
-#: build/block.js:450
-#: build/block.js:228
+#: build/block.js:1
 msgid "cube"
 msgstr "cube"
 
-#: build/block.js:453
-#: build/block.js:229
+#: build/block.js:1
 msgid "coverflow"
 msgstr "coverflow"
 
-#: build/block.js:456
-#: build/block.js:230
+#: build/block.js:1
 msgid "flip"
 msgstr "flip"
 
-#: build/block.js:459
-#: build/block.js:231
+#: build/block.js:1
 msgid "cards"
 msgstr "cards"
 
-#: build/block.js:465
-#: build/block.js:237
+#: build/block.js:1
 msgid "Speed"
 msgstr "Vitesse"
 
-#: build/block.js:474
-#: build/block.js:243
+#: build/block.js:1
 msgid "Duration of transition between slides (in ms)."
 msgstr "Durée de transition entre les diapositives (en ms)."
 
-#: build/block.js:475
-#: build/block.js:247
+#: build/block.js:1
 msgid "Direction"
 msgstr "Direction"
 
-#: build/block.js:479
-#: build/block.js:250
+#: build/block.js:1
 msgid "horizontal"
 msgstr "horizontal"
 
-#: build/block.js:482
-#: build/block.js:251
+#: build/block.js:1
 msgid "vertical"
 msgstr "vertical"
 
-#: build/block.js:488
-#: build/block.js:256
+#: build/block.js:1
 msgid "Behaviour"
 msgstr "Comportement"
 
-#: build/block.js:492
-#: build/block.js:258
+#: build/block.js:1
 msgid "Slides per group"
 msgstr "Diapositives par groupe"
 
-#: build/block.js:493
-#: build/block.js:259
+#: build/block.js:1
 msgid "Set numbers of slides to define and enable group sliding. \"auto\" will slide as many slides as defined in \"Slides per view\"."
 msgstr "Définissez le nombre de diapositives à définir et activez le glissement de groupe. \"auto\" fera glisser autant de diapositives que défini dans \"Diapositives par vue\"."
 
-#: build/block.js:510
-#: build/block.js:275
+#: build/block.js:1
 msgid "Loop"
 msgstr "Boucle"
 
-#: build/block.js:511
-#: build/block.js:276
+#: build/block.js:1
 msgid "Enable continuous loop mode."
 msgstr "Activer le mode boucle continue."
 
-#: build/block.js:518
-#: build/block.js:282
+#: build/block.js:1
 msgid "Rewind"
 msgstr "Rembobiner"
 
-#: build/block.js:519
-#: build/block.js:283
+#: build/block.js:1
 msgid "Last slide will slide back to the first slide and vice versa."
 msgstr "La dernière diapositive reviendra à la première diapositive et vice versa."
 
-#: build/block.js:526
-#: build/block.js:289
+#: build/block.js:1
 msgid "Slide to clicked slide"
 msgstr "Faire glisser vers la diapositive cliquée"
 
-#: build/block.js:527
-#: build/block.js:290
+#: build/block.js:1
 msgid "Click on any slide will produce transition to this slide."
 msgstr "Cliquez sur n'importe quelle diapositive pour produire une transition vers cette diapositive."
 
-#: build/block.js:533
-#: build/block.js:296
+#: build/block.js:1
 msgid "Autoplay"
 msgstr "Lecture automatique"
 
-#: build/block.js:535
-#: build/block.js:298
+#: build/block.js:1
 msgid "Delay between transitions (in ms)."
 msgstr "Délai entre les transitions (en ms)."
 
-#: build/block.js:588
-#: build/block.js:330
+#: build/block.js:1
 msgid "Keyboard control"
 msgstr "Contrôle du clavier"
 
-#: build/block.js:589
-#: build/block.js:331
+#: build/block.js:1
 msgid "Sliders currently in viewport can be controlled using the keyboard."
 msgstr "Les curseurs actuellement dans la fenêtre d'affichage peuvent être contrôlés à l'aide du clavier."
 
-#: build/block.js:595
-#: build/block.js:336
+#: build/block.js:1
 msgid "Simulate touch"
 msgstr "Simuler le toucher"
 
-#: build/block.js:596
-#: build/block.js:337
+#: build/block.js:1
 msgid "Slider will accept mouse events like touch events (click and drag to change slides)."
 msgstr "Le curseur acceptera les événements de souris comme les événements tactiles (cliquez et faites glisser pour changer de diapositive)."
 
-#: build/block.js:602
-#: build/block.js:342
+#: build/block.js:1
 msgid "Mouse wheel"
 msgstr "Roulette de la souris"
 
-#: build/block.js:603
-#: build/block.js:343
+#: build/block.js:1
 msgid "Navigate through slides using mouse wheel."
 msgstr "Naviguez dans les diapositives à l'aide de la molette de la souris."
 
-#: build/block.js:609
-#: build/block.js:348
+#: build/block.js:1
 msgid "Release on edges"
 msgstr "Libération sur les bords"
 
-#: build/block.js:610
-#: build/block.js:349
+#: build/block.js:1
 msgid "Allow page scrolling when swiper is on edge positions (in the beginning or in the end)"
 msgstr "Autoriser le défilement de la page lorsque le curseur est sur les positions de bord (au début ou à la fin)"
 
-#: build/block.js:663
-#: build/block.js:385
+#: build/block.js:1
 msgid "Slide view"
 msgstr "Vue de diapositive"
 
-#: build/block.js:669
-#: build/block.js:390
+#: build/block.js:1
 msgid "List view"
 msgstr "Vue de liste"
 
-#: build/block.js:687
-#: build/block.js:405
+#: build/block.js:1
 msgid "show slide %d"
 msgstr "afficher la diapositive %d"
 
-#: build/block.js:848
-#: build/block.js:569
+#: build/block.js:1
 msgid "Slide"
 msgstr "Glissoire"
 
-#: js/slider.js:95
+#: js/slider.js:98
 msgid "This is the first slide"
 msgstr "Ceci est la première diapositive"
 
-#: js/slider.js:96
+#: js/slider.js:99
 msgid "This is the last slide"
 msgstr "Ceci est la dernière diapositive"
 
-#: js/slider.js:97
+#: js/slider.js:100
 msgid "Next slide"
 msgstr "Diapositive suivante"
 
-#: js/slider.js:98
+#: js/slider.js:101
 msgid "Previous slide"
 msgstr "Diapositive précédente"
 
-#: js/slider.js:99
+#: js/slider.js:102
 msgid "Go to slide {{index}}"
 msgstr "Accéder à la diapositive {{index}}"
 
-#: build/block.js:504
-#: build/block.js:270
+#: build/block.js:1
 msgid "Freemode"
 msgstr "Mode libre"
 
-#: build/block.js:617
-#: build/block.js:355
+#: build/block.js:1
 msgid "Accessibility"
 msgstr "Accessibilité"
 
-#: build/block.js:621
-#: build/block.js:357
+#: build/block.js:1
 msgid "Role"
 msgstr "Rôle"
 
-#: build/block.js:622
-#: build/block.js:358
+#: build/block.js:1
 msgid "Value of the \"role\" attribute to be set."
 msgstr "Valeur de l'attribut \"role\" à définir."
 
-#: build/block.js:645
-#: build/block.js:370
+#: build/block.js:1
 msgid "Label"
 msgstr "Label"
 
-#: build/block.js:646
-#: build/block.js:371
+#: build/block.js:1
 msgid "Message for screen readers what this slider is about."
 msgstr "Message pour les lecteurs d'écran expliquant à quoi sert ce curseur."
 
-#: build/block.js:537
-#: build/block.js:300
+#: build/block.js:1
 msgid "disabled"
 msgstr ""
 
-#: build/block.js:552
-#: build/block.js:308
+#: build/block.js:1
 msgid "Pause on mouseenter"
 msgstr ""
 
-#: build/block.js:553
-#: build/block.js:309
+#: build/block.js:1
 msgid "Autoplay will be paused on pointer (mouse) enter over Swiper container."
 msgstr ""
 
-#: build/block.js:570
-#: build/block.js:319
+#: build/block.js:1
 msgid "Disable on interaction"
 msgstr ""
 
-#: build/block.js:571
-#: build/block.js:320
+#: build/block.js:1
 msgid "Autoplay will be disabled after user interactions (swipes)."
+msgstr ""
+
+#: build/block.js:1
+msgid "If disabled, then the only way to switch the slide is use of external API functions like slidePrev or slideNext."
+msgstr ""
+
+#: build/block.js:1
+msgid "Allow touch move"
 msgstr ""

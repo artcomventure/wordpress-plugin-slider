@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.4.8 - 2025-07-08
+**Added**
+
+* `allowTouchMove` parameter.
+* Set `slider-lock` class at en-/disable.
+
 ## 3.4.7 - 2025-05-27
 **Added**
 

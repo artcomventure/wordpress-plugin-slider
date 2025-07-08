@@ -216,8 +216,15 @@ const SliderEdit = ( { attributes, slides, slide, clientId, setAttributes, ...pr
                             onChange={ ( keyboard ) => setAttributes( { keyboard } ) }
                         />
                         <ToggleControl
+                            label={ __( 'Allow touch move', 'slider' ) }
+                            help={ __( 'If disabled, then the only way to switch the slide is use of external API functions like slidePrev or slideNext.', 'slider' ) }
+                            checked={ attributes.allowTouchMove }
+                            onChange={ ( allowTouchMove ) => setAttributes( { allowTouchMove } ) }
+                        />
+                        <ToggleControl
                             label={ __( 'Simulate touch', 'slider' ) }
                             help={ __( 'Slider will accept mouse events like touch events (click and drag to change slides).', 'slider' ) }
+                            disabled={ !attributes.allowTouchMove }
                             checked={ attributes.simulateTouch }
                             onChange={ ( simulateTouch ) => setAttributes( { simulateTouch } ) }
                         />
@@ -334,6 +341,10 @@ const SliderBlock = registerBlockType( 'acv/slider', {
             default: {}
         },
 
+        allowTouchMove: {
+            type: 'boolean',
+            default: true
+        },
         autoHeight: {
             type: 'boolean',
             default: false

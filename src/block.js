@@ -174,6 +174,12 @@ const SliderEdit = ( { attributes, slides, slide, clientId, setAttributes, ...pr
                             checked={ attributes.slideToClickedSlide }
                             onChange={ ( slideToClickedSlide ) => setAttributes( { slideToClickedSlide } ) }
                         />
+                        <ToggleControl
+                            label={ __( 'Slide to focused slide', 'slider' ) }
+                            // help={ __( 'Scroll to the slide that has been focused.', 'slider' ) }
+                            checked={ attributes.scrollOnFocus }
+                            onChange={ ( scrollOnFocus ) => setAttributes( { scrollOnFocus } ) }
+                        />
                         <div className={ 'attribute--group attribute-autoplay--group' }>
                             <NumberControl
                                 label={ __( 'Autoplay', 'slider' ) }
@@ -234,6 +240,13 @@ const SliderEdit = ( { attributes, slides, slide, clientId, setAttributes, ...pr
                                 help={ __( 'Navigate through slides using mouse wheel.', 'slider' ) }
                                 checked={ attributes.mousewheel }
                                 onChange={ ( mousewheel ) => setAttributes( { mousewheel } ) }
+                            />
+                            <ToggleControl
+                              label={ __( 'Force mousewheel to axis', 'slider' ) }
+                              help={ __( 'In horizontal mode mousewheel will work only with horizontal mousewheel scrolling, and only with vertical scrolling in vertical mode.', 'slider' ) }
+                              disabled={ !attributes.mousewheel }
+                              checked={ attributes.forceToAxis }
+                              onChange={ ( forceToAxis ) => setAttributes( { forceToAxis } ) }
                             />
                             <ToggleControl
                               label={ __( 'Release on edges', 'slider' ) }
@@ -361,6 +374,10 @@ const SliderBlock = registerBlockType( 'acv/slider', {
             type: 'string',
             default: 'horizontal'
         },
+        forceToAxis: {
+            type: 'boolean',
+            default: false
+        },
         freeMode: {
             type: 'boolean',
             default: false
@@ -396,6 +413,10 @@ const SliderBlock = registerBlockType( 'acv/slider', {
         rewind: {
             type: 'boolean',
             default: false
+        },
+        scrollOnFocus: {
+            type: 'boolean',
+            default: true
         },
         simulateTouch: {
             type: 'boolean',

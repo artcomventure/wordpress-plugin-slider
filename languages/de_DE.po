@@ -326,3 +326,15 @@ msgstr "Wechseln der Folien über Berührung zulassen"
 #: build/block.js:1
 msgid "If disabled, then the only way to switch the slide is use of external API functions like slidePrev or slideNext."
 msgstr "Wenn diese Option deaktiviert ist, besteht die einzige Möglichkeit zum Wechseln der Folie in der Verwendung externer API-Funktionen wie `slidePrev` oder `slideNext`."
+
+#: build/block.js:1
+msgid "Slide to focused slide"
+msgstr "Zum fokusierten Slide verschieben"
+
+#: build/block.js:1
+msgid "Force mousewheel to axis"
+msgstr "Mausrad-Wischgesten der jeweiligen Achse zuordnen"
+
+#: build/block.js:1
+msgid "In horizontal mode mousewheel will work only with horizontal mousewheel scrolling, and only with vertical scrolling in vertical mode."
+msgstr "Im horizontalen Modus funktioniert das Mausrad somit nur für horizontales Scrollen, im vertikalen Modus hingegen nur für vertikales Scrollen."

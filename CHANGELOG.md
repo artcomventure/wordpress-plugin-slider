@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.4.9 - 2026-05-27
+**Added**
+
+* Pause autoplay when off-screen.
+* `forceToAxis` setting.
+* `scrollOnFocus` setting.
+* Conditional `slideToClickedSlide` behaviour.
+
 ## 3.4.8 - 2025-07-08
 **Added**
 
